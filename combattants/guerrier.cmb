@@ -1,0 +1,8 @@
+nom=Guerrier
+vie=100
+vieMax=100
+attaque=20
+defense=10
+esquive=5
+vitesse=7
+
