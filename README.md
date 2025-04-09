@@ -1,3 +1,1 @@
-# debut
-
-il semblerait que ça fonctionne
+Fonctionnement du programme
