@@ -34,4 +34,5 @@ typedef struct {
     int vitesse;     
     int esquive;
 
+
 }Combattant;
