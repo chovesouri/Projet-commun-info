@@ -33,6 +33,12 @@ typedef struct {
     char* competspe[30];
     int vitesse;     
     int esquive;
+    int degaspe1;
+    int degaspe2;
+    int degaspe3;
+    
+
+    
 
 
 }Combattant;
