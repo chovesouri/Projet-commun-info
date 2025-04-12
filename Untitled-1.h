@@ -25,6 +25,7 @@ mme picasso;
 
 
 typedef struct {
+    char* nom[20];
     int pvmax;
     int pvcourants;
     char* nomatq[50];
