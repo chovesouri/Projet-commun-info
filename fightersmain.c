@@ -106,7 +106,7 @@ int main(){
     printf("               COMBAT TERMINÉ\n");
     printf("=============================================\n");
 
-
+    if (équipe1[0].pvcourants > 0 || équipe1[1].pvcourants > 0 || équipe1[2].pvcourants > 0) {
 
 
 
