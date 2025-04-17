@@ -21,7 +21,11 @@ mme picasso;
 }NomCombattant;
 
 
-
+typedef struct{
+    char* nomspe[30];
+    char* description1[35];
+    char* description2[35];
+}competencespeciales;
 
 
 typedef struct {
@@ -31,13 +35,13 @@ typedef struct {
     char* nomatq[50];
     int attaque;
     int defense;
-    char* competspe[30];
+    competencespeciales competspe;
     int vitesse;     
     int esquive;
     int degaspe1;
     int degaspe2;
     int degaspe3;
-    
+    int vitessecourante;
 
     
 
