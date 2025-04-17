@@ -66,6 +66,9 @@ void allignement(int longueur){//fonction permettant d'lligner les colonnes
    
 void affichevitesse(int vitesse){
     int a=vitesse/10;
+    if(a>10){
+        a=10;
+    }    
     printf("(");
     for(int i=0; i<a; i++){
         printf(">");
