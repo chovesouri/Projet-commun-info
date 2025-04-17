@@ -102,8 +102,16 @@ int main(){
 
         nombredetour++;
     }while((equipe1[0].pvcourants>0 && equipe[1].pvcourants>0 && equipe1[2].pvcourants) && (equipe2[1].pvcourants>0 && equip2[2].pvcourants>0 && equipe2[2].pvcourants>0) );//condition de fin de combat
+    printf("\n=============================================\n");
+    printf("               COMBAT TERMINÉ\n");
+    printf("=============================================\n");
 
 
+
+
+
+}
+    
 
 
 
