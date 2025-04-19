@@ -48,15 +48,17 @@ Combattant* miseaJourCombattants(liste[],int choixcombattant){
 return liste;
 }
 
-int longueur_int(int n) {// Compter les chiffres d'un entier
+int longueur_int(int n) {
+    if (n == 0) return 1; // cas particulier
     int longueur = 0;
+    if (n < 0) n = -n; // valeur absolue
     while (n > 0) {
         n /= 10;
         longueur++;
     }
-
     return longueur;
 }
+
 void allignement(int longueur){//fonction permettant d'lligner les colonnes
     for(int i = 0; i <50-longueur; i++){
         printf(" ");
@@ -66,9 +68,6 @@ void allignement(int longueur){//fonction permettant d'lligner les colonnes
    
 void affichevitesse(int vitesse){
     int a=vitesse/10;
-    if(a>10){
-        a=10;
-    }    
     printf("(");
     for(int i=0; i<a; i++){
         printf(">");
@@ -82,14 +81,21 @@ void affichevitesse(int vitesse){
 
 
 
-void affichecombats(Combattant* equipe) {// Affiche les combats entre les deux équipes
+void affichejoueur(Combattant* equipe,char* nomequipe) {// Affiche l'équipe d'unjoueur
+    int l = 0;// variable servant à l'allignementde des |
     for(int t=0; t<(53*3+4); t++){
         printf("_")   
     }
     printf("\n");
     printf("|");
-    int l = 0;// variable servant à l'allignementde des |
-    
+    printf("%s", nomequipe);// affichage du nom de l'équipe
+    int n=strlen(nomequipe);
+    for(int y=0; y<1616-n; y++){
+        printf(" ");
+    }
+    printf("|");
+    printf("\n");
+    printf("|");
     for(int i = 0; i < 3; i++) {//affichage des noms des combattants
         printf("   %s:", equipe[i].nom);
         l=strlen(equipe[i].nom);
@@ -126,7 +132,7 @@ void affichecombats(Combattant* equipe) {// Affiche les combats entre les deux �
     printf("|");
     for(int b=0; b<3; b++){// affichage des défenses
         printf("   défense:%d", equipe[b].defense);
-        l=strlen(equipe[b].defense);
+        l=longueur_int(equipe[b].defense);
         allignement(l+8);    
     }
     printf("\n");
@@ -154,15 +160,17 @@ void affichecombats(Combattant* equipe) {// Affiche les combats entre les deux �
     printf("|");
     for(int g=0; g<3; g++){
         printf("   esquive:%d  ", equipe[g].esquive);
-        l=strlen(equipe[g].esquive);
+        l=longueur_int(equipe[g].esquive);
         allignement(l+8);   
     }
+    printf("\n");
+}    
     
     
-    
-
-
-
-
-
+void affichecombat(Combattant* equipe1, Combattant* equipe2){//affichage du combat
+    affichejoueur(equipe1);
+    affichejoueur(equipe2);
+    for(int t=0; t<(53*3+4); t++){
+        printf("_");   
+    }
 }   
