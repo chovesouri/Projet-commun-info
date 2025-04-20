@@ -1,4 +1,4 @@
-#include "fighers.h"
+#include "fighters.h"
 
 
 
@@ -77,7 +77,7 @@ int main(){
             printf("Joueur1 choisissez votre combattant numéro %d en saisissant sont numéro",compteur1);
             scanf("%d", &choix1);
            
-        }while(choix1<1 || choix1>12-compteur3 || );
+        }while(choix1<1 || choix1>12-compteur3 );
         équipe1[i] = liste[choix1-1];//affecter le combattant choisi à l'équipe 1
         miseaJourCombattants(liste, choix1);//mise à jour de la liste de combattants
         systeme("clear");//nettoyer l'écran
@@ -88,7 +88,7 @@ int main(){
             printf("Joueur2 choisissez votre combattant numéro %d en saisissant sont numéro",compteur2);
             scanf("%d", &choix1);
            
-        }while(choix1<1 || choix1>12-compteur || );
+        }while(choix1<1 || choix1>12-compteur3 );
         équipe2[i] = liste[choix1-1];
         miseaJourCombattants(liste, choix1);//mise à jour de la liste de combattants
         systeme("clear");
@@ -101,7 +101,7 @@ int main(){
 
 
         nombredetour++;
-    }while((equipe1[0].pvcourants>0 && equipe[1].pvcourants>0 && equipe1[2].pvcourants) && (equipe2[1].pvcourants>0 && equip2[2].pvcourants>0 && equipe2[2].pvcourants>0) );//condition de fin de combat
+    }while((équipe1[0].pvcourants>0 && équipe[1].pvcourants>0 && équipe1[2].pvcourants) && (équipe2[1].pvcourants>0 && équip2[2].pvcourants>0 && équipe2[2].pvcourants>0) );//condition de fin de combat
 
 
 
