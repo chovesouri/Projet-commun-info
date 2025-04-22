@@ -3,6 +3,7 @@
 #include <string.h> 
 #include <math.h>
 
+Combattant ConveCombattant(FILE* fichier);
 
 
 
@@ -13,7 +14,7 @@ typedef struct{
 }competencespeciales;
 
 
-typedef struct {
+typedef struct{
     char* nom[20];
     int pvmax;
     int pvcourants;
@@ -27,8 +28,4 @@ typedef struct {
     int degaspe2;
     int degaspe3;
     int vitessecourante;
-
-    
-
-
-}Combattant;
+    }Combattant;

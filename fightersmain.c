@@ -1,6 +1,8 @@
 #include "fighters.h"
 
 
+Combattant ConveCombattant(FILE* fichier);
+afficherCombattantsDisponibles(Combattant liste[], int taille);
 
 int main(){
     Combattant équipe1[3];
@@ -80,7 +82,7 @@ int main(){
         }while(choix1<1 || choix1>12-compteur3 );
         équipe1[i] = liste[choix1-1];//affecter le combattant choisi à l'équipe 1
         miseaJourCombattants(liste, choix1);//mise à jour de la liste de combattants
-        systeme("clear");//nettoyer l'écran
+        system("clear");//nettoyer l'écran
         compteur1++;
         compteur3++;
         do{
@@ -91,7 +93,7 @@ int main(){
         }while(choix1<1 || choix1>12-compteur3 );
         équipe2[i] = liste[choix1-1];
         miseaJourCombattants(liste, choix1);//mise à jour de la liste de combattants
-        systeme("clear");
+        system("clear");
         compteur2++;
         compteur3++;
 
@@ -101,7 +103,7 @@ int main(){
 
 
         nombredetour++;
-    }while((équipe1[0].pvcourants>0 && équipe[1].pvcourants>0 && équipe1[2].pvcourants) && (équipe2[1].pvcourants>0 && équip2[2].pvcourants>0 && équipe2[2].pvcourants>0) );//condition de fin de combat
+    }while((équipe1[0].pvcourants>0 && équipe1[1].pvcourants>0 && équipe1[2].pvcourants) && (équipe2[1].pvcourants>0 && équipe2[2].pvcourants>0 && équipe2[2].pvcourants>0) );//condition de fin de combat
 
 
 

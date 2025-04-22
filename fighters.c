@@ -1,6 +1,5 @@
 #include "fighters.h"
-
-Combattant ConveCombattant(FILE* fichier){
+    Combattant ConveCombattant(FILE* fichier){
     Combattant c;
     // Lecture directe avec fscanf
     fscanf(fichier, "%19[^\n]\n", c.nom);         // nom
@@ -51,7 +50,9 @@ return liste;
 int longueur_int(int n) {
     if (n == 0) return 1; // cas particulier
     int longueur = 0;
-    if (n < 0) n = -n; // valeur absolue
+    if (n < 0){
+    n = -n;// valeur absolue
+    }
     while (n > 0) {
         n /= 10;
         longueur++;
@@ -68,7 +69,7 @@ void allignement(int longueur){//fonction permettant d'alligner les colonnes
    
 void affichevitesse(int vitesse){
     int a=vitesse/10;
-    printf("(");
+    printf("   (");
     for(int i=0; i<a; i++){
         printf(">");
     }
@@ -84,16 +85,17 @@ void affichevitesse(int vitesse){
 
 
 
-void affichejoueur(Combattant* equipe,char* nomequipe) {// Affiche l'équipe d'unjoueur
+void affichejoueur(Combattant* equipe,char* nomequipe) {// Affiche l'équipe d'un joueur
     int l = 0;// variable servant à l'allignementde des |
+    int o=0;
     for(int t=0; t<(53*3+4); t++){
         printf("_");   
     }
     printf("\n");
     printf("|");
     printf("%s", nomequipe);// affichage du nom de l'équipe
-    int n=strlen(nomequipe);
-    for(int y=0; y<1616-n; y++){
+    l=strlen(nomequipe);
+    for(int y=0; y<161-l; y++){
         printf(" ");
     }
     printf("|");
@@ -101,7 +103,12 @@ void affichejoueur(Combattant* equipe,char* nomequipe) {// Affiche l'équipe d'u
     printf("|");
     for(int i = 0; i < 3; i++) {//affichage des noms des combattants
         printf("   %s:", equipe[i].nom);
-        l=strlen(equipe[i].nom);
+        l=0;
+        o=0;
+         while (equipe[i].nom[o] != NULL) {
+        l+= strlen(equipe[i].nom[o]);
+        o++;
+    }
         allignement(l+1);    
     }
     printf("\n");
@@ -127,8 +134,16 @@ void affichejoueur(Combattant* equipe,char* nomequipe) {// Affiche l'équipe d'u
     printf("\n");
     printf("|");    
     for(int z=0; z<3; z++){// affichage des attaques
+        
         printf("   %s:%d", equipe[z].nomatq, equipe[z].attaque);
-        l=strlen(equipe[z].nomatq)+longueur_int(equipe[z].attaque);
+        l=0;
+        o=0;
+        while (equipe[z].nomatq != NULL) {
+        l+= strlen(equipe[z].nomatq[o]);
+        o++;
+        }
+        
+        l+=longueur_int(equipe[z].attaque);
         allignement(l+1);   
     }
     printf("\n");
@@ -142,21 +157,37 @@ void affichejoueur(Combattant* equipe,char* nomequipe) {// Affiche l'équipe d'u
     printf("|");
     for(int c=0; c<3; c++){// affichage des compétences spéciales
         printf("   spé:%s", equipe[c].competspe.nomspe);
-        l=strlen(equipe[c].competspe.nomspe);
+        
+        l=0;
+        o=0;
+         while (equipe[c].competspe.nomspe[o] != NULL) {
+        l+=strlen(equipe[c].competspe.nomspe[o]);
+        o++;
+    }
         allignement(l+4);     
     }
     printf("\n");   
     printf("|");
     for(int d=0; d<3; d++){// affichage des descriptions
         printf("   %s", equipe[d].competspe.description1);
-        l=strlen(equipe[d].competspe.description1);
+        l=0;
+        o=0;
+         while (equipe[d].competspe.description1[o] != NULL) {
+        l+= strlen(equipe[d].competspe.description1[o]);
+        o++;
+        }
         allignement(l);   
     }
     printf("\n");   
     printf("|");   
     for(int f=0; f<3; f++){
         printf("   %s", equipe[f].competspe.description2);
-        l=strlen(equipe[f].competspe.description2);
+        l=0;
+        o=0;
+         while (equipe[d].competspe.description2[o] != NULL) {
+        l+= strlen(equipe[d].competspe.description2[o]);
+        o++;
+        }
         allignement(l);   
     }
     printf("\n");
@@ -170,9 +201,9 @@ void affichejoueur(Combattant* equipe,char* nomequipe) {// Affiche l'équipe d'u
 }    
     
     
-void affichecombat(Combattant* equipe1, Combattant* equipe2){//affichage du combat
-    affichejoueur(equipe1,char* nomEquipe1);
-    affichejoueur(equipe2,char* nomEquipe2);
+void affichecombat(Combattant* equipe1,char* nomEquipe1, Combattant* equipe2,char* nomEquipe2){//affichage du combat
+    affichejoueur(equipe1, nomEquipe1);
+    affichejoueur(equipe2, nomEquipe2);
     for(int t=0; t<(53*3+4); t++){
         printf("_");   
     }
