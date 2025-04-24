@@ -15,6 +15,7 @@ int main(){
     char nomEquipe1[51];
     char nomEquipe2[51];
     int nombredetour=1;
+    int état=0;//si état=1 le combattant ne peut pas jouer
     FILE *f1 = fopen("combattants/mme enserre-main", "r");//ouverture de tous les fichiers des combattans
     if (f1 == NULL) {
         exit(1);}
@@ -53,19 +54,67 @@ int main(){
         exit(12); } 
     }
 
+    FILE *comp1=fopen("Competences speciales/Paquets d'Arthur", "r");
+    if (comp1 == NULL) {
+        exit(13);}
+    FILE *comp2=fopen("Competences speciales/appel du cartel", "r");
+    if (comp2 == NULL) {
+        exit(14);}
+    FILE *comp3=fopen("Competences speciales/devoir-de-meca", "r");
+    if (comp3 == NULL) {
+        exit(15);}    
+    FILE *comp4=fopen("Competences speciales/ecrasement par doc martens", "r");
+    if (comp4 == NULL) {
+        exit(16);}
+    FILE *comp5=fopen("Competences speciales/injection sql", "r");
+    if (comp5 == NULL) {
+        exit(17);}
+    FILE *comp6=fopen("Competences speciales/justification parfaite", "r");   
+    if (comp6 == NULL) {
+        exit(18);}
+    FILE *comp7=fopen("Competences speciales/long délai", "r");
+    if (comp7 == NULL) {
+        exit(19);}
+    FILE *comp8=fopen("Competences speciales/remise des bulletins", "r");
+    if (comp8 == NULL) {
+        exit(20);}
+    FILE *comp9=fopen("Competences speciales/renvoi", "r");
+    if (comp9 == NULL) {
+        exit(21);}
+    FILE *comp10=fopen("Competences speciales/spam Teams", "r");
+    if (comp10 == NULL) {
+        exit(22);}
+    FILE *comp11=fopen("Competences speciales/trust the process", "r");
+    if (comp11 == NULL) {
+        exit(23);}
+    FILE *comp12=fopen("Competences speciales/vous etes des clowns", "r");
+    if (comp12 == NULL) {
+        exit(24);}
+
     liste[0] = ConveCombattant(f1);//affecter les combattants aux fichiers
+    liste[0] = Convecompspé(comp4);
     liste[1] = ConveCombattant(f2);
+    liste[1] = Convecompspé(comp10);
     liste[2] = ConveCombattant(f3);
+    liste[2] = Convecompspé(comp7);
     liste[3] = ConveCombattant(f4);
+    liste[3] = Convecompspé(comp8);
     liste[4] = ConveCombattant(f5);
+    liste[4] = Convecompspé(comp9);
     liste[5] = ConveCombattant(f6);
+    liste[5] = Convecompspé(comp12);
     liste[6] = ConveCombattant(f7);
+    liste[6] = Convecompspé(comp1);
     liste[7] = ConveCombattant(f8);
+    liste[7] = Convecompspé(comp11);
     liste[8] = ConveCombattant(f9);
+    liste[8] = Convecompspé(comp3);
     liste[9] = ConveCombattant(f10);
+    liste[9] = Convecompspé(comp5);
     liste[10] = ConveCombattant(f11);
+    liste[10] = Convecompspé(comp2);
     liste[11] = ConveCombattant(f12);
-    
+    liste[11] = Convecompspé(comp6);
 
     printf("Joueur 1, choisissez un nom d'équipe :\n");
     scanf(" %50[^\n]", nomEquipe1);  // lit toute la ligne 
@@ -98,10 +147,28 @@ int main(){
         compteur3++;
 
     }
+    for(int t=0; t<3; t++){//génération de la vitesse courante
+        équipe1[t].vitessecourante=rand()%50+1;
+        équipe2[t].vitessecourante=rand()%50+1;
+    }
+    
+    
+    
+    
     do{//déroulement et affichage du combat
-    printf("Tour numéro %d\n",nombredetour);
+        printf("Tour numéro %d\n",nombredetour);
+        if(état==1){
+            printf("Le combattant ne peut pas jouer\n");
+            état=0;
+        }else{
 
+        }
+        if(état==1){
+        printf("Le combattant ne peut pas jouer\n");
+        état=0;
+        }else{
 
+        }
         nombredetour++;
     }while((équipe1[0].pvcourants>0 && équipe1[1].pvcourants>0 && équipe1[2].pvcourants) && (équipe2[1].pvcourants>0 && équipe2[2].pvcourants>0 && équipe2[2].pvcourants>0) );//condition de fin de combat
 

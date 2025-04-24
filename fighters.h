@@ -8,9 +8,13 @@ Combattant ConveCombattant(FILE* fichier);
 
 
 typedef struct{
+    float valeur;
     char* nomspe[30];
-    char* description1[35];
-    char* description2[35];
+    char* description1[60];
+    char* description2[60];
+    int nombretouractif;
+    int typecompétence;
+    int nombredepersonnetouchées;
 }competencespeciales;
 
 

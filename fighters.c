@@ -1,5 +1,7 @@
 #include "fighters.h"
-    Combattant ConveCombattant(FILE* fichier){
+    
+
+Combattant ConveCombattant(FILE* fichier){
     Combattant c;
     // Lecture directe avec fscanf
     fscanf(fichier, "%19[^\n]\n", c.nom);         // nom
@@ -13,7 +15,6 @@
     c.vitessecourante=0;          // vitesse
     fscanf(fichier, "%f\n", &c.esquive);          // esquive
 
-    // Valeurs par défaut pour les dégâts spéciaux
     c.degaspe1 = 0;
     c.degaspe2 = 0;
     c.degaspe3 = 0;
@@ -207,4 +208,45 @@ void affichecombat(Combattant* equipe1,char* nomEquipe1, Combattant* equipe2,cha
     for(int t=0; t<(53*3+4); t++){
         printf("_");   
     }
-}   
+}
+
+Combattant Convecompspé(FILE* fichier){
+    fscanf(fichier, "%f\n", &c.competspe.valeur); // valeur
+    fscanf(fichier, "%29[^\n]\n", c.competspe.nomspe); // nom de la compétence spéciale
+    fscanf(fichier, "%59[^\n]\n", c.competspe.description1); // description 1
+    fscanf(fichier, "%59[^\n]\n", c.competspe.description2); // description 2
+    fscanf(fichier, "%d\n", &c.competspe.nombretouractif); // nombre de tours actif
+    fscanf(fichier, "%d\n", &c.competspe.typecompétence); // type de compétence
+    fscanf(fichier, "%d\n", &c.competspe.nombredepersonnetouchées); // nombre de personnes touchées
+    return c.competspe;
+}
+
+
+int Utilisationcompétence(Combattant* attaquant, Combattant* défenseur, int choixcombattant, ){
+    int choix=0;
+    if(attaquant[choixcombattant].competspe.typecompétence==5){
+        printf("Vous avez pris le contrôle de l'équipe ennemie\n");
+        do{
+            printf("Choisissez un combattant de l'équipe ennemie à contrôler\n");
+            scanf("%d", &choix);
+        }while(choix<1 || choix>3);
+
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
