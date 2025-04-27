@@ -16,8 +16,11 @@ Combattant ConveCombattant(FILE* fichier){
     fscanf(fichier, "%f\n", &c.esquive);          // esquive
 
     c.degaspe1 = 0;
+    c.numcapacite1 = 0;
     c.degaspe2 = 0;
+    c.numcapacite2 = 0;
     c.degaspe3 = 0;
+    c.numcapacite3 = 0;
 
     ;
     return c;
@@ -62,7 +65,7 @@ int longueur_int(int n) {
 }
 
 void allignement(int longueur){//fonction permettant d'alligner les colonnes
-    for(int i = 0; i <50-longueur; i++){
+    for(int i = 0; i <60-longueur; i++){
         printf(" ");
     }
     printf("|");
@@ -89,7 +92,7 @@ void affichevitesse(int vitesse){
 void affichejoueur(Combattant* equipe,char* nomequipe) {// Affiche l'équipe d'un joueur
     int l = 0;// variable servant à l'allignementde des |
     int o=0;
-    for(int t=0; t<(53*3+4); t++){
+    for(int t=0; t<(63*3+4); t++){
         printf("_");   
     }
     printf("\n");
@@ -205,32 +208,65 @@ void affichejoueur(Combattant* equipe,char* nomequipe) {// Affiche l'équipe d'u
 void affichecombat(Combattant* equipe1,char* nomEquipe1, Combattant* equipe2,char* nomEquipe2){//affichage du combat
     affichejoueur(equipe1, nomEquipe1);
     affichejoueur(equipe2, nomEquipe2);
-    for(int t=0; t<(53*3+4); t++){
+    for(int t=0; t<(63*3+4); t++){
         printf("_");   
     }
 }
 
-Combattant Convecompspé(FILE* fichier){
-    fscanf(fichier, "%f\n", &c.competspe.valeur); // valeur
-    fscanf(fichier, "%29[^\n]\n", c.competspe.nomspe); // nom de la compétence spéciale
-    fscanf(fichier, "%59[^\n]\n", c.competspe.description1); // description 1
-    fscanf(fichier, "%59[^\n]\n", c.competspe.description2); // description 2
-    fscanf(fichier, "%d\n", &c.competspe.nombretouractif); // nombre de tours actif
-    fscanf(fichier, "%d\n", &c.competspe.typecompétence); // type de compétence
-    fscanf(fichier, "%d\n", &c.competspe.nombredepersonnetouchées); // nombre de personnes touchées
+Combattant Convecompspé(FILE* fichier){//construction de la compétence spéciale
+    fscanf(fichier, "%f\n", &c.competspe.valeur); 
+    fscanf(fichier, "%29[^\n]\n", c.competspe.nomspe); 
+    fscanf(fichier, "%59[^\n]\n", c.competspe.description1); 
+    fscanf(fichier, "%59[^\n]\n", c.competspe.description2); 
+    fscanf(fichier, "%d\n", &c.competspe.nombretouractif); 
+    fscanf(fichier, "%d\n", &c.competspe.typecompétence); 
+    fscanf(fichier, "%d\n", &c.competspe.nombredepersonnetouchées); 
     return c.competspe;
 }
 
 
 int Utilisationcompétence(Combattant* attaquant, Combattant* défenseur, int choixcombattant, ){
     int choix=0;
-    if(attaquant[choixcombattant].competspe.typecompétence==5){
-        printf("Vous avez pris le contrôle de l'équipe ennemie\n");
-        do{
-            printf("Choisissez un combattant de l'équipe ennemie à contrôler\n");
-            scanf("%d", &choix);
-        }while(choix<1 || choix>3);
-
+    switch (attaquant[choixcombattant].competspe.typecompétence) {
+        case 1:
+            do{
+            printf("choisissez le combattant qui doit lire la thèse de mr arancini\n");
+            printf("1) %s\n", défenseur[0].nom);
+            printf("2) %s\n", défenseur[1].nom);
+            printf("3) %s\n", défenseur[2].nom);
+            }while(choix<1 || choix>3);
+            choix=choix-1;
+            défenseur[choix].vitessecourante=0;
+            printf("Le combattant %s voit son compteur de compétence remis à 0\n", défenseur[choix].nom);
+            return 1;
+        case 2: 
+            printf("%s%s\n", attaquant[choixcombattant].competspe.description1, attaquant[choixcombattant].competspe.description2);
+            for(int i=0; i<3; i++){
+                attaquant[i].defense+=attaquant[choixcombattant].competspe.valeur;
+            }
+            return 2;
+        case 3:
+            printf("%s%s\n", attaquant[choixcombattant].competspe.description1, attaquant[choixcombattant].competspe.description2);
+            for(int a=0; a<3; a++){
+                defenseur[a].viteesscourante-=attaquant[choixcombattant].competspe.valeur;
+            }
+            return 3;
+        case 4:
+            do{
+                printf("choisissez le combattant adverse adverse dont vous souhaiter écraser le pied\n");
+                scanf("%d", &choix);
+            }while(choix<1 || choix>3);
+            choix=choix-1;
+            défenseur[choix].pvcourants-=attaquant[choixcombattant].competspe.valeur;
+            printf("Le combattant %s a perdu %d pv\n", défenseur[choix].nom, attaquant[choixcombattant].competspe.valeur);
+            return 0;
+        case 5:
+            printf("%s%s\n", attaquant[choixcombattant].competspe.description1, attaquant[choixcombattant].competspe.description2);
+            printf("Choisissez le combattant dont vous souhaitez prendre le controle\n");
+    
+    
+    
+    
 }
 
 }
