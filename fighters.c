@@ -209,8 +209,9 @@ void affichecombat(Combattant* equipe1,char* nomEquipe1, Combattant* equipe2,cha
     affichejoueur(equipe1, nomEquipe1);
     affichejoueur(equipe2, nomEquipe2);
     for(int t=0; t<(63*3+4); t++){
-        printf("_");   
+        printf("_");       
     }
+    printf("\n\n");
 }
 
 Combattant Convecompspé(FILE* fichier){//construction de la compétence spéciale
@@ -225,7 +226,7 @@ Combattant Convecompspé(FILE* fichier){//construction de la compétence spécia
 }
 
 
-int Utilisationcompétence(Combattant* attaquant, Combattant* défenseur, int choixcombattant, ){
+void Utilisationcompétence(Combattant* attaquant, Combattant* défenseur, int choixcombattant,int choixdefenseur){ //utilisation de la compétence spéciale
     int choix=0;
     switch (attaquant[choixcombattant].competspe.typecompétence) {
         case 1:
