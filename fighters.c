@@ -226,51 +226,71 @@ Combattant Convecompspé(FILE* fichier){//construction de la compétence spécia
 }
 
 
-void Utilisationcompétence(Combattant* attaquant, Combattant* défenseur, int choixcombattant,int choixdefenseur){ //utilisation de la compétence spéciale
-    int choix=0;
+void Utilisationcompétence(Combattant* attaquant, Combattant* défenseur, int choixcombattant, int choixdefenseur) {
+    int choix = 0;
+
     switch (attaquant[choixcombattant].competspe.typecompétence) {
         case 1:
-            do{
-            printf("choisissez le combattant qui doit lire la thèse de mr arancini\n");
-            printf("1) %s\n", défenseur[0].nom);
-            printf("2) %s\n", défenseur[1].nom);
-            printf("3) %s\n", défenseur[2].nom);
-            }while(choix<1 || choix>3);
-            choix=choix-1;
-            défenseur[choix].vitessecourante=0;
-            printf("Le combattant %s voit son compteur de compétence remis à 0\n", défenseur[choix].nom);
-            return 1;
-        case 2: 
-            printf("%s%s\n", attaquant[choixcombattant].competspe.description1, attaquant[choixcombattant].competspe.description2);
-            for(int i=0; i<3; i++){
-                attaquant[i].defense+=attaquant[choixcombattant].competspe.valeur;
-            }
-            return 2;
-        case 3:
-            printf("%s%s\n", attaquant[choixcombattant].competspe.description1, attaquant[choixcombattant].competspe.description2);
-            for(int a=0; a<3; a++){
-                defenseur[a].viteesscourante-=attaquant[choixcombattant].competspe.valeur;
-            }
-            return 3;
-        case 4:
-            do{
-                printf("choisissez le combattant adverse adverse dont vous souhaiter écraser le pied\n");
+            do {
+                printf("Choisissez le combattant qui doit lire la thèse de Mr Arancini\n");
+                for (int i = 0; i < 3; i++) {
+                    printf("%d) %s (%d PV)\n", i + 1, défenseur[i].nom, défenseur[i].pvcourants);
+                }
                 scanf("%d", &choix);
-            }while(choix<1 || choix>3);
-            choix=choix-1;
-            défenseur[choix].pvcourants-=attaquant[choixcombattant].competspe.valeur;
-            printf("Le combattant %s a perdu %d pv\n", défenseur[choix].nom, attaquant[choixcombattant].competspe.valeur);
-            return 0;
+                choix--;
+            } while (choix < 0 || choix > 2 || défenseur[choix].pvcourants <= 0);
+
+            défenseur[choix].vitessecourante = 0;
+            printf("Le combattant %s voit son compteur de compétence remis à 0\n", défenseur[choix].nom);
+            break;
+
+        case 2:
+            printf("%s%s\n", attaquant[choixcombattant].competspe.description1,
+                             attaquant[choixcombattant].competspe.description2);
+            for (int i = 0; i < 3; i++) {
+                attaquant[i].defense += attaquant[choixcombattant].competspe.valeur;
+            }
+            break;
+
+        case 3:
+            printf("%s%s\n", attaquant[choixcombattant].competspe.description1,
+                             attaquant[choixcombattant].competspe.description2);
+            for (int a = 0; a < 3; a++) {
+                if (défenseur[a].pvcourants > 0) {
+                    défenseur[a].vitessecourante -= attaquant[choixcombattant].competspe.valeur;
+                }
+            }
+            break;
+
+        case 4:
+            do {
+                printf("Choisissez le combattant adverse dont vous souhaitez écraser le pied\n");
+                for (int i = 0; i < 3; i++) {
+                    printf("%d) %s (%d PV)\n", i + 1, défenseur[i].nom, défenseur[i].pvcourants);
+                }
+                scanf("%d", &choix);
+                choix--;
+            } while (choix < 0 || choix > 2 || défenseur[choix].pvcourants <= 0);
+
+            défenseur[choix].pvcourants -= attaquant[choixcombattant].competspe.valeur;
+            if (défenseur[choix].pvcourants < 0) défenseur[choix].pvcourants = 0;
+            printf("Le combattant %s a perdu %d PV\n", défenseur[choix].nom,
+                   attaquant[choixcombattant].competspe.valeur);
+            break;
+
         case 5:
-            printf("%s%s\n", attaquant[choixcombattant].competspe.description1, attaquant[choixcombattant].competspe.description2);
-            printf("Choisissez le combattant dont vous souhaitez prendre le controle\n");
-    
-    
-    
-    
+            printf("%s%s\n", attaquant[choixcombattant].competspe.description1,
+                             attaquant[choixcombattant].competspe.description2);
+            printf("Choisissez le combattant dont vous souhaitez prendre le contrôle\n");
+        
+            break;
+
+        default:
+            printf("Type de compétence inconnu.\n");
+            break;
+    }
 }
 
-}
 
 
 
