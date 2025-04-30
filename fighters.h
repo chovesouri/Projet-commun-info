@@ -4,6 +4,13 @@
 #include <math.h>
 
 Combattant ConveCombattant(FILE* fichier);
+void afficherCombattantsDisponibles(Combattant liste[], int taille);
+void affichecombat(Combattant* equipe1,char* nomEquipe1, Combattant* equipe2,char* nomEquipe2);
+void affichejoueur(Combattant* equipe,char* nomequipe);
+void affichevitesse(int vitesse);
+void allignement(int longueur);
+int longueur_int(int n);
+void Utilisationcompétence(Combattant* attaquant, Combattant* défenseur, int choixcombattant,int choixdefenseur);
 
 
 
@@ -28,11 +35,11 @@ typedef struct{
     competencespeciales competspe;
     int vitesse;     
     int esquive;
-    int degaspe1;
-    int numcapacite1;//compteur de tour de capacité
-    int degaspe2;
-    int numcapacite2;
-    int degaspe3;
-    int numcapacite3;
+    int typespe1;
+    int nombredetouractif1;//compteur de tour de capacité
+    int typespe2;
+    int nombredetouractif2;
+    int typespe3;
+    int nombredetouractif3;
     int vitessecourante;
     }Combattant;
