@@ -2,15 +2,10 @@
 #include <stdlib.h>
 #include <string.h> 
 #include <math.h>
+#include <time.h>
+#include <unistd.h>
 
-Combattant ConveCombattant(FILE* fichier);
-void afficherCombattantsDisponibles(Combattant liste[], int taille);
-void affichecombat(Combattant* equipe1,char* nomEquipe1, Combattant* equipe2,char* nomEquipe2);
-void affichejoueur(Combattant* equipe,char* nomequipe);
-void affichevitesse(int vitesse);
-void allignement(int longueur);
-int longueur_int(int n);
-void Utilisationcompétence(Combattant* attaquant, Combattant* défenseur, int choixcombattant,int choixdefenseur);
+
 
 
 
@@ -43,3 +38,14 @@ typedef struct{
     int nombredetouractif3;
     int vitessecourante;
     }Combattant;
+  
+  
+Combattant ConveCombattant(FILE* fichier);
+competencespeciales Convecompspé(FILE* fichier);   
+void afficherCombattantsDisponibles(Combattant liste[], int taille);
+void affichecombat(Combattant* equipe1,char* nomEquipe1, Combattant* equipe2,char* nomEquipe2);
+void affichejoueur(Combattant* equipe,char* nomequipe);
+void affichevitesse(int vitesse);
+void allignement(int longueur);
+int longueur_int(int n);
+void Utilisationcompétence(Combattant* attaquant, Combattant* défenseur, int choixcombattant, int choixdefenseur);

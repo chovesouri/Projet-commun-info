@@ -18,7 +18,7 @@ int main(){
     char nomEquipe2[51];
     int nombredetour=1;
     int valide=0;
-    int choixtypecombat=0;
+    int choixtypecombat=0;                   
     int niveaubot=0;
     int f=0;
     int n=0;
@@ -46,7 +46,7 @@ int main(){
         exit(7);}
     FILE *f8 = fopen("combattants/mr bissap", "r");
     if (f8 == NULL) { 
-        exit(8);  
+        exit(8);}  
     FILE *f9 = fopen("combattants/mr gay_prides", "r");
     if (f9 == NULL) { 
         exit(9);}
@@ -59,7 +59,7 @@ int main(){
     FILE *f12 = fopen("combattants/mr pelleteuse", "r");
     if (f12 == NULL) {
         exit(12); } 
-    }
+    
 
     FILE *comp1=fopen("Competences speciales/Paquets d'Arthur", "r");
     if (comp1 == NULL) {
@@ -99,29 +99,29 @@ int main(){
         exit(24);}
 
     liste[0] = ConveCombattant(f1);//affecter les combattants aux fichiers
-    liste[0] = Convecompspé(comp4);
+    liste[0].competspe =Convecompspé(comp4);
     liste[1] = ConveCombattant(f2);
-    liste[1] = Convecompspé(comp10);
+    liste[1].competspe = Convecompspé(comp10);
     liste[2] = ConveCombattant(f3);
-    liste[2] = Convecompspé(comp7);
+    liste[2].competspe = Convecompspé(comp7);
     liste[3] = ConveCombattant(f4);
-    liste[3] = Convecompspé(comp8);
+    liste[3].competspe = Convecompspé(comp8);
     liste[4] = ConveCombattant(f5);
-    liste[4] = Convecompspé(comp9);
+    liste[4].competspe = Convecompspé(comp9);
     liste[5] = ConveCombattant(f6);
-    liste[5] = Convecompspé(comp12);
+    liste[5].competspe = Convecompspé(comp12);
     liste[6] = ConveCombattant(f7);
-    liste[6] = Convecompspé(comp1);
+    liste[6].competspe = Convecompspé(comp1);
     liste[7] = ConveCombattant(f8);
-    liste[7] = Convecompspé(comp11);
+    liste[7].competspe = Convecompspé(comp11);
     liste[8] = ConveCombattant(f9);
-    liste[8] = Convecompspé(comp3);
+    liste[8].competspe = Convecompspé(comp3);
     liste[9] = ConveCombattant(f10);
-    liste[9] = Convecompspé(comp5);
+    liste[9].competspe = Convecompspé(comp5);
     liste[10] = ConveCombattant(f11);
-    liste[10] = Convecompspé(comp2);
+    liste[10].competspe = Convecompspé(comp2);
     liste[11] = ConveCombattant(f12);
-    liste[11] = Convecompspé(comp6);
+    liste[11].competspe = Convecompspé(comp6);
 
     
     
@@ -203,10 +203,10 @@ int main(){
                     if(équipe2[choix2].pvcourants==0){
                         printf("Ce combattant est KO, choisissez un autre combattant\n");
                    };
-                }while (équipe2[choix2].pvcourants<=0);
-                équipe2[choix2].pvcourants-=équipe1[choix1].degats;
+                }while(équipe2[choix2].pvcourants<=0);
+                équipe2[choix2].pvcourants-=équipe1[choix1].attaque;
             }
-            }else{
+            else{
                 do{//choix du type d'attaque
                     printf("Votre capacité spéciale est disponible, tapez 1 pour attaquer normalement ou 2 pour utiliser votre capacité spéciale\n");
                     scanf("%d", &choixcap);
@@ -222,7 +222,7 @@ int main(){
                             printf("Ce combattant est KO, choisissez un autre combattant\n");
                         }
                     }while(équipe2[choix2].pvcourants<=0);
-                équipe2[choix2].pvcourants-=équipe1[choix1].degats;
+                équipe2[choix2].pvcourants-=équipe1[choix1].attaque;
                 }
                 else{
                     équipe1[choix1].vitessecourante=0;
@@ -291,7 +291,7 @@ int main(){
                         printf("Ce combattant est KO, choisissez un autre combattant\n");
                     }   
                 }while(équipe1[choix2].pvcourants<=0);
-            équipe1[choix2].pvcourants-=équipe2[choix1].degats;    
+            équipe1[choix2].pvcourants-=équipe2[choix1].attaque;    
             }
             }else{
                 do{//choix du type d'attaque
@@ -309,7 +309,7 @@ int main(){
                             printf("Ce combattant est KO, choisissez un autre combattant\n");
                         }
                     }while(équipe1[choix2].pvcourants<=0);
-                    équipe1[choix2].pvcourants-=équipe2[choix1].degats;
+                    équipe1[choix2].pvcourants-=équipe2[choix1].attaque;
                 }
                     
                 else{
@@ -352,38 +352,11 @@ int main(){
         printf("Joueur 1, choisissez un nom d'équipe :\n");
         scanf(" %50[^\n]", nomEquipe1);   
 
+             
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+    
         
         
         
@@ -399,6 +372,7 @@ int main(){
         }
     
     
+ 
     
     
     
@@ -408,63 +382,10 @@ int main(){
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    }
+    	}
 
 
-
-
-
-
-
-
-
-
+}
 
 
 

@@ -15,12 +15,12 @@ Combattant ConveCombattant(FILE* fichier){
     c.vitessecourante=0;          // vitesse
     fscanf(fichier, "%f\n", &c.esquive);          // esquive
 
-    c.degaspe1 = 0;
-    c.numcapacite1 = 0;
-    c.degaspe2 = 0;
-    c.numcapacite2 = 0;
-    c.degaspe3 = 0;
-    c.numcapacite3 = 0;
+    c.typespe1 = 0;
+    c.nombredetouractif1 = 0;
+    c.typespe2 = 0;
+    c.nombredetouractif2 = 0;
+    c.typespe3 = 0;
+    c.nombredetouractif3 = 0;
 
     ;
     return c;
@@ -110,7 +110,7 @@ void affichejoueur(Combattant* equipe,char* nomequipe) {// Affiche l'équipe d'u
         l=0;
         o=0;
          while (equipe[i].nom[o] != NULL) {
-        l+= strlen(equipe[i].nom[o]);
+        l+= strlen(equipe[i].nom);
         o++;
     }
         allignement(l+1);    
@@ -188,8 +188,8 @@ void affichejoueur(Combattant* equipe,char* nomequipe) {// Affiche l'équipe d'u
         printf("   %s", equipe[f].competspe.description2);
         l=0;
         o=0;
-         while (equipe[d].competspe.description2[o] != NULL) {
-        l+= strlen(equipe[d].competspe.description2[o]);
+         while (equipe[f].competspe.description2[o] != NULL) {
+        l+= strlen(equipe[f].competspe.description2[o]);
         o++;
         }
         allignement(l);   
@@ -214,15 +214,15 @@ void affichecombat(Combattant* equipe1,char* nomEquipe1, Combattant* equipe2,cha
     printf("\n\n");
 }
 
-Combattant Convecompspé(FILE* fichier){//construction de la compétence spéciale
-    fscanf(fichier, "%f\n", &c.competspe.valeur); 
-    fscanf(fichier, "%29[^\n]\n", c.competspe.nomspe); 
-    fscanf(fichier, "%59[^\n]\n", c.competspe.description1); 
-    fscanf(fichier, "%59[^\n]\n", c.competspe.description2); 
-    fscanf(fichier, "%d\n", &c.competspe.nombretouractif); 
-    fscanf(fichier, "%d\n", &c.competspe.typecompétence); 
-    fscanf(fichier, "%d\n", &c.competspe.nombredepersonnetouchées); 
-    return c.competspe;
+competencespeciales Convecompspé(FILE* fichier){//construction de la compétence spéciale
+    competencespeciales c;
+    fscanf(fichier, "%f\n", &c.valeur); 
+    fscanf(fichier, "%29[^\n]\n", c.nomspe); 
+    fscanf(fichier, "%59[^\n]\n", c.description1); 
+    fscanf(fichier, "%59[^\n]\n", c.description2); 
+    fscanf(fichier, "%d\n", &c.nombretouractif); 
+    fscanf(fichier, "%d\n", &c.typecompétence); 
+    return c;
 }
 
 
