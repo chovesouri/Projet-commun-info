@@ -1,8 +1,7 @@
 #include "fighters.h"
 
 
-Combattant ConveCombattant(FILE* fichier);
-afficherCombattantsDisponibles(Combattant liste[], int taille);
+
 
 int main(){
     srand(time(NULL));
@@ -148,7 +147,7 @@ int main(){
             }while(choix1<1 || choix1>12-compteur3 );
             équipe1[i] = liste[choix1-1];//affecter le combattant choisi à l'équipe 1
             miseaJourCombattants(liste, choix1);//mise à jour de la liste de combattants
-            system("clear");//nettoyer l'écran
+            system("clear");
             compteur1++;
             compteur3++;
             do{
@@ -244,19 +243,19 @@ int main(){
                 if(équipe1[f].nombredetouractif1>0){
                     équipe1[f].nombredetouractif1--;
                     if(équipe1[f].nombredetouractif1==0){
-                        miseàJourCompétence(équipe1, f, 1);//mise à jour des effets sur le combattant
+                        Miseàjourcompétence(équipe1, f, 1);//mise à jour des effets sur le combattant
                     }
                 }
                 if(équipe1[f].nombredetouractif2>0){
                     équipe1[f].nombredetouractif2--;
                     if(équipe1[f].nombredetouractif2==0){
-                        miseàJourCompétence(équipe1, f, 2);//mise à jour des effets sur le combattant    
+                        Miseàjourcompétence(équipe1, f, 2);//mise à jour des effets sur le combattant    
                     }
                 }
                 if(équipe1[f].nombredetouractif3>0){
                     équipe1[f].nombredetouractif3--;
                     if(équipe1[f].nombredetouractif3==0){
-                        miseàJourCompétence(équipe1, f, 3);//mise à jour des effets sur le combattant    
+                        Miseàjourcompétence(équipe1, f, 3);//mise à jour des effets sur le combattant    
                     }
                 }
             }
@@ -327,26 +326,26 @@ int main(){
                     
                 else{
                     équipe2[choix1].vitessecourante=0;//remise à 0 de la vitesse courante
-                    Utilisationcompétence(équipe2, équipe1, choix1, choix2);//utilisation de la capacité spéciale    
+                    Utilisationcompétence(équipe2, équipe1, choix2, choix1);//utilisation de la capacité spéciale    
                 }    
             }
             for( f=0; f<3; f++){
                 if(équipe2[f].nombredetouractif1>0){
                     équipe2[f].nombredetouractif1--;
                     if(équipe2[f].nombredetouractif1==0){
-                        miseàJourCompétence(équipe2, f, 1);//mise à jour des effets sur le combattant
+                        Miseàjourcompétence(équipe2, f, 1);//mise à jour des effets sur le combattant
                     }
                 }
                 if(équipe2[f].nombredetouractif2>0){
                     équipe2[f].nombredetouractif2--;
                     if(équipe2[f].nombredetouractif2==0){
-                        miseàJourCompétence(équipe2, f, 2);//mise à jour des effets sur le combattant    
+                        Miseàjourcompétence(équipe2, f, 2);//mise à jour des effets sur le combattant    
                     }
                 }
                 if(équipe1[f].nombredetouractif3>0){
                     équipe1[f].nombredetouractif3--;
                     if(équipe1[f].nombredetouractif3==0){
-                        miseàJourCompétence(équipe1, f, 3);//mise à jour des effets sur le combattant    
+                        Miseàjourcompétence(équipe1, f, 3);//mise à jour des effets sur le combattant    
                     }
                 }
             }
@@ -365,6 +364,42 @@ int main(){
         printf("Joueur 1, choisissez un nom d'équipe :\n");
         scanf(" %50[^\n]", nomEquipe1);   
 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         if(niveaubot==1){
             strcpy(nomEquipe2, "bot niveau 1");
         }
