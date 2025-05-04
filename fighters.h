@@ -26,7 +26,7 @@ typedef struct{
     int pvcourants;
     char nomatq[50];
     int attaque;
-    int defense;
+    float defense;
     competencespeciales competspe;
     int vitesse;     
     int esquive;
@@ -48,4 +48,5 @@ void affichejoueur(Combattant* equipe,char* nomequipe);
 void affichevitesse(int vitesse);
 void allignement(int longueur);
 int longueur_int(int n);
-void Utilisationcompétence(Combattant* attaquant, Combattant* défenseur, int choixcombattant, int choixdefenseur);
+void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant* attaquanttémoin, Combattant* défenseur,char* noméquipedéf, Combattant* défenseurtémoin, int choixcombattant,int vérificationbot, int* passe);
+void Miseàjourcompétence(Combattant* équipe, Combattant* équipetémoin);//mise à jour de la compétence
