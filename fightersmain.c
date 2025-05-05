@@ -184,8 +184,9 @@ int main(){
             //déroulement du tour du joueur 1
             if(passetontour==1){
                 printf("L'adversaire a utiliser une capacité spéciale pour vous empêcher de jouer \n");
-
-            }else{
+                passetontour=0;
+            }
+            else{
                 for(int q=0; q<3; q++){//mise à jour de la vitesse courante
                     équipe1[q].vitessecourante+=équipe1[q].vitesse;
                 }
@@ -255,13 +256,13 @@ int main(){
                     }
                 sleep(5);
                 }
+                Miseàjourcompétence(équipe1, équipe1témoin);
             }
             for(n=0; n<3; n++){
                 if(équipe2[n].pvcourants<0){
                     équipe2[n].pvcourants=0;
                 }
             }
-            Miseàjourcompétence(équipe1, équipe1témoin);//mise à jour des effets sur le combattant
             choix1=0;
             choix2=0;
             choixcap=0;
@@ -273,6 +274,7 @@ int main(){
             if((équipe2[0].pvcourants<=0 && équipe2[1].pvcourants<=0 && équipe2[2].pvcourants<=0) || passetontour==1){
                 if(passetontour==1){
                     printf("L'avdersaire a utiliser une capacitéspéciale pour vous empêcher de jouer\n");
+                    passetontour=0;
                 }
             }
             else{
@@ -312,9 +314,7 @@ int main(){
                     }else{
                     équipe1[choix2].pvcourants-=équipe2[choix1].attaque*équipe1[choix2].défense;
                     printf("L'attaque a été réussie\n");
-                    }
-                }   
-            
+                    }   
                 }else{
                     do{//choix du type d'attaque
                         printf("Votre capacité spéciale est disponible, tapez 1 pour attaquer normalement ou 2 pour utiliser votre capacité spéciale\n");
@@ -343,9 +343,11 @@ int main(){
                         équipe2[choix1].vitessecourante=0;
                         Utilisationcompétence(équipe2,nomEquipe2, équipe2témoin, équipe1, nomEquipe1, équipe1témoin, choix1,0, passe);//utilisation de la capacité spéciale    
                     } 
-                    Miseàjourcompétence(équipe2, équipe2témoin);//mise à jour des effets sur le combattant
-                sleep(5);   
+                    
+                    sleep(5);   
                 }
+                Miseàjourcompétence(équipe2, équipe2témoin);
+            }
             choix1=0;
             choix2=0;
             choixcap=0;
@@ -357,18 +359,12 @@ int main(){
         }
         else{
             printf("L'équipe %s composé de %s %s %s a gagné !\n", nomEquipe1, équipe1[0].nom, équipe1[1].nom, équipe1[2].nom);
-        }
-   
-   
-   
-   
-   
+        }   
     }
    
    
    
-    else{
-        
+    else{   
         do{
             printf("Choisissez la difficulté du bot : 1 pour noob, 2 pour facile, 3 pour moyen\n");
             scanf("%d", &niveaubot);
@@ -409,93 +405,99 @@ int main(){
         for(int v=0; v<3; v++){
             strcpy(équipe1témoin[v], équipe1[v]);
             strcpy(équipe2témoin[v], équipe2[v]);
-        }
+        }   
         do{
-            //déroulement du tour du joueur 1
-            for(int q=0; q<3; q++){//mise à jour de la vitesse courante
-                équipe1[q].vitessecourante+=équipe1[q].vitesse;
-            }
-            for( n=0; n<3; n++){
-                if(équipe1[n].vitessecourante>100){
-                    équipe1[n].vitessecourante=100;
-                }
-            }
-            printf("Tour %d\n", nombredetour);
-            affichecombat(équipe1, nomEquipe1, équipe2, nomEquipe2);
-            do{//choix du combattant qui va attaquer
-                do{
-                    printf("Joeur 1, choisissez le combattant qui va attaquer\n");
-                    scanf("%d", &choix1);
-                }while(choix1<1 || choix1>3);
-                choix1=choix1-1;
-                if(équipe1[choix1].pvcourants==0){
-                    printf("Ce combattant est KO, choisissez un autre combattant\n");
-                }
-            }while(équipe1[choix1].pvcourants==0);
-            if(équipe1[choix1].vitessecourante!=100){
-                do{
-                    do{//choix du combattant à attaquer si la capacité spéciale n'est pas disponible
-                        printf("Votre capacité spéciale n'est pas disponible choisissez un adversaire à attaquer\n");
-                        scanf("%d", &choix2);
-                    }while(choix2<1 || choix2>3);
-                    choix2--;
-                    if(équipe2[choix2].pvcourants==0){
-                        printf("Ce combattant est KO, choisissez un autre combattant\n");
-                   };
-                }while(équipe2[choix2].pvcourants<=0);
-                esquive=(rand()%100+1)/100;
-                if(esquive<équipe2[choix2].esquive){
-                    printf("L'attaque a été esquivée\n");
-                }else{
-                    équipe2[choix2].pvcourants-=équipe1[choix1].attaque*équipe2[choix2].défense;
-                    printf("L'attaque a été réussie\n");
-                }
+            if(passetontour==1){
+                printf("L'adversaire a utiliser une capacité spéciale pour vous empêcher de jouer \n");
+                passetontour=0;
             }
             else{
-                do{//choix du type d'attaque
-                    printf("Votre capacité spéciale est disponible, tapez 1 pour attaquer normalement ou 2 pour utiliser votre capacité spéciale\n");
-                    scanf("%d", &choixcap);
-                }while(choixcap<1 || choixcap>2);
-                if(choixcap==1){
+                //déroulement du tour du joueur 1
+                for(int q=0; q<3; q++){//mise à jour de la vitesse courante
+                    équipe1[q].vitessecourante+=équipe1[q].vitesse;
+                }
+                for( n=0; n<3; n++){
+                    if(équipe1[n].vitessecourante>100){
+                        équipe1[n].vitessecourante=100;
+                    }
+                }
+                printf("Tour %d\n", nombredetour);
+                affichecombat(équipe1, nomEquipe1, équipe2, nomEquipe2);
+                do{//choix du combattant qui va attaquer
                     do{
-                        do{//choix du combattant à attaquer si la capacité spéciale est disponible
-                            printf("Choisissez un adversaire à attaquer\n");
+                        printf("Joeur 1, choisissez le combattant qui va attaquer\n");
+                        scanf("%d", &choix1);
+                    }while(choix1<1 || choix1>3);
+                    choix1=choix1-1;
+                    if(équipe1[choix1].pvcourants==0){
+                        printf("Ce combattant est KO, choisissez un autre combattant\n");
+                    }
+                }while(équipe1[choix1].pvcourants==0);
+                if(équipe1[choix1].vitessecourante!=100){
+                    do{
+                        do{//choix du combattant à attaquer si la capacité spéciale n'est pas disponible
+                            printf("Votre capacité spéciale n'est pas disponible choisissez un adversaire à attaquer\n");
                             scanf("%d", &choix2);
                         }while(choix2<1 || choix2>3);
-                        choix2=choix2-1;
+                        choix2--;
                         if(équipe2[choix2].pvcourants==0){
                             printf("Ce combattant est KO, choisissez un autre combattant\n");
-                        }
+                    };
                     }while(équipe2[choix2].pvcourants<=0);
                     esquive=(rand()%100+1)/100;
                     if(esquive<équipe2[choix2].esquive){
                         printf("L'attaque a été esquivée\n");
-                    }else{  
-                    équipe2[choix2].pvcourants-=équipe1[choix1].attaque*équipe2[choix2].défense;
-                    printf("L'attaque a été réussie\n");
+                    }else{
+                        équipe2[choix2].pvcourants-=équipe1[choix1].attaque*équipe2[choix2].défense;
+                        printf("L'attaque a été réussie\n");
                     }
                 }
                 else{
-                    équipe1[choix1].vitessecourante=0;
-                    Utilisationcompétence(équipe1,nomEquipe1, équipe1témoin, équipe2,nomEquipe2, équipe2témoin, choix1,0, passe);//utilisation de la capacité spéciale    
+                    do{//choix du type d'attaque
+                        printf("Votre capacité spéciale est disponible, tapez 1 pour attaquer normalement ou 2 pour utiliser votre capacité spéciale\n");
+                        scanf("%d", &choixcap);
+                    }while(choixcap<1 || choixcap>2);
+                    if(choixcap==1){
+                        do{
+                            do{//choix du combattant à attaquer si la capacité spéciale est disponible
+                                printf("Choisissez un adversaire à attaquer\n");
+                                scanf("%d", &choix2);
+                            }while(choix2<1 || choix2>3);
+                            choix2=choix2-1;
+                            if(équipe2[choix2].pvcourants==0){
+                                printf("Ce combattant est KO, choisissez un autre combattant\n");
+                            }
+                        }while(équipe2[choix2].pvcourants<=0);
+                        esquive=(rand()%100+1)/100;
+                        if(esquive<équipe2[choix2].esquive){
+                            printf("L'attaque a été esquivée\n");
+                        }else{  
+                        équipe2[choix2].pvcourants-=équipe1[choix1].attaque*équipe2[choix2].défense;
+                        printf("L'attaque a été réussie\n");
+                        }
+                    }
+                    else{
+                        équipe1[choix1].vitessecourante=0;
+                        Utilisationcompétence(équipe1,nomEquipe1, équipe1témoin, équipe2,nomEquipe2, équipe2témoin, choix1,0, passe);//utilisation de la capacité spéciale    
+                    }
                 }
-            sleep(5);
-            }
-            for(n=0; n<3; n++){
-                if(équipe2[n].pvcourants<0){
-                    équipe2[n].pvcourants=0;
+                sleep(5);
+                for(n=0; n<3; n++){
+                    if(équipe2[n].pvcourants<0){
+                        équipe2[n].pvcourants=0;
+                    }
                 }
+                Miseàjourcompétence(équipe1, équipe1témoin);//mise à jour des effets sur le combattant
             }
-            Miseàjourcompétence(équipe1, équipe1témoin);//mise à jour des effets sur le combattant
             choix1=0;
             choix2=0;
             choixcap=0;
             system("clear");
-            affichecombat(équipe2, nomEquipe2, équipe1, nomEquipe1);
-
-
-            if(équipe2[0].pvcourants<=0 && équipe2[1].pvcourants<=0 && équipe2[2].pvcourants<=0){
-                
+            if((équipe2[0].pvcourants<=0 && équipe2[1].pvcourants<=0 && équipe2[2].pvcourants<=0) || passetontour==1){
+                if(passetontour==1){
+                    printf("L'adversaire a utiliser une capacité spéciale pour vous empêcher de jouer \n");
+                    passetontour=0;
+                }    
             }
             else{
                 for( n=0; n<3; n++){//mise à jour de la vitesse courante
@@ -506,6 +508,7 @@ int main(){
                         équipe2[n].vitessecourante=100;
                     }
                 }
+                affichecombat(équipe2, nomEquipe2, équipe1, nomEquipe1);
                 //attaque du bot suivant son niveau de difficulté
                 if(niveaubot==1){
                     do{
@@ -543,7 +546,6 @@ int main(){
                         printf("L'attaque a été réussie\n");
                     }
                 }
-
                 else(niveaubot==3){
                     if(équipe2[0].vitessecourante<100 && équipe2[1].vitessecourante<100 && équipe2[2].vitessecourante<100){
                         do{
@@ -571,23 +573,20 @@ int main(){
                         printf("Le bot a choisi d'utiliser la capacité de %s",équipe[choix1].nom );
                         équipe2[choix1].vitessecourante=0;
                         Utilisationcompétence(équipe2,nomEquipe2, équipe2témoin, équipe1,nomEquipe1, équipe1témoin, choix1,1, passe);
-
-
                     }
+                    Miseàjourcompétence(équipe2, équipe2témoin);//mise à jour des effets sur le combattant
+                }                
+            }
+            sleep(5);
+            for(n=0; n<3; n++){
+                if(équipe1[n].pvcourants<0){
+                    équipe1[n].pvcourants=0;
                 }
-                sleep(5);
-                for(n=0; n<3; n++){
-                    if(équipe1[n].pvcourants<0){
-                        équipe1[n].pvcourants=0;
-                    }
-                }
-                Miseàjourcompétence(équipe2, équipe2témoin);//mise à jour des effets sur le combattant
-                choix1=0;
-                choix2=0;
-                choixcap=0;
-                system("clear");
-                affichecombat(équipe2, nomEquipe2, équipe1, nomEquipe1);
- 
+            }               
+            choix1=0;
+            choix2=0;
+            choixcap=0;
+            system("clear");    
         }while((équipe1[0].pvcourants>0 && équipe1[1].pvcourants>0 && équipe1[2].pvcourants) && (équipe2[1].pvcourants>0 && équipe2[2].pvcourants>0 && équipe2[2].pvcourants>0) );//condition de fin de combat
         if(équipe1[0].pvcourants<=0 && équipe1[1].pvcourants<=0 && équipe1[2].pvcourants<=0){
             printf("L'équipe %s composé de %s %s %s a gagné !\n", nomEquipe2, équipe2[0].nom, équipe2[1].nom, équipe2[2].nom);
@@ -595,9 +594,9 @@ int main(){
         else{
             printf("L'équipe %s composé de %s %s %s a gagné !\n", nomEquipe1, équipe1[0].nom, équipe1[1].nom, équipe1[2].nom);
         }       
-    }
-    
+    }   
 return 0;
 }
+
 
 

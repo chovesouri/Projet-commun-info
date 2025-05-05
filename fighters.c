@@ -218,21 +218,18 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                 sleep(3);
             }
             else{
-                for(int n=1; n<3; n++){
-                    if(défenseur[choix].vitessecourante<défenseur[n+1].vitessecourante){
-                        choix=n;                        
+                for(int n=0; n<2; n++){
+                    if(défenseur[choix].pvcourants && défenseur[n+1].pvcourants){
+                        if(défenseur[choix].vitessecourante<défenseur[n+1].vitessecourante){
+                            choix=n;
+                        }                      
                     }
                 }
             }
             printf("Le bot bien programmé réinitialise le conteur de %s qui était l'ennemie le plus proche d'utiliser sa compétence\n", défenseur[choix].nom);
             défenseur[choix].vitessecourante = 0;
         
-        break;
-        
-        
-        
-        
-        
+        break;                   
         case 2:
             printf("%s%s\n", attaquant[choixcombattant].competspe.description1,attaquant[choixcombattant].competspe.description2);
             for (int i = 0; i < 3; i++) {
@@ -421,6 +418,7 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
             }
             break;
         case 10:
+        for(int i = 0; i < 2; i++) {
             if(vérificationbot==0){
                     for(int q=0; q<3; q++){//mise à jour de la vitesse courante
                     attaquant[q].vitessecourante+=attaquant[q].vitesse;
@@ -433,7 +431,7 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                 affichecombat(attaquant, nomEquipe1, défenseur, nomEquipe2);
                 do{//choix du combattant qui va attaquer
                     do{
-                        printf("Joueur 1, choisissez le combattant qui va attaquer\n");
+                        printf("Equipe %s, choisissez le combattant qui va attaquer\n",noméquipeat);
                         scanf("%d", &choix1);
                     }while(choix1<1 || choix1>3);
                     choix1=choix1-1;
@@ -535,11 +533,8 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
 
 
                 }
-
-
-
-
             }
+        }
             break;
         case 11:
             printf("%s%s\n", attaquant[choixcombattant].competspe.description1,attaquant[choixcombattant].competspe.description2);
