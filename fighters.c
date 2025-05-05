@@ -311,11 +311,11 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                        };
                     }while(défenseur[choix2].pvcourants<=0);
                     esquive=(rand()%100+1)/100;
-                    if(esquive<équipe2[choix2].esquive){
+                    if(esquive<défenseur[choix2].esquive){
                         printf("L'attaque a été esquivée\n");
                     }else{
                         printf("L'attaque a été réussie\n");
-                        équipe2[choix2].pvcourants-=équipe2[choix].attaque*équipe2[choix2].defense;
+                        défenseur[choix2].pvcourants-=défenseur[choix].attaque*défenseur[choix2].defense;
                     }
                 }
                 else{
@@ -338,7 +338,7 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                         if(esquive<défenseur[choix2].esquive){
                             printf("L'attaque a été esquivée\n");
                         }else{
-                            défenseur[choix2].pvcourants-=défenseur[choix1].attaque*défenseur[choix2].defense;
+                            défenseur[choix2].pvcourants-=défenseur[choix].attaque*défenseur[choix2].defense;
                             printf("L'attaque a été réussie\n");
                         }
                     }
@@ -364,7 +364,7 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                         printf("L'attaque a été esquivée\n");
                     }else{
                         printf("L'attaque a été réussie\n");
-                        défenseur[minpv].pvcourants-=défenseur[choix].attaque*défenseur[minpv].défense;
+                        défenseur[minpv].pvcourants-=défenseur[choix].attaque*défenseur[minpv].defense;
                     }
                 }
                 else{
@@ -409,7 +409,7 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                 défenseur[choix].pvcourants*=attaquant[choixcombattant].competspe.valeur;
             }
             else{
-                for( n=1; n<3; n++){
+                for(int n=1; n<3; n++){
                     if(défenseur[choix].pvcourants<défenseur[n].pvcourants){
                         choix=n;
                     }
@@ -429,18 +429,18 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                         attaquant[n].vitessecourante=100;
                     }
                 }
-                affichecombat(attaquant, nomEquipe1, défenseur, nomEquipe2);
+                affichecombat(attaquant, noméquipeat, défenseur, noméquipedéf);
                 do{//choix du combattant qui va attaquer
                     do{
                         printf("Equipe %s, choisissez le combattant qui va attaquer\n",noméquipeat);
-                        scanf("%d", &choix1);
-                    }while(choix1<1 || choix1>3);
-                    choix1=choix1-1;
-                    if(attaquant[choix1].pvcourants==0){
+                        scanf("%d", &choix);
+                    }while(choix<1 || choix>3);
+                    choix=choix-1;
+                    if(attaquant[choix].pvcourants==0){
                         printf("Ce combattant est KO, choisissez un autre combattant\n");
                     }
-                }while(attaquant[choix1].pvcourants==0);
-                if(attaquant[choix1].vitessecourante!=100){
+                }while(attaquant[choix].pvcourants==0);
+                if(attaquant[choix].vitessecourante!=100){
                     do{
                         do{//choix du combattant à attaquer si la capacité spéciale n'est pas disponible
                             printf("Votre capacité spéciale n'est pas disponible choisissez un adversaire à attaquer\n");
@@ -449,14 +449,14 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                         choix2--;
                         if(défenseur[choix2].pvcourants==0){
                             printf("Ce combattant est KO, choisissez un autre combattant\n");
-                    }while(défenseur[choix2].pvcourants<=0);
-                    }
+                        }
+                    }while(défenseur[choix2].pvcourants<=0);                    
                     esquive=(rand()%100+1)/100;
                     if(esquive<défenseur[choix2].esquive){
                         printf("L'attaque a été esquivée\n");   
                     }else{
                         printf("L'attaque a été réussie\n");
-                        défenseur[choix2].pvcourants-=attaquant.[choix1].attaque*attaquant[choix2].défense;
+                        défenseur[choix2].pvcourants-=attaquant.[choix].attaque*attaquant[choix2].defense;
                     }    
                 }
                 else{

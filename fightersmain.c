@@ -170,8 +170,8 @@ int main(){
 
         }
         for(int v=0; v<3; v++){
-            strcpy(équipe1témoin[v], équipe1[v]);
-            strcpy(équipe2témoin[v], équipe2[v]);
+            équipe1témoin[v]=équipe1[v];
+            équipe2témoin[v]=équipe2[v];
         }
         for(int t=0; t<3; t++){//initialisation de la vitesse courante
             équipe1[t].vitessecourante=rand()%50+1;
@@ -222,7 +222,7 @@ int main(){
                     if(esquive<équipe2[choix2].esquive){
                         printf("L'attaque a été esquivée\n");
                     }else{
-                    équipe2[choix2].pvcourants-=équipe1[choix1].attaque*équipe2[choix2].défense;
+                    équipe2[choix2].pvcourants-=équipe1[choix1].attaque*équipe2[choix2].defense;
                     printf("L'attaque a été réussie\n");
                     }
                 }
@@ -246,7 +246,7 @@ int main(){
                     if(esquive<équipe2[choix2].esquive){
                         printf("L'attaque a été esquivée\n");
                     }else{
-                    équipe2[choix2].pvcourants-=équipe1[choix1].attaque*équipe2[choix2].défense;
+                    équipe2[choix2].pvcourants-=équipe1[choix1].attaque*équipe2[choix2].defense;
                     printf("L'attaque a été réussie\n");
                     }
                     }
@@ -312,7 +312,7 @@ int main(){
                     if(esquive<équipe1[choix2].esquive){
                         printf("L'attaque a été esquivée\n");
                     }else{
-                    équipe1[choix2].pvcourants-=équipe2[choix1].attaque*équipe1[choix2].défense;
+                    équipe1[choix2].pvcourants-=équipe2[choix1].attaque*équipe1[choix2].defense;
                     printf("L'attaque a été réussie\n");
                     }   
                 }else{
@@ -335,7 +335,7 @@ int main(){
                         if(esquive<équipe1[choix2].esquive){
                             printf("L'attaque a été esquivée\n");
                         }else{
-                        équipe1[choix2].pvcourants-=équipe2[choix1].attaque*équipe1[choix2].défense;
+                        équipe1[choix2].pvcourants-=équipe2[choix1].attaque*équipe1[choix2].defense;
                         printf("L'attaque a été réussie\n");
                         }
                     }    
@@ -403,8 +403,8 @@ int main(){
 
         }
         for(int v=0; v<3; v++){
-            strcpy(équipe1témoin[v], équipe1[v]);
-            strcpy(équipe2témoin[v], équipe2[v]);
+            équipe1témoin[v]=équipe1[v];
+            équipe2témoin[v]=équipe2[v];
         }   
         do{
             if(passetontour==1){
@@ -448,7 +448,7 @@ int main(){
                     if(esquive<équipe2[choix2].esquive){
                         printf("L'attaque a été esquivée\n");
                     }else{
-                        équipe2[choix2].pvcourants-=équipe1[choix1].attaque*équipe2[choix2].défense;
+                        équipe2[choix2].pvcourants-=équipe1[choix1].attaque*équipe2[choix2].defense;
                         printf("L'attaque a été réussie\n");
                     }
                 }
@@ -472,7 +472,7 @@ int main(){
                         if(esquive<équipe2[choix2].esquive){
                             printf("L'attaque a été esquivée\n");
                         }else{  
-                        équipe2[choix2].pvcourants-=équipe1[choix1].attaque*équipe2[choix2].défense;
+                        équipe2[choix2].pvcourants-=équipe1[choix1].attaque*équipe2[choix2].defense;
                         printf("L'attaque a été réussie\n");
                         }
                     }
@@ -523,7 +523,7 @@ int main(){
                     if(esquive<équipe1[choix2].esquive){
                         printf("L'attaque a été esquivée\n");
                     }else{
-                        équipe1[choix2].pvcourants-=équipe2[choix1].attaque*équipe1[choix2].défense;
+                        équipe1[choix2].pvcourants-=équipe2[choix1].attaque*équipe1[choix2].defense;
                         printf("L'attaque a été réussie\n");
                     }
                 }
@@ -542,7 +542,7 @@ int main(){
                     if(esquive<équipe1[minpv].esquive){
                         printf("L'attaque a été esquivée\n");
                     }else{
-                        équipe1[minpv].pvcourants-=équipe2[choix1].attaque*équipe1[minpv].défense;
+                        équipe1[minpv].pvcourants-=équipe2[choix1].attaque*équipe1[minpv].defense;
                         printf("L'attaque a été réussie\n");
                     }
                 }
