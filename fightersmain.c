@@ -152,7 +152,7 @@ int main(){
             
             }while(choix1<1 || choix1>12-compteur3 );
             équipe1[i] = liste[choix1-1];//affecter le combattant choisi à l'équipe 1
-            miseaJourCombattants(liste, choix1);//mise à jour de la liste de combattants
+            miseàJourCombattants(liste, choix1);//mise à jour de la liste de combattants
             system("clear");
             compteur1++;
             compteur3++;
@@ -163,7 +163,7 @@ int main(){
             
             }while(choix1<1 || choix1>12-compteur3 );
             équipe2[i] = liste[choix1-1];
-            miseaJourCombattants(liste, choix1);//mise à jour de la liste de combattants
+            miseàJourCombattants(liste, choix1);
             system("clear");
             compteur2++;
             compteur3++;
@@ -387,7 +387,7 @@ int main(){
                 scanf("%d", &choix1);
             }while(choix1<1 || choix1>12-compteur3 );
             équipe1[i] = liste[choix1-1];//affecter le combattant choisi à l'équipe 1
-            miseaJourCombattants(liste, choix1);//mise à jour de la liste de combattants
+            miseàJourCombattants(liste, choix1);//mise à jour de la liste de combattants
             system("clear");
             compteur1++;
             compteur3++;
@@ -396,7 +396,7 @@ int main(){
             printf("Le bot a choisi %s pour son champion n°%d",liste[choixcombattantbot].nom,compteur2);
             sleep(5);
             équipe2[i] = liste[choix1];
-            miseaJourCombattants(liste, choix1);//mise à jour de la liste de combattants
+            miseàJourCombattants(liste, choix1);//mise à jour de la liste de combattants
             system("clear");
             compteur2++;
             compteur3++;
@@ -551,7 +551,7 @@ int main(){
                         do{
                             choix1=rand()%3;
                         }while(choix1<0 || choix1>2|| équipe2[choix1].pvcourants<=0);
-                        printf("Le bot a choisi d'attaquer avec %s mais n'a pas sa capacité spéciale spéciale",équipe2[choix1].nom )
+                        printf("Le bot a choisi d'attaquer avec %s mais n'a pas sa capacité spéciale spéciale",équipe2[choix1].nom );
                         for( n=1; n<3; n++){
                             if(équipe1[minpv].pvcourants>équipe1[n].pvcourants){
                                 minpv=n;
@@ -562,15 +562,15 @@ int main(){
                         if(esquive<équipe1[minpv].esquive){
                             printf("L'attaque a été esquivée\n");
                         }else{
-                            équipe1[minpv].pvcourants-=équipe2[choix1].attaque*équipe1[minpv].défense;
+                            équipe1[minpv].pvcourants-=équipe2[choix1].attaque*équipe1[minpv].defense;
                             printf("L'attaque a été réussie\n");
                         }    
                     }
                     else{
                         do{
-                            choix1=rand()%3
+                            choix1=rand()%3;
                         }while(choix1<0 || choix1>2|| équipe2[choix1].pvcourants<=0 || équipe2[choix1].vitessecourante<100);
-                        printf("Le bot a choisi d'utiliser la capacité de %s",équipe[choix1].nom );
+                        printf("Le bot a choisi d'utiliser la capacité de %s",équipe2[choix1].nom );
                         équipe2[choix1].vitessecourante=0;
                         Utilisationcompétence(équipe2,nomEquipe2, équipe2témoin, équipe1,nomEquipe1, équipe1témoin, choix1,1, passe);
                     }

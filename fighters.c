@@ -44,7 +44,7 @@ void afficherCombattantsDisponibles(Combattant liste[], int taille) {// Affiche 
     }
 }
     
-Combattant* miseaJourCombattants(Combattant liste[],int choixcombattant){
+Combattant* miseàJourCombattants(Combattant liste[],int choixcombattant){
     for(choixcombattant; choixcombattant< 11; choixcombattant++){
         liste[choixcombattant] = liste[choixcombattant+1];  
     }
@@ -115,7 +115,7 @@ void affichejoueur(Combattant* equipe,char* nomequipe) {// Affiche l'équipe d'u
     for(int e=0; e<3; e++){
         affichevitesse(equipe[e].vitessecourante);//affichage de la barre de vitesse
         l=12;
-        allignement(l);    
+        alignement(l);    
     }
     printf("\n");
     printf("|");
@@ -142,9 +142,9 @@ void affichejoueur(Combattant* equipe,char* nomequipe) {// Affiche l'équipe d'u
     printf("\n");
     printf("|");
     for(int b=0; b<3; b++){// affichage des défenses
-        printf("   défense:%d", equipe[b].defense);
-        l=longueur_int(equipe[b].defense);
-        alignement(l+8);    
+        printf("   défense:%f", equipe[b].defense);
+        
+        alignement(12);    
     }
     printf("\n");
     printf("|");
@@ -480,12 +480,12 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                             printf("L'attaque a été esquivée\n");
                         }else{
                             printf("L'attaque a été réussie\n");
-                            défenseur[choix2].pvcourants-=attaquant[choix].attaque*attaquant[choix2].défense;
+                            défenseur[choix2].pvcourants-=attaquant[choix].attaque*attaquant[choix2].defense;
                         }
                     }
                     else{
                         attaquant[choix].vitessecourante=0;
-                        Utilisationcompétence(attaquant,noméquipeat, attaquanttémoin, défenseur,noméquipedéf, défenseurtémoin, choix1, 0, passe);//utilisation de la capacité spéciale    
+                        Utilisationcompétence(attaquant,noméquipeat, attaquanttémoin, défenseur,noméquipedéf, défenseurtémoin, choix, 0, passe);//utilisation de la capacité spéciale    
                     }
                 sleep(5);
                 }
@@ -500,7 +500,7 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                 for(int n=0; n<3; n++){//mise à jour de la vitesse courante
                     attaquant[n].vitessecourante+=attaquant[n].vitesse;
                 }
-                for( n=0; n<3; n++){
+                for(int n=0; n<3; n++){
                     if(attaquant[n].vitessecourante>100){
                         attaquant[n].vitessecourante=100;
                     }
@@ -510,7 +510,7 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                         choix=rand()%3;
                     }while(choix<0 || choix>2|| attaquant[choix].pvcourants<=0);
                     printf("Le bot a choisi d'attaquer avec %s mais n'a pas sa capacité spéciale spéciale",attaquant[choix].nom );
-                    for( n=1; n<3; n++){
+                    for(int n=1; n<3; n++){
                         if(défenseur[minpv].pvcourants>défenseur[n].pvcourants){
                             minpv=n;
                         }
@@ -520,7 +520,7 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                     if(esquive<défenseur[minpv].esquive){
                         printf("L'attaque a été esquivée\n");
                     }else{
-                        défenseur[minpv].pvcourants-=attaquant[choix].attaque*défenseur[minpv].défense;
+                        défenseur[minpv].pvcourants-=attaquant[choix].attaque*défenseur[minpv].defense;
                         printf("L'attaque a été réussie\n");
                     }    
                 }
@@ -577,6 +577,7 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
             default:
             printf("Erreur de compétence\n");
             exit(25);
+  }
 }
 
 
@@ -656,7 +657,7 @@ void Miseàjourcompétence(Combattant* équipe, Combattant* équipetémoin){//mi
             équipe[i].nombredetouractif3=0;
         }
     }
-}
+  }
 
 
 
