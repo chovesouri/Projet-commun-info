@@ -204,6 +204,7 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
     int choix = 0;
     int choix2=0;
     int choixcap=0;
+    float esquive=0;
 
     switch (attaquant[choixcombattant].competspe.typecompétence) {
         case 1:
@@ -236,13 +237,13 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                 if(attaquant[i].pvcourants > 0){
                     attaquant[i].defense*=attaquant[choixcombattant].competspe.valeur;
                     if(attaquant[i].typespe1==0){
-                        attaquant[i].nombredetouractif1=2
+                        attaquant[i].nombredetouractif1=2;
                         attaquant[i].typespe1=2;
                     }else if(attaquant[i].typespe2==0){
-                        attaquant[i].nombredetouractif2=2
+                        attaquant[i].nombredetouractif2=2;
                         attaquant[i].typespe2=2;
                     }else{
-                        attaquant[i].nombredetouractif3=2
+                        attaquant[i].nombredetouractif3=2;
                         attaquant[i].typespe3=2;
                     }    
                 }
@@ -255,13 +256,13 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                 if (défenseur[a].pvcourants > 0) {
                     défenseur[a].vitesse-=attaquant[choixcombattant].competspe.valeur;
                     if(attaquant[a].typespe1==0){
-                        attaquant[a].nombredetouractif1=2
+                        attaquant[a].nombredetouractif1=2;
                         attaquant[a].typespe1=3;
-                    }else if(attaquant[i].typespe2==0){
-                        attaquant[a].nombredetouractif2=2
+                    }else if(attaquant[a].typespe2==0){
+                        attaquant[a].nombredetouractif2=2;
                         attaquant[a].typespe2=3;
                     }else{
-                        attaquant[a].nombredetouractif3=2
+                        attaquant[a].nombredetouractif3=2;
                         attaquant[a].typespe3=3;
                     }
                 }
@@ -278,11 +279,11 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                 printf("Le pied de %s a bien été écrasé", défenseur[choix].nom);
             }else{
                 for(int n=1; n<3; n++){
-                    if(équipe1[choix].pvcourants>équipe1[n].pvcourants){
+                    if(défenseur[choix].pvcourants>défenseur[n].pvcourants){
                         choix=n;
                     }
                 }
-                ptintf("Le bo a choisi d'écraser le pied de %s car il est le combattant avec le moins de pv\n", défenseur[choix].nom);
+                printf("Le bo a choisi d'écraser le pied de %s car il est le combattant avec le moins de pv\n", défenseur[choix].nom);
                 défenseur[choix].pvcourants-=attaquant[choixcombattant].competspe.valeur;
             }
             break;
@@ -297,7 +298,7 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                 }while (choix < 0 || choix > 2 || défenseur[choix].pvcourants <= 0);
                 
 
-                if(défenseur[choix1].vitessecourante!=100){
+                if(défenseur[choix].vitessecourante!=100){
                     do{
                         do{//choix du combattant à attaquer si la capacité spéciale n'est pas disponible
                             printf("La capacité du joueur adverse n'est pas disponible choisissez un combattant à attaquer avec une attaque normale\n");
@@ -542,13 +543,13 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                 if (attaquant[i].pvcourants > 0) {
                     attaquant[i].attaque*=attaquant[choixcombattant].competspe.valeur;
                     if(attaquant[i].typespe1==0){
-                        attaquant[i].nombredetouractif1=2
+                        attaquant[i].nombredetouractif1=2;
                         attaquant[i].typespe1=11;
                     }else if(attaquant[i].typespe2==0){
-                        attaquant[i].nombredetouractif2=2
+                        attaquant[i].nombredetouractif2=2;
                         attaquant[i].typespe2=11;
                     }else{
-                        attaquant[i].nombredetouractif3=2
+                        attaquant[i].nombredetouractif3=2;
                         attaquant[i].typespe3=11;
                     }    
                     
