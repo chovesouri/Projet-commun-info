@@ -205,6 +205,7 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
     int choix2=0;
     int choixcap=0;
     float esquive=0;
+    int minpv=0;
 
     switch (attaquant[choixcombattant].competspe.typecompétence) {
         case 1:
@@ -291,7 +292,7 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
         case 5:
             if(vérificationbot==0){
                 do{
-                    ptintf("Bien joué, vous avez réussi à vous introduire dans l'equipe adversaire à cause d'une faille de sécurité\n");
+                    printf("Bien joué, vous avez réussi à vous introduire dans l'equipe adversaire à cause d'une faille de sécurité\n");
                     printf("Choisissez le combattant adverse dont vous souhaitez prendre le contrôle\n");
                     scanf("%d", &choix);
                     choix--;
@@ -308,13 +309,13 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                         if(défenseur[choix2].pvcourants==0){
                             printf("Ce combattant est KO, choisissez un autre combattant\n");
                        };
-                    }while(équipe2[choix2].pvcourants<=0);
+                    }while(défenseur[choix2].pvcourants<=0);
                     esquive=(rand()%100+1)/100;
                     if(esquive<équipe2[choix2].esquive){
                         printf("L'attaque a été esquivée\n");
                     }else{
                         printf("L'attaque a été réussie\n");
-                        équipe2[choix2].pvcourants-=équipe2[choix1].attaque*équipe2[choix2].défense;
+                        équipe2[choix2].pvcourants-=équipe2[choix].attaque*équipe2[choix2].defense;
                     }
                 }
                 else{
@@ -337,21 +338,21 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                         if(esquive<défenseur[choix2].esquive){
                             printf("L'attaque a été esquivée\n");
                         }else{
-                            défenseur[choix2].pvcourants-=défenseur[choix1].attaque*défenseur[choix2].défense;
+                            défenseur[choix2].pvcourants-=défenseur[choix1].attaque*défenseur[choix2].defense;
                             printf("L'attaque a été réussie\n");
                         }
                     }
                     else{
-                        Utilisationcompétence(défenseur,noméquipedéf,défenseurtémoin, défenseur,noméquipedéf, défenseurtémoin, choix1,0, passe);//utilisation de la capacité spéciale    
+                        Utilisationcompétence(défenseur,noméquipedéf,défenseurtémoin, défenseur,noméquipedéf, défenseurtémoin, choix,0, passe);//utilisation de la capacité spéciale    
                     }
                 sleep(5);
                 }
             }else{
                 if(défenseur[0].vitessecourante<100 && défenseur[1].vitessecourante<100 && défenseur[2].vitessecourante<100){
                     do{
-                        choix1=rand()%3;
-                    }while(choix1<0 || choix1>2|| défenseur[choix1].pvcourants<=0);
-                    printf("Le bot a choisi d'attaquer avec %s mais n'a pas sa capacité spéciale spéciale",défenseur[choix1].nom )
+                        choix=rand()%3;
+                    }while(choix<0 || choix1>2|| défenseur[choix].pvcourants<=0);
+                    printf("Le bot a choisi d'attaquer avec %s mais n'a pas sa capacité spéciale spéciale",défenseur[choix].nom );
                     for(int n=1; n<3; n++){
                         if(défenseur[minpv].pvcourants>défenseur[n].pvcourants){
                             minpv=n;
@@ -363,16 +364,16 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                         printf("L'attaque a été esquivée\n");
                     }else{
                         printf("L'attaque a été réussie\n");
-                        défenseur[minpv].pvcourants-=défenseur[choix1].attaque*défenseur[minpv].défense;
+                        défenseur[minpv].pvcourants-=défenseur[choix].attaque*défenseur[minpv].défense;
                     }
                 }
                 else{
                     do{
-                        choix1=rand()%3
-                    }while(choix1<0 || choix1>2|| défenseur[choix1].pvcourants<=0 || défenseur[choix1].vitessecourante<100);
-                    printf("Le bot a choisi d'utiliser la capacité de %s",défenseur[choix1].nom );
-                    équipe2[dfenseur].vitessecourante=0;
-                    Utilisationcompétence(défenseur,noméquipedéf, défenseurtémoin, défenseur,noméquipedéf, défenseurtémoin, choix1,1, passe);
+                        choix=rand()%3;
+                    }while(choix<0 || choix>2|| défenseur[choix].pvcourants<=0 || défenseur[choix].vitessecourante<100);
+                    printf("Le bot a choisi d'utiliser la capacité de %s",défenseur[choix].nom );
+                    équipe2[choix].vitessecourante=0;
+                    Utilisationcompétence(défenseur,noméquipedéf, défenseurtémoin, défenseur,noméquipedéf, défenseurtémoin, choix,1, passe);
                 }
             }
             sleep(5);
@@ -389,8 +390,7 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
             break;
         case 7:
             printf("%s%s\n", attaquant[choixcombattant].competspe.description1,attaquant[choixcombattant].competspe.description2);
-            passe*=1;
-            }
+            *passe=1;
             break;
         case 8:
             for(int i = 0; i < 3; i++) {
