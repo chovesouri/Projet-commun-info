@@ -546,7 +546,7 @@ int main(){
                         printf("L'attaque a été réussie\n");
                     }
                 }
-                else(niveaubot==3){
+                else{
                     if(équipe2[0].vitessecourante<100 && équipe2[1].vitessecourante<100 && équipe2[2].vitessecourante<100){
                         do{
                             choix1=rand()%3;
