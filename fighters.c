@@ -44,7 +44,7 @@ void afficherCombattantsDisponibles(Combattant liste[], int taille) {// Affiche 
     }
 }
     
-Combattant* miseàJourCombattants(Combattant liste[],int choixcombattant){
+Combattant* miseaJourCombattants(Combattant liste[],int choixcombattant){
     for(choixcombattant; choixcombattant< 11; choixcombattant++){
         liste[choixcombattant] = liste[choixcombattant+1];  
     }
@@ -142,8 +142,7 @@ void affichejoueur(Combattant* equipe,char* nomequipe) {// Affiche l'équipe d'u
     printf("\n");
     printf("|");
     for(int b=0; b<3; b++){// affichage des défenses
-        printf("   défense:%f", equipe[b].defense);
-        
+        printf("   défense:%d", equipe[b].defense);    
         alignement(12);    
     }
     printf("\n");
@@ -172,8 +171,7 @@ void affichejoueur(Combattant* equipe,char* nomequipe) {// Affiche l'équipe d'u
     printf("|");
     for(int g=0; g<3; g++){
         printf("   esquive:%d  ", equipe[g].esquive);
-        l=longueur_int(equipe[g].esquive);
-        alignement(l+8);   
+        alignement(12);   
     }
     printf("\n");
 }    
@@ -577,9 +575,8 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
             default:
             printf("Erreur de compétence\n");
             exit(25);
-  }
+       }
 }
-
 
 
 void Miseàjourcompétence(Combattant* équipe, Combattant* équipetémoin){//mise à jour de la compétence
@@ -657,7 +654,7 @@ void Miseàjourcompétence(Combattant* équipe, Combattant* équipetémoin){//mi
             équipe[i].nombredetouractif3=0;
         }
     }
-  }
+}
 
 
 
