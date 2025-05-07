@@ -33,7 +33,7 @@ int main(){
     if (f1 == NULL) {
         printf("problème fichier combattant 1\n");
         exit(1);}
-    FILE *f2 = fopen("combattants/mme gros_t'es_qui ?", "r");
+    FILE *f2 = fopen("combattants/mme gros_t’es_qui", "r");
     if (f2 == NULL) {  
         printf("problème fichier combattant 2\n");  
         exit(2); } 
@@ -153,7 +153,7 @@ int main(){
     liste[11] = ConveCombattant(f12);
     liste[11].competspe = Convecompspé(comp6);
 
-    
+    system("clear");
     
     printf("Bienvenue dans le jeu de combat cyfighters !\n\n");
     do{
@@ -168,7 +168,7 @@ int main(){
         scanf(" %50[^\n]", nomEquipe1);  // lit toute la ligne jusqu'à 50 caractères ou jusqu'à un retour à la ligne
         printf("Joueur 2, choisissez un nom d'équipe :\n");
         scanf(" %50[^\n]", nomEquipe2); 
-        
+        system("clear");
         for(int i=0; i<3;i++){//choix des combattants
             do{
                 afficherCombattantsDisponibles(liste, 12-compteur3);//afficher les combattants disponibles
@@ -481,7 +481,7 @@ int main(){
                             printf("Votre capacité spéciale n'est pas disponible choisissez un adversaire à attaquer\n");
                             validiter=scanf("%d", &choix2);
                             vérifscanf(validiter);
-                        }while(choix2<1 || choix2>3) || validiter!=1;
+                        }while(choix2<1 || choix2>3 || validiter!=1);
                         choix2--;
                         if(équipe2[choix2].pvcourants==0){
                             printf("Ce combattant est KO, choisissez un autre combattant\n");

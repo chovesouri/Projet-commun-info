@@ -33,11 +33,11 @@ void afficherCombattantsDisponibles(Combattant liste[], int taille) {// Affiche 
         printf("(%d) Nom : %s\n", i+1, liste[i].nom);
         printf("PV max: %d\n", liste[i].pvmax);
         printf("Attaque: %s: (%d)\n", liste[i].nomatq, liste[i].attaque);
-        printf("Défense: %.2f\n", liste[i].defense);
+        printf("Défense: réducions de %.0f%\n", (1-liste[i].defense)*100);
         printf("Compétence spéciale: %s\n", liste[i].competspe.nomspe);
-        printf("Description: %s %s", liste[i].competspe.description1,liste[i].competspe.description2);
+        printf("Description: %s %s\n", liste[i].competspe.description1,liste[i].competspe.description2);
         printf("Vitesse: %d\n", liste[i].vitesse);
-        printf("Esquive: %.2f\n", liste[i].esquive);
+        printf("Esquive: %.0f% de chance\n", (1-liste[i].esquive)*100);
         printf("----------------------------------------\n");
         printf("\n");
     }
