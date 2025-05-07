@@ -28,7 +28,7 @@ int main(){
     int passetontour=0;
     int* passe=&passetontour;//variable permettant de savoir si le joueur a le droit de jouer ou pas
     float esquive=0;
-
+    int validiter;// variable servant a vérifier la validiter des scanf
     FILE *f1 = fopen("combattants/mme enserre-main", "r");//ouverture de tous les fichiers des combattans
     if (f1 == NULL) {
         printf("problème fichier combattant 1\n");
@@ -158,8 +158,9 @@ int main(){
     printf("Bienvenue dans le jeu de combat cyfighters !\n\n");
     do{
         printf("Choisissez le type de combat :1 si vous souhaitez faire un combat contre une autre personne ou 2 si vous si souhaitez combattre contre un bot\n");
-        scanf("%d", &choixtypecombat);
-    }while(choixtypecombat<1 || choixtypecombat>2);
+        validiter=scanf("%d", &choixtypecombat);
+        vérifscanf(choixtypecombat);
+    }while(choixtypecombat<1 || choixtypecombat>2 || validiter!=1);
 
     
     if(choixtypecombat==1){//choix du type de combat
@@ -171,23 +172,23 @@ int main(){
         for(int i=0; i<3;i++){//choix des combattants
             do{
                 afficherCombattantsDisponibles(liste, 12-compteur3);//afficher les combattants disponibles
-                printf("Joueur1 choisissez votre combattant numéro %d en saisissant sont numéro",compteur1);
-                scanf("%d", &choix1);
-            
-            }while(choix1<1 || choix1>12-compteur3 );
+                printf("Joueur1 choisissez votre combattant numéro %d en saisissant sont numéro\n",compteur1);
+                validiter=scanf("%d", &choix1);
+                vérifscanf(validiter);    
+            }while(choix1<1 || choix1>12-compteur3 || validiter!=1);
             équipe1[i] = liste[choix1-1];//affecter le combattant choisi à l'équipe 1
-            miseàJourCombattants(liste, choix1);//mise à jour de la liste de combattants
+            miseàJourCombattants(liste, choix1-1);//mise à jour de la liste de combattants
             system("clear");
             compteur1++;
             compteur3++;
             do{
                 afficherCombattantsDisponibles(liste, 12-compteur3);
-                printf("Joueur2 choisissez votre combattant numéro %d en saisissant sont numéro",compteur2);
-                scanf("%d", &choix1);
-            
-            }while(choix1<1 || choix1>12-compteur3 );
+                printf("Joueur2 choisissez votre combattant numéro %d en saisissant sont numéro\n",compteur2);
+                validiter=scanf("%d", &choix1);
+                vérifscanf(validiter);
+            }while(choix1<1 || choix1>12-compteur3 || validiter!=1);
             équipe2[i] = liste[choix1-1];
-            miseàJourCombattants(liste, choix1);//mise à jour de la liste de combattants
+            miseàJourCombattants(liste, choix1-1);//mise à jour de la liste de combattants
             system("clear");
             compteur2++;
             compteur3++;
@@ -198,8 +199,8 @@ int main(){
             équipe2témoin[v]=équipe2[v];
         }
         for(int t=0; t<3; t++){//initialisation de la vitesse courante
-            équipe1[t].vitessecourante=rand()%50+1;
-            équipe2[t].vitessecourante=rand()%50+1;
+            équipe1[t].vitessecourante=rand()%60+1;
+            équipe2[t].vitessecourante=rand()%60+1;
         }
         choix1=0;
         system("clear");
@@ -209,6 +210,7 @@ int main(){
             if(passetontour==1){
                 printf("L'adversaire a utiliser une capacité spéciale pour vous empêcher de jouer \n");
                 passetontour=0;
+                sleep(5);
             }
             else{
                 for(int q=0; q<3; q++){//mise à jour de la vitesse courante
@@ -224,8 +226,9 @@ int main(){
                 do{//choix du combattant qui va attaquer
                     do{
                         printf("Joueur 1, choisissez le combattant qui va attaquer\n");
-                        scanf("%d", &choix1);
-                    }while(choix1<1 || choix1>3);
+                        validiter=scanf("%d", &choix1);
+                        vérifscanf(validiter);
+                    }while(choix1<1 || choix1>3 || validiter!=1);
                     choix1=choix1-1;
                     if(équipe1[choix1].pvcourants==0){
                         printf("Ce combattant est KO, choisissez un autre combattant\n");
@@ -235,12 +238,13 @@ int main(){
                     do{
                         do{//choix du combattant à attaquer si la capacité spéciale n'est pas disponible
                             printf("Votre capacité spéciale n'est pas disponible choisissez un adversaire à attaquer\n");
-                            scanf("%d", &choix2);
-                        }while(choix2<1 || choix2>3);
+                            validiter=scanf("%d", &choix2);
+                            vérifscanf(validiter);
+                        }while(choix2<1 || choix2>3 || validiter!=1);
                         choix2--;
                         if(équipe2[choix2].pvcourants==0){
                             printf("Ce combattant est KO, choisissez un autre combattant\n");
-                    };
+                    }
                     }while(équipe2[choix2].pvcourants<=0);
                     esquive=(rand()%100+1)/100;
                     if(esquive<équipe2[choix2].esquive){
@@ -253,14 +257,16 @@ int main(){
                 else{
                     do{//choix du type d'attaque
                         printf("Votre capacité spéciale est disponible, tapez 1 pour attaquer normalement ou 2 pour utiliser votre capacité spéciale\n");
-                        scanf("%d", &choixcap);
-                    }while(choixcap<1 || choixcap>2);
+                        validiter=scanf("%d", &choixcap);
+                        vérifscanf(validiter);
+                    }while(choixcap<1 || choixcap>2 || validiter!=1);
                     if(choixcap==1){
                         do{
                             do{//choix du combattant à attaquer si la capacité spéciale est disponible
                                 printf("Choisissez un adversaire à attaquer\n");
-                                scanf("%d", &choix2);
-                            }while(choix2<1 || choix2>3);
+                                validiter=scanf("%d", &choix2);
+                                vérifscanf(validiter);
+                            }while(choix2<1 || choix2>3 || validiter!=1);
                             choix2=choix2-1;
                             if(équipe2[choix2].pvcourants==0){
                                 printf("Ce combattant est KO, choisissez un autre combattant\n");
@@ -314,8 +320,9 @@ int main(){
                 do{//choix du combattant qui va attaquer
                     do{
                         printf("Joeur 1, choisissez le combattant qui va attaquer\n");
-                        scanf("%d", &choix1);
-                    }while(choix1<1 || choix1>3);
+                        validiter=scanf("%d", &choix1);
+                        vérifscanf(validiter);
+                    }while(choix1<1 || choix1>3 || validiter!=1);
                     choix1=choix1-1;
                     if(équipe2[choix1].pvcourants==0){
                         printf("Ce combattant est KO, choisissez un autre combattant\n");
@@ -325,8 +332,9 @@ int main(){
                     do{//choix du combattant à attaquer si la capacité spéciale n'est pas disponible
                         do{
                             printf("Votre capacité spéciale n'est pas disponible choisissez un adversaire à attaquer\n");
-                            scanf("%d", &choix2);
-                        }while(choix2<1 || choix2>3);
+                            validiter=scanf("%d", &choix2);
+                            vérifscanf(validiter);
+                        }while(choix2<1 || choix2>3 || validiter!=1);
                         choix2--;
                         if(équipe1[choix2].pvcourants==0){
                             printf("Ce combattant est KO, choisissez un autre combattant\n");
@@ -342,14 +350,16 @@ int main(){
                 }else{
                     do{//choix du type d'attaque
                         printf("Votre capacité spéciale est disponible, tapez 1 pour attaquer normalement ou 2 pour utiliser votre capacité spéciale\n");
-                        scanf("%d", &choixcap);
-                    }while(choixcap<1 || choixcap>2);
+                        validiter=scanf("%d", &choixcap);
+                        vérifscanf(validiter);
+                    }while(choixcap<1 || choixcap>2 || validiter!=1);
                     if(choixcap==1){
                         do{
                             do{//choix du combattant à attaquer si la capacité spéciale est disponible
                                 printf("Choisissez un adversaire à attaquer\n");
-                                scanf("%d", &choix2);
-                            }while(choix2<1 || choix2>3);
+                                validiter=scanf("%d", &choix2);
+                                vérifscanf(validiter);
+                            }while(choix2<1 || choix2>3 || validiter!=1);
                             choix2--;
                             if(équipe1[choix2].pvcourants==0){
                                 printf("Ce combattant est KO, choisissez un autre combattant\n");
@@ -391,8 +401,9 @@ int main(){
     else{   
         do{
             printf("Choisissez la difficulté du bot : 1 pour noob, 2 pour facile, 3 pour moyen\n");
-            scanf("%d", &niveaubot);
-        }while(niveaubot<1 || niveaubot>3);
+            validiter=scanf("%d", &niveaubot);
+            vérifscanf(validiter);
+        }while(niveaubot<1 || niveaubot>3 || validiter!=1);
         printf("Joueur 1, choisissez un nom d'équipe :\n");
         scanf(" %50[^\n]", nomEquipe1);  
         if(niveaubot==1){
@@ -407,17 +418,18 @@ int main(){
         for(int i=0; i<3;i++){//choix des combattants
             do{
                 afficherCombattantsDisponibles(liste, 12-compteur3);//afficher les combattants disponibles
-                printf("Joueur1 choisissez votre combattant numéro %d en saisissant sont numéro",compteur1);
-                scanf("%d", &choix1);
-            }while(choix1<1 || choix1>12-compteur3 );
+                printf("Joueur1 choisissez votre combattant numéro %d en saisissant sont numéro\n",compteur1);
+                validiter=scanf("%d", &choix1);
+                vérifscanf(validiter);
+            }while(choix1<1 || choix1>12-compteur3 || validiter!=1);
             équipe1[i] = liste[choix1-1];//affecter le combattant choisi à l'équipe 1
-            miseàJourCombattants(liste, choix1);//mise à jour de la liste de combattants
+            miseàJourCombattants(liste, choix1-1);//mise à jour de la liste de combattants
             system("clear");
             compteur1++;
             compteur3++;
             afficherCombattantsDisponibles(liste, 12-compteur3);
-            choixcombattantbot=rand()%12-compteur3+1;
-            printf("Le bot a choisi %s pour son champion n°%d",liste[choixcombattantbot].nom,compteur2);
+            choixcombattantbot=rand()%12-compteur3;
+            printf("Le bot a choisi %s pour son champion n°%d\n",liste[choixcombattantbot].nom,compteur2);
             sleep(5);
             équipe2[i] = liste[choix1];
             miseàJourCombattants(liste, choix1);//mise à jour de la liste de combattants
@@ -429,11 +441,16 @@ int main(){
         for(int v=0; v<3; v++){
             équipe1témoin[v]=équipe1[v];
             équipe2témoin[v]=équipe2[v];
+        }
+        for(int t=0; t<3; t++){
+            équipe1[t].vitessecourante=rand()%60+1;
+            équipe2[t].vitessecourante=rand()%60+1;
         }   
         do{
             if(passetontour==1){
                 printf("L'adversaire a utiliser une capacité spéciale pour vous empêcher de jouer \n");
                 passetontour=0;
+                sleep(5);
             }
             else{
                 //déroulement du tour du joueur 1
@@ -447,11 +464,12 @@ int main(){
                 }
                 printf("Tour %d\n", nombredetour);
                 affichecombat(équipe1, nomEquipe1, équipe2, nomEquipe2);
-                do{//choix du combattant qui va attaquer
+                do{
                     do{
                         printf("Joeur 1, choisissez le combattant qui va attaquer\n");
-                        scanf("%d", &choix1);
-                    }while(choix1<1 || choix1>3);
+                        validiter=scanf("%d", &choix1);
+                        vérifscanf(validiter);
+                    }while(choix1<1 || choix1>3 || validiter!=1);
                     choix1=choix1-1;
                     if(équipe1[choix1].pvcourants==0){
                         printf("Ce combattant est KO, choisissez un autre combattant\n");
@@ -461,8 +479,9 @@ int main(){
                     do{
                         do{//choix du combattant à attaquer si la capacité spéciale n'est pas disponible
                             printf("Votre capacité spéciale n'est pas disponible choisissez un adversaire à attaquer\n");
-                            scanf("%d", &choix2);
-                        }while(choix2<1 || choix2>3);
+                            validiter=scanf("%d", &choix2);
+                            vérifscanf(validiter);
+                        }while(choix2<1 || choix2>3) || validiter!=1;
                         choix2--;
                         if(équipe2[choix2].pvcourants==0){
                             printf("Ce combattant est KO, choisissez un autre combattant\n");
@@ -479,14 +498,16 @@ int main(){
                 else{
                     do{//choix du type d'attaque
                         printf("Votre capacité spéciale est disponible, tapez 1 pour attaquer normalement ou 2 pour utiliser votre capacité spéciale\n");
-                        scanf("%d", &choixcap);
-                    }while(choixcap<1 || choixcap>2);
+                        validiter=scanf("%d", &choixcap);
+                        vérifscanf(validiter);
+                    }while(choixcap<1 || choixcap>2 || validiter!=1);
                     if(choixcap==1){
                         do{
                             do{//choix du combattant à attaquer si la capacité spéciale est disponible
                                 printf("Choisissez un adversaire à attaquer\n");
-                                scanf("%d", &choix2);
-                            }while(choix2<1 || choix2>3);
+                                validiter=scanf("%d", &choix2);
+                                vérifscanf(validiter);
+                            }while(choix2<1 || choix2>3 || validiter!=1);
                             choix2=choix2-1;
                             if(équipe2[choix2].pvcourants==0){
                                 printf("Ce combattant est KO, choisissez un autre combattant\n");

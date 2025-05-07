@@ -49,4 +49,6 @@ void affichevitesse(int vitesse);
 void alignement(int longueur);
 int longueur_int(int n);
 void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant* attaquanttémoin, Combattant* défenseur,char* noméquipedéf, Combattant* défenseurtémoin, int choixcombattant,int vérificationbot, int* passe);
-void Miseàjourcompétence(Combattant* équipe, Combattant* équipetémoin);//mise à jour de la compétence
+void Miseàjourcompétence(Combattant* équipe, Combattant* équipetémoin)
+Combattant* miseaJourCombattants(Combattant liste[],int choixcombattant);
+void vérifscanf(int a);
