@@ -1,4 +1,4 @@
-#include "fighters.h"
+#include "fighters1.h"
     
 
 Combattant ConveCombattant(FILE* fichier,FILE* fichier2){
@@ -7,7 +7,7 @@ Combattant ConveCombattant(FILE* fichier,FILE* fichier2){
     fscanf(fichier, "%19[^\n]\n", c.nom);         // nom
     fscanf(fichier, "%d\n", &c.pvmax);            // pvmax
     c.pvcourants = c.pvmax;                       // init à pvmax
-    fscanf(fichier, "%29[^\n]\n", c.nomatq);      // nomatq
+    fscanf(fichier, "%39[^\n]\n", c.nomatq);      // nomatq
     fscanf(fichier, "%d\n", &c.attaque);          // attaque
     fscanf(fichier, "%f\n", &c.defense);          // defense
     fscanf(fichier, "%d\n", &c.vitesse);
@@ -44,7 +44,7 @@ void afficherCombattantsDisponibles(Combattant liste[], int taille) {// Affiche 
         printf("Compétence spéciale: %s\n", liste[i].competspe.nomspe);
         printf("Description: %s %s\n", liste[i].competspe.description1,liste[i].competspe.description2);
         printf("Vitesse: %d\n", liste[i].vitesse);
-        printf("Esquive: %.0f% de chance\n", (1-liste[i].esquive)*100);
+        printf("Esquive: %.2f \n", liste[i].esquive);
         printf("----------------------------------------\n");
         printf("\n");
     }
