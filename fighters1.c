@@ -71,6 +71,7 @@ int longueur_int(int n) {
 }
 
 void alignement(int longueur){//fonction permettant d'aligner les colonnes
+
     for(int i = 0; i <60-longueur; i++){
         printf(" ");
     }
@@ -111,10 +112,9 @@ void affichejoueur(Combattant* equipe,char* nomequipe) {// Affiche l'équipe d'u
     printf("\n");
     printf("|");
     for(int i = 0; i < 3; i++) {//affichage des noms des combattants
-        printf("   %d)%s:",i+1,equipe[i].nom);
-       
+        printf("   %d)%s:",i+1,equipe[i].nom);       	
         l= strlen(equipe[i].nom);
-        alignement(l+3);    
+        alignement(l+3);   
     }
     printf("\n");
     printf("|");
@@ -176,7 +176,7 @@ void affichejoueur(Combattant* equipe,char* nomequipe) {// Affiche l'équipe d'u
     printf("\n");
     printf("|");
     for(int g=0; g<3; g++){
-        printf("   esquive:%.2f  ", equipe[g].esquive);
+        printf("   esquive:%.2f", equipe[g].esquive);
         alignement(12);   
     }
     printf("\n");

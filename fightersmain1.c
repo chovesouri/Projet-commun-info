@@ -1,4 +1,4 @@
-#include "fighters.h"
+#include "fighters1.h"
 
 
 
@@ -29,51 +29,51 @@ int main(){
     int* passe=&passetontour;//variable permettant de savoir si le joueur a le droit de jouer ou pas
     float esquive=0;
     int validiter;// variable servant a vérifier la validiter des scanf
-    FILE *f1 = fopen("combattants/mme enserre-main", "r");//ouverture de tous les fichiers des combattans
+    FILE *f1 = fopen("combattants/mme_enserre_main", "r");//ouverture de tous les fichiers des combattans
     if (f1 == NULL) {
         printf("problème fichier combattant 1\n");
         exit(1);}
-    FILE *f2 = fopen("combattants/mme gros_t’es_qui", "r");
+    FILE *f2 = fopen("combattants/mme_gros_t’es_qui", "r");
     if (f2 == NULL) {  
         printf("problème fichier combattant 2\n");  
         exit(2); } 
-    FILE *f3 = fopen("combattants/mme menu-bretin", "r");
+    FILE *f3 = fopen("combattants/mme_menu-bretin", "r");
     if (f3 == NULL) {
         printf("problème fichier combattant 3\n");    
         exit(3);}
-    FILE *f4 = fopen("combattants/mme picasso", "r");
+    FILE *f4 = fopen("combattants/mme_picasso", "r");
     if (f4 == NULL) {  
         printf("problème fichier combattant 4\n"); 
         exit(4);}
-    FILE *f5 = fopen("combattants/mr j’accuse_iel", "r");
+    FILE *f5 = fopen("combattants/mr_j’accuse_iel", "r");
     if (f5 == NULL) {  
         printf("problème fichier combattant 5\n");
         exit(5); } 
-    FILE *f6 = fopen("combattants/mr abdelmoulaga", "r");
+    FILE *f6 = fopen("combattants/mr_abdelmoulaga", "r");
     if (f6 == NULL) { 
         printf("problème fichier combattant 6\n"); 
         exit(6);  } 
-    FILE *f7 = fopen("combattants/mr arancini", "r");
+    FILE *f7 = fopen("combattants/mr_arancini", "r");
     if (f7 == NULL) {  
         printf("problème fichier combattant 7\n");  
         exit(7);}
-    FILE *f8 = fopen("combattants/mr bissap", "r");
+    FILE *f8 = fopen("combattants/mr_bissap", "r");
     if (f8 == NULL) { 
         printf("problème fichier combattant 8\n");
         exit(8);}  
-    FILE *f9 = fopen("combattants/mr gay_prides", "r");
+    FILE *f9 = fopen("combattants/mr_gay_prides", "r");
     if (f9 == NULL) { 
         printf("problème fichier combattant 9\n");
         exit(9);}
-    FILE *f10 = fopen("combattants/mr grognon", "r");
+    FILE *f10 = fopen("combattants/mr_grognon", "r");
     if (f10 == NULL) {
         printf("problème fichier combattant 10\n");
         exit(10);}
-    FILE *f11 = fopen("combattants/mr par-dessus", "r");
+    FILE *f11 = fopen("combattants/mr_par-dessus", "r");
     if (f11 == NULL) {
         printf("problème fichier combattant 11\n");
         exit(11); } 
-    FILE *f12 = fopen("combattants/mr pelleteuse", "r");
+    FILE *f12 = fopen("combattants/mr_pelleteuse", "r");
     if (f12 == NULL) {
         printf("problème fichier combattant 12\n");
         exit(12); } 
@@ -135,7 +135,7 @@ int main(){
     liste[4] = ConveCombattant(f5,comp9);
     liste[5] = ConveCombattant(f6,comp12);
     liste[6] = ConveCombattant(f7,comp1);
-    liste[7] = ConveCombattant(f8),comp11;
+    liste[7] = ConveCombattant(f8,comp11);
     liste[8] = ConveCombattant(f9,comp3);
     liste[9] = ConveCombattant(f10,comp5);
     liste[10] = ConveCombattant(f11,comp2);
@@ -187,8 +187,8 @@ int main(){
             équipe2témoin[v]=équipe2[v];
         }
         for(int t=0; t<3; t++){//initialisation de la vitesse courante
-            équipe1[t].vitessecourante=rand()%60+1;
-            équipe2[t].vitessecourante=rand()%60+1;
+            équipe1[t].vitessecourante=rand()%50+1;
+            équipe2[t].vitessecourante=rand()%50+1;
         }
         choix1=0;
         system("clear");
@@ -213,7 +213,7 @@ int main(){
                 affichecombat(équipe1, nomEquipe1, équipe2, nomEquipe2);
                 do{//choix du combattant qui va attaquer
                     do{
-                        printf("Joueur 1, choisissez le combattant qui va attaquer\n");
+                        printf("Equipe %s, choisissez le combattant qui va attaquer\n", nomEquipe1);
                         validiter=scanf("%d", &choix1);
                         vérifscanf(validiter);
                     }while(choix1<1 || choix1>3 || validiter!=1);
@@ -307,7 +307,7 @@ int main(){
                 affichecombat(équipe2, nomEquipe2, équipe1, nomEquipe1);
                 do{//choix du combattant qui va attaquer
                     do{
-                        printf("Joeur 1, choisissez le combattant qui va attaquer\n");
+                        printf("Equipe %s, choisissez le combattant qui va attaquer\n",nomEquipe2);
                         validiter=scanf("%d", &choix1);
                         vérifscanf(validiter);
                     }while(choix1<1 || choix1>3 || validiter!=1);
@@ -406,7 +406,7 @@ int main(){
         for(int i=0; i<3;i++){//choix des combattants
             do{
                 afficherCombattantsDisponibles(liste, 12-compteur3);//afficher les combattants disponibles
-                printf("Joueur1 choisissez votre combattant numéro %d en saisissant sont numéro\n",compteur1);
+                printf("Equipe %s choisissez votre combattant numéro %d en saisissant sont numéro\n",nomEquipe1[51],compteur1);
                 validiter=scanf("%d", &choix1);
                 vérifscanf(validiter);
             }while(choix1<1 || choix1>12-compteur3 || validiter!=1);
@@ -431,8 +431,8 @@ int main(){
             équipe2témoin[v]=équipe2[v];
         }
         for(int t=0; t<3; t++){
-            équipe1[t].vitessecourante=rand()%60+1;
-            équipe2[t].vitessecourante=rand()%60+1;
+            équipe1[t].vitessecourante=rand()%50+1;
+            équipe2[t].vitessecourante=rand()%50+1;
         }   
         do{
             if(passetontour==1){
@@ -454,7 +454,7 @@ int main(){
                 affichecombat(équipe1, nomEquipe1, équipe2, nomEquipe2);
                 do{
                     do{
-                        printf("Joeur 1, choisissez le combattant qui va attaquer\n");
+                        printf("Equipe %s, choisissez le combattant qui va attaquer\n",nomEquipe1[51]);
                         validiter=scanf("%d", &choix1);
                         vérifscanf(validiter);
                     }while(choix1<1 || choix1>3 || validiter!=1);
