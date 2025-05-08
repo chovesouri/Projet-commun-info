@@ -111,9 +111,15 @@ void affichejoueur(Combattant* equipe,char* nomequipe) {// Affiche l'équipe d'u
     printf("\n");
     printf("|");
     for(int i = 0; i < 3; i++) {//affichage des noms des combattants
-        printf("   %d)%s:",i+1,equipe[i].nom);       	
-        l= strlen(equipe[i].nom);
-        alignement(l+3);   
+        printf("   %d)%s:",i+1,equipe[i].nom);   
+        if(equipe[i].competspe.typecompétence==10 || equipe[i].competspe.typecompétence==9){
+        l=strlen(equipe[i].nom);
+        alignement(l+1);
+        }
+        else{
+        l=strlen(equipe[i].nom);
+        alignement(l+3);  
+        }
     }
     printf("\n");
     printf("|");
@@ -140,9 +146,17 @@ void affichejoueur(Combattant* equipe,char* nomequipe) {// Affiche l'équipe d'u
     for(int z=0; z<3; z++){// affichage des attaques
         
         printf("   %s:%d", equipe[z].nomatq, equipe[z].attaque);
+        
+        if(equipe[i].competspe.typecompétence==10){
         l= strlen(equipe[z].nomatq);
         l+=longueur_int(equipe[z].attaque);
-        alignement(l+1);   
+        alignement(l);
+        }
+        else{
+        l= strlen(equipe[z].nomatq);
+        l+=longueur_int(equipe[z].attaque);
+        alignement(l+1);  
+        }
     }
     printf("\n");
     printf("|");
@@ -378,7 +392,7 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
         case 7:
             printf("%s %s\n", attaquant[choixcombattant].competspe.description1,attaquant[choixcombattant].competspe.description2);
             *passe=1;
-            printf("Le maître du jeux trouve cette attaque trop claqué et décide donc de vous laisser choisir un adversaire a qui vous mettrez 150 dégats bruts\n")
+            printf("Le maître du jeux trouve cette attaque trop claqué et décide donc de vous laisser choisir un adversaire a qui vous mettrez 150 dégats bruts\n");
             do{    
                 do{
                     printf("Choisissez un adversaire à attaquer\n");
