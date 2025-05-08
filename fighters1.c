@@ -1,7 +1,7 @@
 #include "fighters1.h"
     
 
-Combattant ConveCombattant(FILE* fichier,FILE* fichier2){
+Combattant ConveCombattant(FILE* fichier,FILE* fichier2){//fonction permettant le transfert des stats des combattants
     Combattant c;
     // Lecture directe avec fscanf
     fscanf(fichier, "%19[^\n]\n", c.nom);         // nom
@@ -13,7 +13,6 @@ Combattant ConveCombattant(FILE* fichier,FILE* fichier2){
     fscanf(fichier, "%d\n", &c.vitesse);
     c.vitessecourante=0;          // vitesse
     fscanf(fichier, "%f\n", &c.esquive);          // esquive
-
     fscanf(fichier2, "%f\n", &c.competspe.valeur); 
     fscanf(fichier2, "%29[^\n]\n", c.competspe.nomspe); 
     fscanf(fichier2, "%59[^\n]\n", c.competspe.description1); 
@@ -50,14 +49,14 @@ void afficherCombattantsDisponibles(Combattant liste[], int taille) {// Affiche 
     }
 }
     
-Combattant* miseàJourCombattants(Combattant liste[],int choixcombattant){
+Combattant* miseàJourCombattants(Combattant liste[],int choixcombattant){ //fonction mettant à jour la liste des combattants disponibles
     for(choixcombattant; choixcombattant< 11; choixcombattant++){
         liste[choixcombattant] = liste[choixcombattant+1];  
     }
 return liste;
 }
 
-int longueur_int(int n) {
+int longueur_int(int n){//fonction permettant de compter le nombre de chiffre de l'entier rentrer en paramètre
     if (n == 0) return 1; // cas particulier
     int longueur = 0;
     if (n < 0){
@@ -70,7 +69,7 @@ int longueur_int(int n) {
     return longueur;
 }
 
-void alignement(int longueur){//fonction permettant d'aligner les colonnes
+void alignement(int longueur){//fonction permettant d'aligner les colonnes lors de l'affichage
 
     for(int i = 0; i <60-longueur; i++){
         printf(" ");
@@ -78,7 +77,7 @@ void alignement(int longueur){//fonction permettant d'aligner les colonnes
     printf("|");
 }
    
-void affichevitesse(int vitesse){
+void affichevitesse(int vitesse){ // affiche la vitesse de façon styliser
     int a=vitesse/10;
     printf("   (");
     for(int i=0; i<a; i++){
@@ -192,15 +191,14 @@ void affichecombat(Combattant* equipe1,char* nomEquipe1, Combattant* equipe2,cha
     printf("\n\n");
 }
 
-void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant* attaquanttémoin, Combattant* défenseur,char* noméquipedéf, Combattant* défenseurtémoin, int choixcombattant,int vérificationbot, int* passe){
+void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant* attaquanttémoin, Combattant* défenseur,char* noméquipedéf, Combattant* défenseurtémoin, int choixcombattant,int vérificationbot, int* passe){ //utilisation des compétences
     int choix = 0;
     int choix2=0;
     int choixcap=0;
     float esquive=0;
     int minpv=0;
     int validiter;
-
-    switch (attaquant[choixcombattant].competspe.typecompétence) {
+    switch (attaquant[choixcombattant].competspe.typecompétence){// switch case permettant de savoir quelle compétence spéciale doit être utilisé
         case 1:
             if(vérificationbot==0){   
                 do{
@@ -211,23 +209,19 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                 }while(choix < 0 || choix > 2 || défenseur[choix].pvcourants<=0 || validiter!=1);
                 défenseur[choix].vitessecourante = 0;
                 printf("Le combattant %s voit son compteur de compétence remis à 0\n", défenseur[choix].nom);
-                sleep(5);
             }
             else{
                 for(int n=0; n<2; n++){
-                    if(défenseur[choix].pvcourants && défenseur[n+1].pvcourants){
-                        if(défenseur[choix].vitessecourante<défenseur[n+1].vitessecourante){
-                            choix=n;
-                        }                      
+                    if(défenseur[choix].pvcourants && défenseur[n+1].pvcourants && défenseur[choix].vitessecourante<défenseur[n+1].vitessecourante){
+                            choix=n;                    
                     }
                 }
-            }
-            printf("Le bot bien programmé réinitialise le conteur de %s qui était l'ennemie le plus proche d'utiliser sa compétence\n", défenseur[choix].nom);
-            défenseur[choix].vitessecourante = 0;
-        
+                printf("Le bot bien programmé réinitialise le conteur de %s qui était l'ennemie le plus proche d'utiliser sa compétence\n", défenseur[choix].nom);
+                défenseur[choix].vitessecourante = 0;
+            }       
         break;                   
         case 2:
-            printf("%s%s\n", attaquant[choixcombattant].competspe.description1,attaquant[choixcombattant].competspe.description2);
+            printf("%s %s\n", attaquant[choixcombattant].competspe.description1,attaquant[choixcombattant].competspe.description2);
             for (int i = 0; i < 3; i++) {
                 if(attaquant[i].pvcourants > 0){
                     attaquant[i].defense*=attaquant[choixcombattant].competspe.valeur;
@@ -243,10 +237,9 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                     }    
                 }
             }
-            break;
-            
+            break;           
         case 3:
-            printf("%s%s\n", attaquant[choixcombattant].competspe.description1,attaquant[choixcombattant].competspe.description2);
+            printf("%s %s\n", attaquant[choixcombattant].competspe.description1,attaquant[choixcombattant].competspe.description2);
             for (int a = 0; a < 3; a++) {
                 if (défenseur[a].pvcourants > 0) {
                     défenseur[a].vitesse-=attaquant[choixcombattant].competspe.valeur;
@@ -266,7 +259,7 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
         case 4:
             if(vérificationbot==0){
                 do{
-                    printf("Choisissez le combattant adverse dont vous souhaitez écraser le pied\n");
+                    printf("Choisissez le combattant adverse dont vous souhaitez écraser le pied et faire des dégats bruts\n");
                     validiter=scanf("%d", &choix);
                     vérifscanf(validiter);
                     choix--;
@@ -315,7 +308,7 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                 }
                 else{
                     do{//choix du type d'attaque
-                        printf("Votre capacité spéciale est disponible, tapez 1 pour attaquer normalement ou 2 pour utiliser votre capacité spéciale\n");
+                        printf("Votre capacité spéciale est disponible, tapez 1 pour attaquer normalement ou 2 pour utiliser la capacité spéciale\n");
                         validiter=scanf("%d", &choixcap);
                         vérifscanf(validiter);
                     }while(choixcap<1 || choixcap>2 || validiter!=1);
@@ -342,7 +335,6 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                     else{
                         Utilisationcompétence(défenseur,noméquipedéf,défenseurtémoin, défenseur,noméquipedéf, défenseurtémoin, choix,0, passe);//utilisation de la capacité spéciale    
                     }
-                sleep(5);
                 }
             }else{
                 if(défenseur[0].vitessecourante<100 && défenseur[1].vitessecourante<100 && défenseur[2].vitessecourante<100){
@@ -367,29 +359,41 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                 else{
                     do{
                         choix=rand()%3;
-                    }while(choix<0 || choix>2|| défenseur[choix].pvcourants<=0 || défenseur[choix].vitessecourante<100);
+                    }while(choix<0 || choix>2|| défenseur[choix].pvcourants<=0 || défenseur[choix].vitessecourante<=100);
                     printf("Le bot a choisi d'utiliser la capacité de %s",défenseur[choix].nom );
                     défenseur[choix].vitessecourante=0;
                     Utilisationcompétence(défenseur,noméquipedéf, défenseurtémoin, défenseur,noméquipedéf, défenseurtémoin, choix,1, passe);
                 }
             }
-            sleep(5);
             break;
 
         case 6:
-            printf("%s%s\n", attaquant[choixcombattant].competspe.description1,attaquant[choixcombattant].competspe.description2);
+            printf("%s %s\n", attaquant[choixcombattant].competspe.description1,attaquant[choixcombattant].competspe.description2);
             for (int i = 0; i < 3; i++) {
                 if(défenseur[i].pvcourants<=0){
                     défenseur[i].pvcourants-=attaquant[choixcombattant].competspe.valeur;
                 }
             }
-            sleep(5);
             break;
         case 7:
-            printf("%s%s\n", attaquant[choixcombattant].competspe.description1,attaquant[choixcombattant].competspe.description2);
+            printf("%s %s\n", attaquant[choixcombattant].competspe.description1,attaquant[choixcombattant].competspe.description2);
             *passe=1;
+            printf("Le maître du jeux trouve cette attaque trop claqué et décide donc de vous laisser choisir un adversaire a qui vous mettrez 150 dégats bruts\n")
+            do{    
+                do{
+                    printf("Choisissez un adversaire à attaquer\n");
+                    validiter=scanf("%d", &choix2);
+                    vérifscanf(validiter);
+                }while(choix2<1 || choix2>3 || validiter!=1);
+                choix2=choix2-1;
+                if(défenseur[choix2].pvcourants==0){
+                printf("Ce combattant est KO, choisissez un autre combattant\n");
+                }
+            }while(défenseur[choix2].pvcourants<=0);
+            défenseur[choix2].pvcourants-=150;            
             break;
         case 8:
+            printf("%s %s\n", attaquant[choixcombattant].competspe.description1,attaquant[choixcombattant].competspe.description2);
             for(int i = 0; i < 3; i++) {
                 if (attaquant[i].pvcourants > 0) {
                     attaquant[i].pvcourants+=attaquant[choixcombattant].competspe.valeur;                    
@@ -536,11 +540,12 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
 
 
                 }
-            }
+            }            
         }
+        sleep(10);
             break;
         case 11:
-            printf("%s%s\n", attaquant[choixcombattant].competspe.description1,attaquant[choixcombattant].competspe.description2);
+            printf("%s %s\n", attaquant[choixcombattant].competspe.description1,attaquant[choixcombattant].competspe.description2);
             for(int i = 0; i < 3; i++) {
                 if (attaquant[i].pvcourants > 0) {
                     attaquant[i].attaque*=attaquant[choixcombattant].competspe.valeur;
@@ -559,7 +564,7 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
             }
         break;
         case 12:
-            printf("%s%s\n", attaquant[choixcombattant].competspe.description1,attaquant[choixcombattant].competspe.description2);
+            printf("%s %s\n", attaquant[choixcombattant].competspe.description1,attaquant[choixcombattant].competspe.description2);
             for (int i = 0; i < 3; i++) {
                 if(défenseur[i].pvcourants > 0){
                     défenseur[i].attaque*=attaquant[choixcombattant].competspe.valeur;
@@ -583,7 +588,7 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
 }
 
 
-void Miseàjourcompétence(Combattant* équipe, Combattant* équipetémoin){//mise à jour de la compétence
+void Miseàjourcompétence(Combattant* équipe, Combattant* équipetémoin){ //mise à jour de la compétence
     for(int i=0; i<3; i++){
         équipe[i].nombredetouractif1-=1;
         équipe[i].nombredetouractif2-=1;
@@ -661,9 +666,9 @@ void Miseàjourcompétence(Combattant* équipe, Combattant* équipetémoin){//mi
 }
 
 
-void vérifscanf(int a){
+void vérifscanf(int a){ // fonction serant à  vider le buffer en cas de mauvaise saisie
     if (a !=1 ) {
-        while (getchar() != '\n'); // Vide le buffer
+        while (getchar() != '\n'); 
     }
 }
 
