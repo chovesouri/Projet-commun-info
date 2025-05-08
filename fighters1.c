@@ -666,18 +666,15 @@ void Miseàjourcompétence(Combattant* équipe, Combattant* équipetémoin){ //m
 }
 
 
-void vérifscanf(int a){ // fonction serant à  vider le buffer en cas de mauvaise saisie
-    if (a !=1 ) {
-        while (getchar() != '\n'); 
+void vérifscanf(int valider){ // fonction serant à  vider le buffer en cas de mauvaise saisie
+    int c;
+    if (valider == EOF) {
+        printf("Bien tenté mais non\n");
+        exit(43);
     }
+    while ((c = getchar()) != '\n' && c != EOF);
+    
 }
-
-
-
-
-
-
-
 
 
 
