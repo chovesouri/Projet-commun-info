@@ -13,7 +13,7 @@ Combattant ConveCombattant(FILE* fichier,FILE* fichier2){//fonction permettant l
     fscanf(fichier, "%d\n", &c.vitesse);
     c.vitessecourante=0;          // vitesse
     fscanf(fichier, "%f\n", &c.esquive);          // esquive
-    fscanf(fichier2, "%f\n", &c.competspe.valeur); 
+    fscanf(fichier2, "%f\n", &c.competspe.valeur);
     fscanf(fichier2, "%29[^\n]\n", c.competspe.nomspe); 
     fscanf(fichier2, "%59[^\n]\n", c.competspe.description1); 
     fscanf(fichier2, "%59[^\n]\n", c.competspe.description2); 
@@ -27,7 +27,7 @@ Combattant ConveCombattant(FILE* fichier,FILE* fichier2){//fonction permettant l
     c.typespe3 = 0;
     c.nombredetouractif3 = 0;
 
-    ;
+    
     return c;
 }
 
@@ -112,14 +112,8 @@ void affichejoueur(Combattant* equipe,char* nomequipe) {// Affiche l'équipe d'u
     printf("|");
     for(int i = 0; i < 3; i++) {//affichage des noms des combattants
         printf("   %d)%s:",i+1,equipe[i].nom);   
-        if(equipe[i].competspe.typecompétence==10 || equipe[i].competspe.typecompétence==9){
-        l=strlen(equipe[i].nom);
-        alignement(l+1);
-        }
-        else{
-        l=strlen(equipe[i].nom);
+        l=utf8_strlen(equipe[i].nom);
         alignement(l+3);  
-        }
     }
     printf("\n");
     printf("|");
@@ -143,20 +137,11 @@ void affichejoueur(Combattant* equipe,char* nomequipe) {// Affiche l'équipe d'u
     }
     printf("\n");
     printf("|");    
-    for(int z=0; z<3; z++){// affichage des attaques
-        
-        printf("   %s:%d", equipe[z].nomatq, equipe[z].attaque);
-        
-        if(equipe[i].competspe.typecompétence==10){
-        l= strlen(equipe[z].nomatq);
-        l+=longueur_int(equipe[z].attaque);
-        alignement(l);
-        }
-        else{
-        l= strlen(equipe[z].nomatq);
+    for(int z=0; z<3; z++){// affichage des attaques        
+        printf("   %s:%d", equipe[z].nomatq, equipe[z].attaque);      
+        l=utf8_strlen(equipe[z].nomatq);
         l+=longueur_int(equipe[z].attaque);
         alignement(l+1);  
-        }
     }
     printf("\n");
     printf("|");
@@ -167,24 +152,23 @@ void affichejoueur(Combattant* equipe,char* nomequipe) {// Affiche l'équipe d'u
     printf("\n");
     printf("|");
     for(int c=0; c<3; c++){// affichage des compétences spéciales
-        printf("   spé:%s", equipe[c].competspe.nomspe);
-        l=strlen(equipe[c].competspe.nomspe);
-        alignement(l+4);     
+        printf("   spé:%s", equipe[c].competspe.nomspe);        
+        l=utf8_strlen(equipe[c].competspe.nomspe);
+        alignement(l+4);
     }
     printf("\n");   
     printf("|");
     for(int d=0; d<3; d++){// affichage des descriptions
         printf("   %s", equipe[d].competspe.description1);
-        
-        l= strlen(equipe[d].competspe.description1);
-        alignement(l);   
+        l=utf8_strlen(equipe[d].competspe.description1);
+        alignement(l); 
     }
     printf("\n");   
     printf("|");   
     for(int f=0; f<3; f++){
         printf("   %s", equipe[f].competspe.description2);
-        l=strlen(equipe[f].competspe.description2);
-        alignement(l);   
+        l=utf8_strlen(equipe[f].competspe.description2);
+        alignement(l);
     }
     printf("\n");
     printf("|");
@@ -256,7 +240,7 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
             printf("%s %s\n", attaquant[choixcombattant].competspe.description1,attaquant[choixcombattant].competspe.description2);
             for (int a = 0; a < 3; a++) {
                 if (défenseur[a].pvcourants > 0) {
-                    défenseur[a].vitesse-=attaquant[choixcombattant].competspe.valeur;
+                    défenseur[a].vitesse=attaquant[choixcombattant].competspe.valeur;
                     if(attaquant[a].typespe1==0){
                         attaquant[a].nombredetouractif1=2;
                         attaquant[a].typespe1=3;
@@ -312,7 +296,7 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                             printf("Ce combattant est KO, choisissez un autre combattant\n");
                        };
                     }while(défenseur[choix2].pvcourants<=0);
-                    esquive=(rand()%100+1)/100;
+                    esquive=(rand()%100+1)/100.00;
                     if(esquive<défenseur[choix2].esquive){
                         printf("L'attaque a été esquivée\n");
                     }else{
@@ -338,7 +322,7 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                                 printf("Ce combattant est KO, choisissez un autre combattant\n");
                             }
                         }while(défenseur[choix2].pvcourants<=0);
-                        esquive=(rand()%100+1)/100;
+                        esquive=(rand()%100+1)/100.00;
                         if(esquive<défenseur[choix2].esquive){
                             printf("L'attaque a été esquivée\n");
                         }else{
@@ -355,14 +339,14 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                     do{
                         choix=rand()%3;
                     }while(choix<0 || choix>2|| défenseur[choix].pvcourants<=0);
-                    printf("Le bot a choisi d'attaquer avec %s mais n'a pas sa capacité spéciale spéciale",défenseur[choix].nom );
+                    printf("Le bot a choisi d'attaquer avec %s mais n'a pas sa capacité spéciale spéciale\n",défenseur[choix].nom );
                     for(int n=1; n<3; n++){
                         if(défenseur[minpv].pvcourants>défenseur[n].pvcourants){
                             minpv=n;
                         }
                     }
                     printf("Le bot a choisi d'attaquer %s car il est le combattant avec le moins de pv\n", défenseur[minpv].nom);
-                    esquive=(rand()%100+1)/100;
+                    esquive=(rand()%100+1)/100.00;
                     if(esquive<défenseur[minpv].esquive){
                         printf("L'attaque a été esquivée\n");
                     }else{
@@ -374,7 +358,7 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                     do{
                         choix=rand()%3;
                     }while(choix<0 || choix>2|| défenseur[choix].pvcourants<=0 || défenseur[choix].vitessecourante<=100);
-                    printf("Le bot a choisi d'utiliser la capacité de %s",défenseur[choix].nom );
+                    printf("Le bot a choisi d'utiliser la capacité de %s\n",défenseur[choix].nom );
                     défenseur[choix].vitessecourante=0;
                     Utilisationcompétence(défenseur,noméquipedéf, défenseurtémoin, défenseur,noméquipedéf, défenseurtémoin, choix,1, passe);
                 }
@@ -392,19 +376,30 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
         case 7:
             printf("%s %s\n", attaquant[choixcombattant].competspe.description1,attaquant[choixcombattant].competspe.description2);
             *passe=1;
-            printf("Le maître du jeux trouve cette attaque trop claqué et décide donc de vous laisser choisir un adversaire a qui vous mettrez 150 dégats bruts\n");
-            do{    
-                do{
-                    printf("Choisissez un adversaire à attaquer\n");
-                    validiter=scanf("%d", &choix2);
-                    vérifscanf(validiter);
-                }while(choix2<1 || choix2>3 || validiter!=1);
-                choix2=choix2-1;
-                if(défenseur[choix2].pvcourants==0){
-                printf("Ce combattant est KO, choisissez un autre combattant\n");
-                }
-            }while(défenseur[choix2].pvcourants<=0);
-            défenseur[choix2].pvcourants-=150;            
+            printf("Le maître du jeux trouve cette attaque trop claqué et décide donc de vous laisser choisir en plus un adversaire a qui vous mettrez 150 dégats bruts\n");
+            if(vérificationbot==0){
+                do{    
+                    do{
+                        printf("Choisissez un adversaire à attaquer\n");
+                        validiter=scanf("%d", &choix2);
+                        vérifscanf(validiter);
+                    }while(choix2<1 || choix2>3 || validiter!=1);
+                    choix2=choix2-1;
+                    if(défenseur[choix2].pvcourants==0){
+                    printf("Ce combattant est KO, choisissez un autre combattant\n");
+                    }
+                  }while(défenseur[choix2].pvcourants<=0);
+                  défenseur[choix2].pvcourants-=150;
+              }else{
+                  for(int n=1; n<3; n++){
+                        if(défenseur[minpv].pvcourants>défenseur[n].pvcourants){
+                            minpv=n;
+                        }
+                  }
+                  printf("Le bot a décider d'attaquer %s\n",défenseur[minpv].nom);
+              }
+              
+                         
             break;
         case 8:
             printf("%s %s\n", attaquant[choixcombattant].competspe.description1,attaquant[choixcombattant].competspe.description2);
@@ -469,7 +464,7 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                             printf("Ce combattant est KO, choisissez un autre combattant\n");
                         }
                     }while(défenseur[choix2].pvcourants<=0);                    
-                    esquive=(rand()%100+1)/100;
+                    esquive=(rand()%100+1)/100.00;
                     if(esquive<défenseur[choix2].esquive){
                         printf("L'attaque a été esquivée\n");   
                     }else{
@@ -495,7 +490,7 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                                 printf("Ce combattant est KO, choisissez un autre combattant\n");
                             }
                         }while(défenseur[choix2].pvcourants<=0);
-                        esquive=(rand()%100+1)/100;
+                        esquive=(rand()%100+1)/100.00;
                         if(esquive<défenseur[choix2].esquive){
                             printf("L'attaque a été esquivée\n");
                         }else{
@@ -507,7 +502,6 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                         attaquant[choix].vitessecourante=0;
                         Utilisationcompétence(attaquant,noméquipeat, attaquanttémoin, défenseur,noméquipedéf, défenseurtémoin, choix, 0, passe);//utilisation de la capacité spéciale    
                     }
-                sleep(5);
                 }
             
                 for(int n=0; n<3; n++){
@@ -529,14 +523,14 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                     do{
                         choix=rand()%3;
                     }while(choix<0 || choix>2|| attaquant[choix].pvcourants<=0);
-                    printf("Le bot a choisi d'attaquer avec %s mais n'a pas sa capacité spéciale spéciale",attaquant[choix].nom );
+                    printf("Le bot a choisi d'attaquer avec %s mais n'a pas sa capacité spéciale spéciale\n",attaquant[choix].nom );
                     for(int n=1; n<3; n++){
                         if(défenseur[minpv].pvcourants>défenseur[n].pvcourants){
                             minpv=n;
                         }
                     }
                     printf("Le bot a choisi d'attaquer %s car il est le combattant avec le moins de pv\n", défenseur[minpv].nom);
-                    esquive=(rand()%100+1)/100;
+                    esquive=(rand()%100+1)/100.00;
                     if(esquive<défenseur[minpv].esquive){
                         printf("L'attaque a été esquivée\n");
                     }else{
@@ -683,13 +677,21 @@ void Miseàjourcompétence(Combattant* équipe, Combattant* équipetémoin){ //m
 void vérifscanf(int valider){ // fonction serant à  vider le buffer en cas de mauvaise saisie
     int c;
     if (valider == EOF) {
-        printf("Bien tenté mais non\n");
+        printf("Erreur rentré invalide\n");
         exit(43);
     }
     while ((c = getchar()) != '\n' && c != EOF);
     
 }
 
+size_t utf8_strlen(const char* s) {
+    size_t len = 0;
+    while (*s) {
+        if ((*s & 0xC0) != 0x80) len++;  // Count only the first byte of multibyte char
+        s++;
+    }
+    return len;
+}
 
 
 

@@ -51,3 +51,4 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
 void Miseàjourcompétence(Combattant* équipe, Combattant* équipetémoin);
 Combattant* miseàJourCombattants(Combattant liste[],int choixcombattant);
 void vérifscanf(int valider);
+size_t utf8_strlen(const char* s);
