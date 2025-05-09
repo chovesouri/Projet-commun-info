@@ -131,23 +131,23 @@ void affichejoueur(Combattant* equipe,char* nomequipe) {// Affiche l'équipe d'u
     printf("\n");
     printf("|");
     for(int a=0; a<3; a++){// affichage des pv 
-        printf("   pv:%d",equipe[a].pvcourants);
+        printf("   ❤️ :%d",equipe[a].pvcourants);
         l=longueur_int(equipe[a].pvcourants);
         alignement(l+3);    
     }
     printf("\n");
     printf("|");    
     for(int z=0; z<3; z++){// affichage des attaques        
-        printf("   %s:%d", equipe[z].nomatq, equipe[z].attaque);      
+        printf("   %s ⚔️ :%d", equipe[z].nomatq, equipe[z].attaque);      
         l=utf8_strlen(equipe[z].nomatq);
         l+=longueur_int(equipe[z].attaque);
-        alignement(l+1);  
+        alignement(l+4);  
     }
     printf("\n");
     printf("|");
     for(int b=0; b<3; b++){// affichage des défenses
-        printf("   défense:%.2f", equipe[b].defense);    
-        alignement(12);    
+        printf("   défense 🛡️ :%.2f", equipe[b].defense);    
+        alignement(15);    
     }
     printf("\n");
     printf("|");
@@ -684,10 +684,10 @@ void vérifscanf(int valider){ // fonction serant à  vider le buffer en cas de 
     
 }
 
-size_t utf8_strlen(const char* s) {
+size_t utf8_strlen(const char* s){ //fonction srlen améliorer qui compte le nombre de caractère et pas d'octets
     size_t len = 0;
     while (*s) {
-        if ((*s & 0xC0) != 0x80) len++;  // Count only the first byte of multibyte char
+        if ((*s & 0xC0) != 0x80) len++; 
         s++;
     }
     return len;

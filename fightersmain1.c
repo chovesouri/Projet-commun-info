@@ -143,7 +143,7 @@ int main(){
 
     system("clear");
     
-    printf("Bienvenue dans le jeu de combat cyfighters !\n\n");
+    printf("\033[31m\033[1mBienvenue dans le jeu de combat cyfighters !\033[0m\n\n");
     do{
         printf("Choisissez le type de combat :1 si vous souhaitez faire un combat contre une autre personne ou 2 si vous si souhaitez combattre contre un bot\n");
         validiter=scanf("%d", &choixtypecombat);
@@ -242,7 +242,7 @@ int main(){
                         printf("L'attaque a été esquivée\n");
                     }else{
                     équipe2[choix2].pvcourants-=équipe1[choix1].attaque*équipe2[choix2].defense;
-                    printf("L'attaque a été réussie\n");
+                    printf("L'attaque a été réussie 🎯\n");
                     }
                 }
                 else{
@@ -268,7 +268,7 @@ int main(){
                             printf("L'attaque a été esquivée\n");
                         }else{
                         équipe2[choix2].pvcourants-=équipe1[choix1].attaque*équipe2[choix2].defense;
-                        printf("L'attaque a été réussie\n");
+                        printf("L'attaque a été réussie 🎯\n");
                         }
               
                     }
@@ -337,7 +337,7 @@ int main(){
                         printf("L'attaque a été esquivée\n");
                     }else{
                     équipe1[choix2].pvcourants-=équipe2[choix1].attaque*équipe1[choix2].defense;
-                    printf("L'attaque a été réussie\n");
+                    printf("L'attaque a été réussie 🎯\n");
                     } 
                 }else{
                     do{//choix du type d'attaque
@@ -362,7 +362,7 @@ int main(){
                             printf("L'attaque a été esquivée\n");
                         }else{
                         équipe1[choix2].pvcourants-=équipe2[choix1].attaque*équipe1[choix2].defense;
-                        printf("L'attaque a été réussie\n");
+                        printf("L'attaque a été réussie 🎯\n");
                         }
                     }    
                     else{
@@ -387,16 +387,16 @@ int main(){
         }while((équipe1[0].pvcourants>0 && équipe1[1].pvcourants>0 && équipe1[2].pvcourants>0) && (équipe2[0].pvcourants>0 && équipe2[1].pvcourants>0 && équipe2[2].pvcourants>0) );//condition de fin de combat
         if(équipe1[0].pvcourants<=0 && équipe1[1].pvcourants<=0 && équipe1[2].pvcourants<=0){
             affichecombat(équipe2, nomEquipe2, équipe1, nomEquipe1);
-            printf("L'équipe %s composé de %s, %s, %s a gagné !\n", nomEquipe2, équipe2[0].nom, équipe2[1].nom, équipe2[2].nom);
+            printf("\033[5mL'équipe %s composé de %s, %s, %s a gagné !\033[0m\n", nomEquipe2, équipe2[0].nom, équipe2[1].nom, équipe2[2].nom);
         }
         else{
             affichecombat(équipe1, nomEquipe1, équipe2, nomEquipe2);
-            printf("L'équipe %s composé de %s, %s, %s a gagné !\n", nomEquipe1, équipe1[0].nom, équipe1[1].nom, équipe1[2].nom);
+            printf("\033[5mL'équipe %s composé de %s, %s, %s a gagné !\033[5m\n", nomEquipe1, équipe1[0].nom, équipe1[1].nom, équipe1[2].nom);
         }   
     }         
     else{ //combat joueur vs bot  
         do{
-            printf("Choisissez la difficulté du bot : 1 pour noob, 2 pour facile, 3 pour moyen\n");
+            printf("Choisissez la difficulté du bot : 1 pour noob, 2 pour facile, 3 pour moyen\033[0m\n");
             validiter=scanf("%d", &niveaubot);
             vérifscanf(validiter);
         }while(niveaubot<1 || niveaubot>3 || validiter!=1);
@@ -491,7 +491,7 @@ int main(){
                         printf("L'attaque a été esquivée\n");
                     }else{
                         équipe2[choix2].pvcourants-=équipe1[choix1].attaque*équipe2[choix2].defense;
-                        printf("L'attaque a été réussie\n");
+                        printf("L'attaque a été réussie 🎯\n");
                     }                   
                 }
                 else{
@@ -517,7 +517,7 @@ int main(){
                             printf("L'attaque a été esquivée\n");
                         }else{  
                         équipe2[choix2].pvcourants-=équipe1[choix1].attaque*équipe2[choix2].defense;
-                        printf("L'attaque a été réussie\n");
+                        printf("L'attaque a été réussie 🎯\n");
                         }                        
                     }
                     else{
@@ -571,7 +571,7 @@ int main(){
                         printf("L'attaque a été esquivée\n");
                     }else{
                         équipe1[choix2].pvcourants-=équipe2[choix1].attaque*équipe1[choix2].defense;
-                        printf("L'attaque a été réussie\n");
+                        printf("L'attaque a été réussie 🎯\n");
                     }
                     
                 }
@@ -591,7 +591,7 @@ int main(){
                         printf("L'attaque a été esquivée\n");
                     }else{
                         équipe1[minpv].pvcourants-=équipe2[choix1].attaque*équipe1[minpv].defense;
-                        printf("L'attaque a été réussie\n");
+                        printf("L'attaque a été réussie 🎯\n");
                     }
                     
                 }
@@ -612,7 +612,7 @@ int main(){
                             printf("L'attaque a été esquivée\n");
                         }else{
                             équipe1[minpv].pvcourants-=équipe2[choix1].attaque*équipe1[minpv].defense;
-                            printf("L'attaque a été réussie\n");
+                            printf("L'attaque a été réussie 🎯\n");
                         }    
                     }
                     else{
@@ -639,11 +639,11 @@ int main(){
         }while((équipe1[0].pvcourants>0 && équipe1[1].pvcourants>0 && équipe1[2].pvcourants>0) && (équipe2[0].pvcourants>0 && équipe2[1].pvcourants>0 && équipe2[2].pvcourants>0) );//condition de fin de combat
         if(équipe1[0].pvcourants<=0 && équipe1[1].pvcourants<=0 && équipe1[2].pvcourants<=0){
             affichecombat(équipe2, nomEquipe2, équipe1, nomEquipe1);
-            printf("L'équipe %s composé de %s, %s, %s a gagné !\n", nomEquipe2, équipe2[0].nom, équipe2[1].nom, équipe2[2].nom);
+            printf("\033[5mL'équipe %s composé de %s, %s, %s a gagné !\033[5m\n", nomEquipe2, équipe2[0].nom, équipe2[1].nom, équipe2[2].nom);
         }
         else{
             affichecombat(équipe1, nomEquipe1, équipe2, nomEquipe2);
-            printf("L'équipe %s composé de %s, %s, %s a gagné !\n", nomEquipe1, équipe1[0].nom, équipe1[1].nom, équipe1[2].nom);
+            printf("\033[5mL'équipe %s composé de %s, %s, %s a gagné !\033[5m\n", nomEquipe1, équipe1[0].nom, équipe1[1].nom, équipe1[2].nom);
         }       
     }   
 return 0;
