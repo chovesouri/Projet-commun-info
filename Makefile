@@ -10,4 +10,3 @@ exec: main.o fighters1.o
 clean:
 	rm -f *.o
 	rm exec
-	
