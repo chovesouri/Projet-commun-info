@@ -420,7 +420,7 @@ int main(){
             compteur1++;
             compteur3++;
             afficherCombattantsDisponibles(liste, 12-compteur3);
-            choixcombattantbot=rand()%12-compteur3;
+            choixcombattantbot=rand()%(12-compteur3);
             printf("Le bot a choisi %s pour son champion n°%d\n",liste[choixcombattantbot].nom,compteur2);
             sleep(5);
             équipe2[i]=liste[choixcombattantbot];
@@ -429,20 +429,7 @@ int main(){
             compteur2++;
             compteur3++;
 
-        }
-        
-        
-        affichejoueur(équipe2,nomEquipe2);
-        sleep(30);
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        }     
         for(int v=0; v<3; v++){
             équipe1témoin[v]=équipe1[v];
             équipe2témoin[v]=équipe2[v];
