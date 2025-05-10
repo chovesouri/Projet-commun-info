@@ -262,7 +262,7 @@ int main(){
                             if(équipe2[choix2].pvcourants==0){
                                 printf("Ce combattant est KO, choisissez un autre combattant\n");
                             }
-                        }while(équipe2[choix2].pvcourants<=0);
+                        }while(équipe2[choix2].pvcourants<=0);                         
                         esquive=(rand()%100+1)/100.00;
                         if(esquive<équipe2[choix2].esquive){
                             printf("L'attaque a été esquivée\n");
@@ -285,19 +285,17 @@ int main(){
                 }
                 sleep(5);
             }
-            choix1=0;
-            choix2=0;
-            choixcap=0;
             system("clear");                       
             //déroulement du tour du joueur 2            
-            if((équipe2[0].pvcourants<=0 && équipe2[1].pvcourants<=0 && équipe2[2].pvcourants<=0) || passetontour==1){
+            if((équipe2[0].pvcourants==0 && équipe2[1].pvcourants==0 && équipe2[2].pvcourants==0) || passetontour==1){
                 if(passetontour==1){
                     printf("L'équipe %S a utiliser une capacité spéciale pour vous empêcher de jouer\n",nomEquipe1);
                     passetontour=0;
 
                 }
             }
-            else{
+            else{   
+            
                 for(int y=0; y<3; y++){//mise à jour de la vitesse courante
                     if(équipe2[y].pvcourants>0){
                     équipe2[y].vitessecourante+=équipe2[y].vitesse;
@@ -307,7 +305,7 @@ int main(){
                     if(équipe2[n].vitessecourante>100){
                         équipe2[n].vitessecourante=100;
                     }
-                }
+                }              
                 affichecombat(équipe2, nomEquipe2, équipe1, nomEquipe1);
                 do{//choix du combattant qui va attaquer
                     do{
@@ -332,7 +330,7 @@ int main(){
                             printf("Ce combattant est KO, choisissez un autre combattant\n");
                         }   
                     }while(équipe1[choix2].pvcourants<=0);
-                    esquive=(rand()%100+1)/100.00;
+                    esquive=(rand()%100+1)/100.00;                    
                     if(esquive<équipe1[choix2].esquive){
                         printf("L'attaque a été esquivée\n");
                     }else{
@@ -379,12 +377,9 @@ int main(){
                 }
                 sleep(5);
             }
-            choix1=0;
-            choix2=0;
-            choixcap=0;
             system("clear");
             nombredetour++;
-        }while((équipe1[0].pvcourants>0 && équipe1[1].pvcourants>0 && équipe1[2].pvcourants>0) && (équipe2[0].pvcourants>0 && équipe2[1].pvcourants>0 && équipe2[2].pvcourants>0) );//condition de fin de combat
+        }while((équipe1[0].pvcourants>0 || équipe1[1].pvcourants>0 || équipe1[2].pvcourants>0) && (équipe2[0].pvcourants>0 || équipe2[1].pvcourants>0 || équipe2[2].pvcourants>0) );//condition de fin de combat
         if(équipe1[0].pvcourants<=0 && équipe1[1].pvcourants<=0 && équipe1[2].pvcourants<=0){
             affichecombat(équipe2, nomEquipe2, équipe1, nomEquipe1);
             printf("\033[5mL'équipe %s composé de %s, %s, %s a gagné !\033[0m\n", nomEquipe2, équipe2[0].nom, équipe2[1].nom, équipe2[2].nom);
@@ -428,13 +423,26 @@ int main(){
             choixcombattantbot=rand()%12-compteur3;
             printf("Le bot a choisi %s pour son champion n°%d\n",liste[choixcombattantbot].nom,compteur2);
             sleep(5);
-            équipe2[i] = liste[choix1];
-            miseàJourCombattants(liste, choix1);//mise à jour de la liste de combattants
+            équipe2[i]=liste[choixcombattantbot];
+            miseàJourCombattants(liste, choixcombattantbot);//mise à jour de la liste de combattants
             system("clear");
             compteur2++;
             compteur3++;
 
         }
+        
+        
+        affichejoueur(équipe2,nomEquipe2);
+        sleep(30);
+        
+        
+        
+        
+        
+        
+        
+        
+        
         for(int v=0; v<3; v++){
             équipe1témoin[v]=équipe1[v];
             équipe2témoin[v]=équipe2[v];
@@ -450,8 +458,7 @@ int main(){
                 sleep(5);
             }
             else{
-                //déroulement du tour du joueur 1
-                for(int q=0; q<3; q++){//mise à jour de la vitesse courante
+                    for(int q=0; q<3; q++){//mise à jour de la vitesse courante
                     if(équipe1[q].pvcourants>0){
                     équipe1[q].vitessecourante+=équipe1[q].vitesse;
                     }
@@ -533,11 +540,8 @@ int main(){
                 }
                 Miseàjourcompétence(équipe1, équipe1témoin);//mise à jour des effets sur le combattant
             }
-            choix1=0;
-            choix2=0;
-            choixcap=0;
             system("clear");
-            if((équipe2[0].pvcourants<=0 && équipe2[1].pvcourants<=0 && équipe2[2].pvcourants<=0) || passetontour==1){
+            if((équipe2[0].pvcourants==0 && équipe2[1].pvcourants==0 && équipe2[2].pvcourants==0) || passetontour==1){
                 if(passetontour==1){
                     printf("Le bot ne peut pas jouer car vous avez utilisé une capacité spéciale pour l'en empêcher \n");
                     passetontour=0;
@@ -632,11 +636,8 @@ int main(){
                     }
                 }             
             }           
-            choix1=0;
-            choix2=0;
-            choixcap=0;
             system("clear");    
-        }while((équipe1[0].pvcourants>0 && équipe1[1].pvcourants>0 && équipe1[2].pvcourants>0) && (équipe2[0].pvcourants>0 && équipe2[1].pvcourants>0 && équipe2[2].pvcourants>0) );//condition de fin de combat
+        }while((équipe1[0].pvcourants>0 || équipe1[1].pvcourants>0 || équipe1[2].pvcourants>0) && (équipe2[0].pvcourants>0 || équipe2[1].pvcourants>0 || équipe2[2].pvcourants>0) );//condition de fin de combat
         if(équipe1[0].pvcourants<=0 && équipe1[1].pvcourants<=0 && équipe1[2].pvcourants<=0){
             affichecombat(équipe2, nomEquipe2, équipe1, nomEquipe1);
             printf("\033[5mL'équipe %s composé de %s, %s, %s a gagné !\033[5m\n", nomEquipe2, équipe2[0].nom, équipe2[1].nom, équipe2[2].nom);
