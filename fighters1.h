@@ -4,6 +4,7 @@
 #include <math.h>
 #include <time.h>
 #include <unistd.h>
+#define CHRONO 30000
 
 
 

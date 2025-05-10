@@ -74,7 +74,7 @@ void alignement(int longueur){//fonction permettant d'aligner les colonnes lors 
     for(int i = 0; i <60-longueur; i++){
         printf(" ");
     }
-    printf("|");
+    printf("\033[91m|\033[0m");
 }
    
 void affichevitesse(int vitesse){ // affiche la vitesse de façon styliser
@@ -98,84 +98,96 @@ void affichevitesse(int vitesse){ // affiche la vitesse de façon styliser
 void affichejoueur(Combattant* equipe,char* nomequipe) {// Affiche l'équipe d'un joueur
     int l=0;// variable servant à l'alignementde des |
     for(int t=0; t<(63*3+4); t++){
-        printf("_");   
+        printf("\033[91m_");   
     }
+    usleep(CHRONO);
     printf("\n");
-    printf("|");
+    printf("|\033[0m");
     printf("%s", nomequipe);// affichage du nom de l'équipe
     l=strlen(nomequipe);
     for(int y=0; y<191-l; y++){
         printf(" ");
     }
-    printf("|");
+    usleep(CHRONO);
+    printf("\033[91m|");
     printf("\n");
-    printf("|");
+    printf("|\033[0m");
     for(int i = 0; i < 3; i++) {//affichage des noms des combattants
         printf("   %d)%s:",i+1,equipe[i].nom);   
         l=utf8_strlen(equipe[i].nom);
         alignement(l+3);  
     }
+    usleep(CHRONO);
     printf("\n");
-    printf("|");
+    printf("\033[91m|\033[0m");
     for(int e=0; e<3; e++){
         affichevitesse(equipe[e].vitessecourante);//affichage de la barre de vitesse
         l=12;
         alignement(l);    
     }
+    usleep(CHRONO);
     printf("\n");
-    printf("|");
+    printf("\033[91m|\033[0m");
     for(int r=0; r<3; r++){
         l=-3;
         alignement(l);    
     }
+    usleep(CHRONO);
     printf("\n");
-    printf("|");
+    printf("\033[91m|\033[0m");
     for(int a=0; a<3; a++){// affichage des pv 
         printf("   ❤️ :%d",equipe[a].pvcourants);
         l=longueur_int(equipe[a].pvcourants);
         alignement(l+3);    
     }
+    usleep(CHRONO);
     printf("\n");
-    printf("|");    
+    printf("\033[91m|\033[0m");    
     for(int z=0; z<3; z++){// affichage des attaques        
         printf("   %s ⚔️ :%d", equipe[z].nomatq, equipe[z].attaque);      
         l=utf8_strlen(equipe[z].nomatq);
         l+=longueur_int(equipe[z].attaque);
         alignement(l+4);  
     }
+    usleep(CHRONO);
     printf("\n");
-    printf("|");
+    printf("\033[91m|\033[0m");
     for(int b=0; b<3; b++){// affichage des défenses
         printf("   défense 🛡️ :%.2f", equipe[b].defense);    
         alignement(15);    
     }
+    usleep(CHRONO);
     printf("\n");
-    printf("|");
+    printf("\033[91m|\033[0m");
     for(int c=0; c<3; c++){// affichage des compétences spéciales
         printf("   spé:%s", equipe[c].competspe.nomspe);        
         l=utf8_strlen(equipe[c].competspe.nomspe);
         alignement(l+4);
     }
+    usleep(CHRONO);
     printf("\n");   
-    printf("|");
+    printf("\033[91m|\033[0m");
     for(int d=0; d<3; d++){// affichage des descriptions
         printf("   %s", equipe[d].competspe.description1);
         l=utf8_strlen(equipe[d].competspe.description1);
         alignement(l); 
     }
+    usleep(CHRONO);
     printf("\n");   
-    printf("|");   
+    printf("\033[91m|\033[0m");   
     for(int f=0; f<3; f++){
         printf("   %s", equipe[f].competspe.description2);
         l=utf8_strlen(equipe[f].competspe.description2);
         alignement(l);
     }
+    usleep(CHRONO);
     printf("\n");
-    printf("|");
+    printf("\033[91m|\033[0m");
     for(int g=0; g<3; g++){
         printf("   esquive:%.2f", equipe[g].esquive);
         alignement(12);   
     }
+    usleep(CHRONO);
     printf("\n");
 }    
     
@@ -184,7 +196,7 @@ void affichecombat(Combattant* equipe1,char* nomEquipe1, Combattant* equipe2,cha
     affichejoueur(equipe1, nomEquipe1);
     affichejoueur(equipe2, nomEquipe2);
     for(int t=0; t<(63*3+4); t++){
-        printf("_");       
+        printf("\033[91m_\033[0m");       
     }
     printf("\n\n");
 }
