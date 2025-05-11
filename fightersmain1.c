@@ -380,7 +380,7 @@ int main(){
             system("clear");
             nombredetour++;
         }while((équipe1[0].pvcourants>0 || équipe1[1].pvcourants>0 || équipe1[2].pvcourants>0) && (équipe2[0].pvcourants>0 || équipe2[1].pvcourants>0 || équipe2[2].pvcourants>0) );//condition de fin de combat
-        systeme("xdg-open https://www.youtube.com/watch?v=04854XqcfCY");
+        system("xdg-open https://www.youtube.com/watch?v=04854XqcfCY");
         if(équipe1[0].pvcourants<=0 && équipe1[1].pvcourants<=0 && équipe1[2].pvcourants<=0){
             affichecombat(équipe2, nomEquipe2, équipe1, nomEquipe1);
             printf("\033[5mL'équipe %s composé de %s, %s, %s a gagné !\033[0m\n", nomEquipe2, équipe2[0].nom, équipe2[1].nom, équipe2[2].nom);
@@ -627,7 +627,7 @@ int main(){
             system("clear");    
         }while((équipe1[0].pvcourants>0 || équipe1[1].pvcourants>0 || équipe1[2].pvcourants>0) && (équipe2[0].pvcourants>0 || équipe2[1].pvcourants>0 || équipe2[2].pvcourants>0) );//condition de fin de combat
         if(équipe1[0].pvcourants<=0 && équipe1[1].pvcourants<=0 && équipe1[2].pvcourants<=0){
-            systeme("xdg-open https://www.youtube.com/watch?v=04854XqcfCY");
+            system("xdg-open https://www.youtube.com/watch?v=04854XqcfCY");
             affichecombat(équipe2, nomEquipe2, équipe1, nomEquipe1);
             printf("\033[5mL'équipe %s composé de %s, %s, %s a gagné !\033[5m\n", nomEquipe2, équipe2[0].nom, équipe2[1].nom, équipe2[2].nom);
         }
