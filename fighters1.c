@@ -33,13 +33,13 @@ Combattant ConveCombattant(FILE* fichier,FILE* fichier2){//fonction permettant l
 
 
 void afficherCombattantsDisponibles(Combattant liste[], int taille) {// Affiche les combattants disponibles avec toutes leurs caractéristiques
-    printf("==== COMBATTANTS DISPONIBLES ====\n");
+    printf("\033[91m====\033[0m \033[1mCOMBATTANTS DISPONIBLES\033[0m \033[91m====\033[0m\n");
     printf("\n\n");
     for (int i = 0; i < taille; i++) {
         printf("(%d) Nom : %s\n", i+1, liste[i].nom);
-        printf("PV max: %d\n", liste[i].pvmax);
-        printf("Attaque: %s: (%d)\n", liste[i].nomatq, liste[i].attaque);
-        printf("Défense: réducions de %.0f%\n", (1-liste[i].defense)*100);
+        printf("PV max ❤️ : %d\n", liste[i].pvmax);
+        printf("Attaque  ⚔️ : %s: (%d)\n", liste[i].nomatq, liste[i].attaque);
+        printf("Défense 🛡️ : réducions de %.0f%\n", (1-liste[i].defense)*100);
         printf("Compétence spéciale: %s\n", liste[i].competspe.nomspe);
         printf("Description: %s %s\n", liste[i].competspe.description1,liste[i].competspe.description2);
         printf("Vitesse: %d\n", liste[i].vitesse);
@@ -56,7 +56,7 @@ Combattant* miseàJourCombattants(Combattant liste[],int choixcombattant){ //fon
 return liste;
 }
 
-int longueur_int(int n){//fonction permettant de compter le nombre de chiffre de l'entier rentrer en paramètre
+int longueur_int(int n){//fonction permettant de compter le nombre de chiffre de l'entier rentré en paramètre
     if (n == 0) return 1; // cas particulier
     int longueur = 0;
     if (n < 0){
@@ -77,7 +77,7 @@ void alignement(int longueur){//fonction permettant d'aligner les colonnes lors 
     printf("\033[91m|\033[0m");
 }
    
-void affichevitesse(int vitesse){ // affiche la vitesse de façon styliser
+void affichevitesse(int vitesse){ // affiche la vitesse de façon stylisé
     int a=vitesse/10;
     printf("   (");
     for(int i=0; i<a; i++){
@@ -91,7 +91,7 @@ void affichevitesse(int vitesse){ // affiche la vitesse de façon styliser
 
 
 void affichejoueur(Combattant* equipe,char* nomequipe) {// Affiche l'équipe d'un joueur
-    int l=0;// variable servant à l'alignementde des |
+    int l=0;// variable servant à l'alignement des |
     for(int t=0; t<(63*3+4); t++){
         printf("c_\033[0m");   
     }
@@ -204,7 +204,7 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
     int minpv=0;
     int validiter;
     switch (attaquant[choixcombattant].competspe.typecompétence){// switch case permettant de savoir quelle compétence spéciale doit être utilisé
-        case 1:
+        case 1://capacité spéciale de mr Arancini
             if(vérificationbot==0){   
                 do{
                     printf("Choisissez le combattant qui doit lire la thèse de Mr Arancini\n");
@@ -221,11 +221,11 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                             choix=n;                    
                     }
                 }
-                printf("Le bot bien programmé réinitialise le conteur de %s qui était l'ennemie le plus proche d'utiliser sa compétence\n", défenseur[choix].nom);
+                printf("Le bot bien programmé réinitialise le compteur de %s qui était l'ennemie le plus proche d'utiliser sa compétence\n", défenseur[choix].nom);
                 défenseur[choix].vitessecourante = 0;
             }       
         break;                   
-        case 2:
+        case 2:// capacité spéciale de mr Par-dessus
             printf("%s %s\n", attaquant[choixcombattant].competspe.description1,attaquant[choixcombattant].competspe.description2);
             for (int i = 0; i < 3; i++) {
                 if(attaquant[i].pvcourants > 0){
@@ -243,7 +243,7 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                 }
             }
             break;           
-        case 3:
+        case 3:// capacité spéciale de mr gay prides
             printf("%s %s\n", attaquant[choixcombattant].competspe.description1,attaquant[choixcombattant].competspe.description2);
             for (int a = 0; a < 3; a++) {
                 if (défenseur[a].pvcourants > 0) {
@@ -261,7 +261,7 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                 }
             }
             break;
-        case 4:
+        case 4:// capacité de mme Anserre main
             if(vérificationbot==0){
                 do{
                     printf("Choisissez le combattant adverse dont vous souhaitez écraser le pied et faire des dégats bruts\n");
@@ -282,10 +282,10 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
             }
             break;
 
-        case 5:
+        case 5:// capacité spéciale de mr Grognon
             if(vérificationbot==0){
                 do{
-                    printf("Bien joué, vous avez réussi à vous introduire dans l'equipe adversaire à cause d'une faille de sécurité\n");
+                    printf("Bien joué, vous avez réussi à vous introduire dans l'équipe adverse à cause d'une faille de sécurité\n");
                     printf("Choisissez le combattant adverse dont vous souhaitez prendre le contrôle\n");
                     validiter=scanf("%d", &choix);
                     vérifscanf(validiter);
@@ -372,7 +372,7 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
             }
             break;
 
-        case 6:
+        case 6://capacité spéciale de mr Pelleteuse
             printf("%s %s\n", attaquant[choixcombattant].competspe.description1,attaquant[choixcombattant].competspe.description2);
             for (int i = 0; i < 3; i++) {
                 if(défenseur[i].pvcourants<=0){
@@ -380,7 +380,7 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                 }
             }
             break;
-        case 7:
+        case 7://capacité spéciale de mme Menu bretin
             printf("%s %s\n", attaquant[choixcombattant].competspe.description1,attaquant[choixcombattant].competspe.description2);
             *passe=1;
             printf("Le maître du jeux trouve cette attaque trop claqué et décide donc de vous laisser choisir en plus un adversaire a qui vous mettrez 150 dégats bruts\n");
@@ -408,7 +408,7 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
               
                          
             break;
-        case 8:
+        case 8:// capacité spéciale de mme Picasso
             printf("%s %s\n", attaquant[choixcombattant].competspe.description1,attaquant[choixcombattant].competspe.description2);
             for(int i = 0; i < 3; i++) {
                 if (attaquant[i].pvcourants > 0) {
@@ -416,7 +416,7 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                 }
             }
             break;
-        case 9:
+        case 9://capacité spéciale de J'accuse iel
             if(vérificationbot==0){
                 do{
                     printf("Choisissez le combattant adverse dont vous souhaitez le renvoi\n");
@@ -436,7 +436,7 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                 défenseur[choix].pvcourants*=attaquant[choixcombattant].competspe.valeur;
             }
             break;
-        case 10:
+        case 10://capacité de mme Gros t'es qui
         for(int i = 0; i < 2; i++) {
             if(vérificationbot==0){
                     for(int q=0; q<3; q++){//mise à jour de la vitesse courante
@@ -555,11 +555,12 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
 
 
                 }
+                sleep(10);
             }            
         }
-        sleep(10);
+        
             break;
-        case 11:
+        case 11://capacité spéciale de mr Bissap
             printf("%s %s\n", attaquant[choixcombattant].competspe.description1,attaquant[choixcombattant].competspe.description2);
             for(int i = 0; i < 3; i++) {
                 if (attaquant[i].pvcourants > 0) {
@@ -578,7 +579,7 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                 }
             }
         break;
-        case 12:
+        case 12://capacité spéciale de mr Abdelmoulaga
             printf("%s %s\n", attaquant[choixcombattant].competspe.description1,attaquant[choixcombattant].competspe.description2);
             for (int i = 0; i < 3; i++) {
                 if(défenseur[i].pvcourants > 0){
@@ -681,7 +682,7 @@ void Miseàjourcompétence(Combattant* équipe, Combattant* équipetémoin){ //m
 }
 
 
-void vérifscanf(int valider){ // fonction serant à  vider le buffer en cas de mauvaise saisie
+void vérifscanf(int valider){ // fonction servant à  vider le buffer en cas de mauvaise saisie
     int c;
     if (valider == EOF) {
         printf("Erreur rentré invalide\n");
@@ -691,7 +692,7 @@ void vérifscanf(int valider){ // fonction serant à  vider le buffer en cas de 
     
 }
 
-size_t utf8_strlen(const char* s){ //fonction srlen améliorer qui compte le nombre de caractère et pas d'octets
+size_t utf8_strlen(const char* s){ //fonction strlen amélioré qui compte le nombre de caractère et pas d'octets
     size_t len = 0;
     while (*s) {
         if ((*s & 0xC0) != 0x80) len++; 

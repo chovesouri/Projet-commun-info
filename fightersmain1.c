@@ -29,7 +29,7 @@ int main(){
     int* passe=&passetontour;//variable permettant de savoir si le joueur a le droit de jouer ou pas
     float esquive;
     int validiter;// variable servant a vérifier la validiter des scanf
-    FILE *f1 = fopen("combattants/mme_enserre_main", "r");//ouverture de tous les fichiers des combattans
+    FILE *f1 = fopen("combattants/mme_enserre_main", "r");//ouverture de tous les fichiers des combattants
     if (f1 == NULL) {
         printf("problème fichier combattant 1\n");
         exit(1);}
@@ -160,7 +160,7 @@ int main(){
         for(int i=0; i<3;i++){//choix des combattants
             do{
                 afficherCombattantsDisponibles(liste, 12-compteur3);//afficher les combattants disponibles
-                printf("Joueur1 choisissez votre combattant numéro %d en saisissant sont numéro\n",compteur1);
+                printf("Joueur1 choisissez votre combattant numéro %d en saisissant son numéro\n",compteur1);
                 validiter=scanf("%d", &choix1);
                 vérifscanf(validiter);    
             }while(choix1<1 || choix1>12-compteur3 || validiter!=1);
@@ -196,7 +196,7 @@ int main(){
         do{//déroulement et affichage du combat joeur/joueur
             //déroulement du tour du joueur 1
             if(passetontour==1){
-                printf("L'équipe %s a utiliser une capacité spéciale pour vous empêcher de jouer \n",nomEquipe2);
+                printf("L'équipe %s a utilisé une capacité spéciale pour vous empêcher de jouer \n",nomEquipe2);
                 passetontour=0;
                 sleep(5);
             }
@@ -289,7 +289,7 @@ int main(){
             //déroulement du tour du joueur 2            
             if((équipe2[0].pvcourants==0 && équipe2[1].pvcourants==0 && équipe2[2].pvcourants==0) || passetontour==1){
                 if(passetontour==1){
-                    printf("L'équipe %S a utiliser une capacité spéciale pour vous empêcher de jouer\n",nomEquipe1);
+                    printf("L'équipe %S a utilisé une capacité spéciale pour vous empêcher de jouer\n",nomEquipe1);
                     passetontour=0;
 
                 }
@@ -380,6 +380,7 @@ int main(){
             system("clear");
             nombredetour++;
         }while((équipe1[0].pvcourants>0 || équipe1[1].pvcourants>0 || équipe1[2].pvcourants>0) && (équipe2[0].pvcourants>0 || équipe2[1].pvcourants>0 || équipe2[2].pvcourants>0) );//condition de fin de combat
+        systeme("xdg-open https://www.youtube.com/watch?v=04854XqcfCY");
         if(équipe1[0].pvcourants<=0 && équipe1[1].pvcourants<=0 && équipe1[2].pvcourants<=0){
             affichecombat(équipe2, nomEquipe2, équipe1, nomEquipe1);
             printf("\033[5mL'équipe %s composé de %s, %s, %s a gagné !\033[0m\n", nomEquipe2, équipe2[0].nom, équipe2[1].nom, équipe2[2].nom);
@@ -410,7 +411,7 @@ int main(){
         for(int i=0; i<3;i++){//choix des combattants
             do{
                 afficherCombattantsDisponibles(liste, 12-compteur3);//afficher les combattants disponibles
-                printf("Equipe %s choisissez votre combattant numéro %d en saisissant sont numéro\n",nomEquipe1,compteur1);
+                printf("Equipe %s choisissez votre combattant numéro %d en saisissant son numéro\n",nomEquipe1,compteur1);
                 validiter=scanf("%d", &choix1);
                 vérifscanf(validiter);
             }while(choix1<1 || choix1>12-compteur3 || validiter!=1);
@@ -626,6 +627,7 @@ int main(){
             system("clear");    
         }while((équipe1[0].pvcourants>0 || équipe1[1].pvcourants>0 || équipe1[2].pvcourants>0) && (équipe2[0].pvcourants>0 || équipe2[1].pvcourants>0 || équipe2[2].pvcourants>0) );//condition de fin de combat
         if(équipe1[0].pvcourants<=0 && équipe1[1].pvcourants<=0 && équipe1[2].pvcourants<=0){
+            systeme("xdg-open https://www.youtube.com/watch?v=04854XqcfCY");
             affichecombat(équipe2, nomEquipe2, équipe1, nomEquipe1);
             printf("\033[5mL'équipe %s composé de %s, %s, %s a gagné !\033[5m\n", nomEquipe2, équipe2[0].nom, équipe2[1].nom, équipe2[2].nom);
         }
