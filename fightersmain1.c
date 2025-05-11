@@ -239,7 +239,7 @@ int main(){
                     }while(équipe2[choix2].pvcourants<=0);
                     esquive=(rand()%100+1)/100.00;
                     if(esquive<équipe2[choix2].esquive){
-                        printf("L'attaque a été esquivée\n");
+                        printf("L'attaque a été esquivée ❌\n");
                     }else{
                     équipe2[choix2].pvcourants-=équipe1[choix1].attaque*équipe2[choix2].defense;
                     printf("L'attaque a été réussie 🎯\n");
@@ -265,7 +265,7 @@ int main(){
                         }while(équipe2[choix2].pvcourants<=0);                         
                         esquive=(rand()%100+1)/100.00;
                         if(esquive<équipe2[choix2].esquive){
-                            printf("L'attaque a été esquivée\n");
+                            printf("L'attaque a été esquivée ❌\n");
                         }else{
                         équipe2[choix2].pvcourants-=équipe1[choix1].attaque*équipe2[choix2].defense;
                         printf("L'attaque a été réussie 🎯\n");
@@ -332,7 +332,7 @@ int main(){
                     }while(équipe1[choix2].pvcourants<=0);
                     esquive=(rand()%100+1)/100.00;                    
                     if(esquive<équipe1[choix2].esquive){
-                        printf("L'attaque a été esquivée\n");
+                        printf("L'attaque a été esquivée ❌\n");
                     }else{
                     équipe1[choix2].pvcourants-=équipe2[choix1].attaque*équipe1[choix2].defense;
                     printf("L'attaque a été réussie 🎯\n");
@@ -357,7 +357,7 @@ int main(){
                         }while(équipe1[choix2].pvcourants<=0);
                         esquive=(rand()%100+1)/100;
                         if(esquive<équipe1[choix2].esquive){
-                            printf("L'attaque a été esquivée\n");
+                            printf("L'attaque a été esquivée ❌\n");
                         }else{
                         équipe1[choix2].pvcourants-=équipe2[choix1].attaque*équipe1[choix2].defense;
                         printf("L'attaque a été réussie 🎯\n");
@@ -365,8 +365,8 @@ int main(){
                     }    
                     else{
                         équipe2[choix1].vitessecourante=0;
-                        Utilisationcompétence(équipe2,nomEquipe2, équipe2témoin, équipe1, nomEquipe1, équipe1témoin, choix1,0, passe);//utilisation de la capacité spéciale    
-                        sleep(5);
+                        Utilisationcompétence(équipe2,nomEquipe2, équipe2témoin, équipe1, nomEquipe1, équipe1témoin, choix1,0, passe);//utilisation de la capacité spéciale
+                        sleep(5);                        
                     }  
                 }
                 Miseàjourcompétence(équipe2, équipe2témoin);
@@ -388,7 +388,8 @@ int main(){
         else{
             affichecombat(équipe1, nomEquipe1, équipe2, nomEquipe2);
             printf("\033[5mL'équipe %s composé de %s, %s, %s a gagné !\033[5m\n", nomEquipe1, équipe1[0].nom, équipe1[1].nom, équipe1[2].nom);
-        }   
+        }
+        printf("\n\n");
     }         
     else{ //combat joueur vs bot  
         do{
@@ -483,7 +484,7 @@ int main(){
                     }while(équipe2[choix2].pvcourants<=0);
                     esquive=(rand()%100+1)/100.00;
                     if(esquive<équipe2[choix2].esquive){
-                        printf("L'attaque a été esquivée\n");
+                        printf("L'attaque a été esquivée ❌\n");
                     }else{
                         équipe2[choix2].pvcourants-=équipe1[choix1].attaque*équipe2[choix2].defense;
                         printf("L'attaque a été réussie 🎯\n");
@@ -509,7 +510,7 @@ int main(){
                         }while(équipe2[choix2].pvcourants<=0);
                         esquive=(rand()%100+1)/100.00;
                         if(esquive<équipe2[choix2].esquive){
-                            printf("L'attaque a été esquivée\n");
+                            printf("L'attaque a été esquivée ❌\n");
                         }else{  
                         équipe2[choix2].pvcourants-=équipe1[choix1].attaque*équipe2[choix2].defense;
                         printf("L'attaque a été réussie 🎯\n");
@@ -521,6 +522,7 @@ int main(){
                     }
                 }
                 sleep(5);
+                
                 for(n=0; n<3; n++){
                     if(équipe2[n].pvcourants<0){
                         équipe2[n].pvcourants=0;
@@ -560,7 +562,7 @@ int main(){
                     printf("Le bot a choisi d'attaquer %s\n", équipe1[choix2].nom);
                     esquive=(rand()%100+1)/100.00;
                     if(esquive<équipe1[choix2].esquive){
-                        printf("L'attaque a été esquivée\n");
+                        printf("L'attaque a été esquivée ❌\n");
                     }else{
                         équipe1[choix2].pvcourants-=équipe2[choix1].attaque*équipe1[choix2].defense;
                         printf("L'attaque a été réussie 🎯\n");
@@ -580,7 +582,7 @@ int main(){
                     printf("Le bot a choisi d'attaquer %s car il est le combattant avec le moins de pv\n", équipe1[minpv].nom);
                     esquive=(rand()%100+1)/100.00;
                     if(esquive<équipe1[minpv].esquive){
-                        printf("L'attaque a été esquivée\n");
+                        printf("L'attaque a été esquivée ❌\n");
                     }else{
                         équipe1[minpv].pvcourants-=équipe2[choix1].attaque*équipe1[minpv].defense;
                         printf("L'attaque a été réussie 🎯\n");
@@ -601,7 +603,7 @@ int main(){
                         printf("Le bot a choisi d'attaquer %s car il est le combattant avec le moins de pv\n", équipe1[minpv].nom);
                         esquive=(rand()%100+1)/100.00;
                         if(esquive<équipe1[minpv].esquive){
-                            printf("L'attaque a été esquivée\n");
+                            printf("L'attaque a été esquivée ❌\n");
                         }else{
                             équipe1[minpv].pvcourants-=équipe2[choix1].attaque*équipe1[minpv].defense;
                             printf("L'attaque a été réussie 🎯\n");
@@ -617,7 +619,7 @@ int main(){
                     }
                 }
                 Miseàjourcompétence(équipe2, équipe2témoin);//mise à jour des effets sur le combattant
-                sleep(10);   
+                sleep(7);
                 for(n=0; n<3; n++){
                     if(équipe1[n].pvcourants<0){
                         équipe1[n].pvcourants=0;
@@ -634,7 +636,8 @@ int main(){
         else{
             affichecombat(équipe1, nomEquipe1, équipe2, nomEquipe2);
             printf("\033[5mL'équipe %s composé de %s, %s, %s a gagné !\033[5m\n", nomEquipe1, équipe1[0].nom, équipe1[1].nom, équipe1[2].nom);
-        }       
+        }
+        printf("\n\n");
     }   
 return 0;
 }

@@ -43,7 +43,7 @@ void afficherCombattantsDisponibles(Combattant liste[], int taille) {// Affiche 
         printf("Compétence spéciale: %s\n", liste[i].competspe.nomspe);
         printf("Description: %s %s\n", liste[i].competspe.description1,liste[i].competspe.description2);
         printf("Vitesse: %d\n", liste[i].vitesse);
-        printf("Esquive: %.2f \n", liste[i].esquive);
+        printf("Esquive: %.0f% \n", liste[i].esquive*100);
         printf("\033[91m----------------------------------------\033[0m\n");
         printf("\n");
     }
@@ -148,8 +148,8 @@ void affichejoueur(Combattant* equipe,char* nomequipe) {// Affiche l'équipe d'u
     usleep(CHRONO);
     printf("\033[91m|\033[0m");
     for(int b=0; b<3; b++){// affichage des défenses
-        printf("   défense 🛡️ :%.2f", equipe[b].defense);    
-        alignement(15);    
+        printf("   défense 🛡️ :%.0f%% de réduction", (1-equipe[b].defense)*100);    
+        alignement(27);    
     }
     printf("\n");
     usleep(CHRONO);
@@ -305,9 +305,9 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                     }while(défenseur[choix2].pvcourants<=0);
                     esquive=(rand()%100+1)/100.00;
                     if(esquive<défenseur[choix2].esquive){
-                        printf("L'attaque a été esquivée\n");
+                        printf("L'attaque a été esquivée ❌\n");
                     }else{
-                        printf("L'attaque a été réussie\n");
+                        printf("L'attaque a été réussie 🎯\n");
                         défenseur[choix2].pvcourants-=défenseur[choix].attaque*défenseur[choix2].defense;
                     }
                 }
@@ -331,10 +331,10 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                         }while(défenseur[choix2].pvcourants<=0);
                         esquive=(rand()%100+1)/100.00;
                         if(esquive<défenseur[choix2].esquive){
-                            printf("L'attaque a été esquivée\n");
+                            printf("L'attaque a été esquivée ❌\n");
                         }else{
                             défenseur[choix2].pvcourants-=défenseur[choix].attaque*défenseur[choix2].defense;
-                            printf("L'attaque a été réussie\n");
+                            printf("L'attaque a été réussie 🎯\n");
                         }
                     }
                     else{
@@ -355,9 +355,9 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                     printf("Le bot a choisi d'attaquer %s car il est le combattant avec le moins de pv\n", défenseur[minpv].nom);
                     esquive=(rand()%100+1)/100.00;
                     if(esquive<défenseur[minpv].esquive){
-                        printf("L'attaque a été esquivée\n");
+                        printf("L'attaque a été esquivée ❌\n");
                     }else{
-                        printf("L'attaque a été réussie\n");
+                        printf("L'attaque a été réussie 🎯\n");
                         défenseur[minpv].pvcourants-=défenseur[choix].attaque*défenseur[minpv].defense;
                     }
                 }
@@ -473,9 +473,9 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                     }while(défenseur[choix2].pvcourants<=0);                    
                     esquive=(rand()%100+1)/100.00;
                     if(esquive<défenseur[choix2].esquive){
-                        printf("L'attaque a été esquivée\n");   
+                        printf("L'attaque a été esquivée ❌\n");   
                     }else{
-                        printf("L'attaque a été réussie\n");
+                        printf("L'attaque a été réussie 🎯\n");
                         défenseur[choix2].pvcourants-=attaquant[choix].attaque*attaquant[choix2].defense;
                     }    
                 }
@@ -499,9 +499,9 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                         }while(défenseur[choix2].pvcourants<=0);
                         esquive=(rand()%100+1)/100.00;
                         if(esquive<défenseur[choix2].esquive){
-                            printf("L'attaque a été esquivée\n");
+                            printf("L'attaque a été esquivée ❌\n");
                         }else{
-                            printf("L'attaque a été réussie\n");
+                            printf("L'attaque a été réussie 🎯\n");
                             défenseur[choix2].pvcourants-=attaquant[choix].attaque*attaquant[choix2].defense;
                         }
                     }
@@ -539,10 +539,10 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
                     printf("Le bot a choisi d'attaquer %s car il est le combattant avec le moins de pv\n", défenseur[minpv].nom);
                     esquive=(rand()%100+1)/100.00;
                     if(esquive<défenseur[minpv].esquive){
-                        printf("L'attaque a été esquivée\n");
+                        printf("L'attaque a été esquivée ❌\n");
                     }else{
                         défenseur[minpv].pvcourants-=attaquant[choix].attaque*défenseur[minpv].defense;
-                        printf("L'attaque a été réussie\n");
+                        printf("L'attaque a été réussie 🎯\n");
                     }    
                 }
                 else{
@@ -555,7 +555,7 @@ void Utilisationcompétence(Combattant* attaquant,char* noméquipeat,Combattant*
 
 
                 }
-                sleep(10);
+                sleep(7);
             }            
         }
         
@@ -700,8 +700,5 @@ size_t utf8_strlen(const char* s){ //fonction strlen amélioré qui compte le no
     }
     return len;
 }
-
-
-
 
 
