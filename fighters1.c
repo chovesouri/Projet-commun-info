@@ -93,7 +93,7 @@ void affichevitesse(int vitesse){ // affiche la vitesse de façon stylisé
 void affichejoueur(Combattant* equipe,char* nomequipe) {// Affiche l'équipe d'un joueur
     int l=0;// variable servant à l'alignement des |
     for(int t=0; t<(63*3+4); t++){
-        printf("c_\033[0m");   
+        printf("\033[91m_\033[0m");   
     }
     usleep(CHRONO);
     printf("\n");
