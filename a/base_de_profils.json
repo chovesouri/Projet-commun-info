@@ -1,0 +1,13 @@
+[
+    {
+        "num_client": 2,
+        "mail": "admin@yumland.com",
+        "password": "$2y$10$AW8agPGiVS435eGk4tbGpetxBJp60SSvjhW7gN2ldUJw7PX3suuDq",
+        "nom": "Admin",
+        "prenom": "Admin",
+        "adresse": "",
+        "num_téléphone": "",
+        "role": "admin",
+        "date_creation": "2026-03-29 00:00:00"
+    }
+]

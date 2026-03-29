@@ -1,0 +1,223 @@
+/* Cleaned & deduplicated stylesheet
+   - single reset
+   - CSS variables defined
+   - menu selectors scoped to .menu-section
+   - kept .sushi-section rules separate
+   - preserved avis and profile styles
+*/
+
+/* Reset / base */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+:root{
+  --bg:#f6f7fb;
+  --card:#ffffff;
+  --muted:#6b7280;
+  --accent:#4e73df;
+  --accent-dark:#2e59d9;
+}
+
+body{background:linear-gradient(180deg,#fafbff 0%,var(--bg) 100%);color:#111827;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+
+/* Utilities used by login page */
+.connexion{height:100vh;display:flex;justify-content:center;align-items:center;background:linear-gradient(135deg,#4e73df,#1cc88a)}
+.container{width:min(1100px,94%);margin:0 auto;padding:40px 18px}
+.login-container{background:#fff;padding:40px;border-radius:12px;width:320px;box-shadow:0 10px 25px rgba(0,0,0,.15)}
+.login-form h2{display:flex;align-items:center;justify-content:center;gap:0;text-align:center;margin-bottom:25px;color:#333}
+.o-sushi{width:22px;height:22px;display:inline-block;vertical-align:middle;margin:0;object-fit:contain}
+.login-form label{display:block;margin-bottom:6px;margin-top:15px;font-size:14px;color:#555}
+.login-form input{width:100%;padding:10px;border-radius:6px;border:1px solid #ccc;transition:box-shadow .18s,border-color .18s}
+.login-form input:focus{border-color:var(--accent);outline:none}
+.login-form button{width:100%;margin-top:25px;padding:12px;border:none;border-radius:6px;background:var(--accent);color:#fff;font-size:16px;cursor:pointer}
+.login-form button:hover{background:var(--accent-dark)}
+.register-link{text-align:center;margin-top:18px;font-size:14px}
+.register-link a{color:var(--accent);text-decoration:none}
+.register-link a:hover{text-decoration:underline}
+
+/* Password requirements */
+.password-requirements{margin-top:10px;padding:12px;background:#f8f9fa;border-radius:6px;border:1px solid #e9ecef;font-size:13px}
+.password-requirements p{margin:0 0 8px 0;font-weight:bold;color:#555;font-size:13px}
+.password-requirements ul{list-style:none;padding:0;margin:0}
+.password-requirements li{margin:6px 0;color:#999;display:flex;align-items:center;gap:8px}
+.requirement-icon{display:inline-block;width:16px;text-align:center;font-weight:bold;color:#999}
+
+.logo-sushine {width: 150px;height: auto;}
+
+/* Top banner / nav */
+.welcome-banner{display:flex;align-items:center;justify-content:space-between;background:#343a40;padding:20px}
+.left{display:flex;align-items:center;gap:12px}
+
+.restaurant-name{color:#fff;font-size:24px;margin:0}
+.center{flex:1;display:flex;justify-content:center}
+.button-container{display:flex;gap:15px}
+.right{display:flex;align-items:center}
+.menu-button,.commande-button{padding:10px 20px;border-radius:5px;background:transparent;color:#fff;border:none;cursor:pointer}
+.menu-button:hover,.commande-button:hover{background:rgba(255,255,255,.08)}
+.mon-compte-button{padding:10px 20px;border-radius:5px;background:#007bff;color:#fff;border:none}
+.mon-compte-button:hover{background:#0056b3}
+.btn-deconnexion{background-color:#e74c3c;color:#fff;padding:10px 15px;border:none;border-radius:5px;cursor:pointer;font-weight:bold;text-decoration:none;display:inline-block;margin-top:15px;transition:background-color 0.3s ease}
+.btn-deconnexion:hover{background-color:#c0392b}
+.message{padding:12px;margin-bottom:15px;border-radius:5px}
+.message-success{background-color:#d4edda;color:#155724;border:1px solid #c3e6cb}
+.message-error{background-color:#f8d7da;color:#721c24;border:1px solid #f5c6cb}
+.loading{text-align:center;margin:10px 0}
+.user-welcome{background:linear-gradient(135deg,#d4edda,#c3e6cb);color:#155724;border:2px solid #c3e6cb;padding:20px;border-radius:8px;margin:20px 0;text-align:center}
+.user-welcome h3{margin:0 0 10px 0}
+.user-info{margin:10px 0;font-size:14px}
+.test-section{margin:30px 0;border:1px solid #ddd;padding:20px;border-radius:5px}
+.test-section a{color:#e67e22;text-decoration:none;margin:10px 5px;display:inline-block}
+.test-section a:hover{text-decoration:underline}
+.test-result{padding:8px;margin:5px 0;border-radius:4px}
+.test-result.pass{background-color:#d4edda;color:#155724}
+.test-result.fail{background-color:#f8d7da;color:#721c24}
+.profile-item{background:#f0f0f0;padding:10px;margin:5px 0;border-radius:3px}
+.test-info{padding:15px;border-radius:5px;margin:10px 0}
+.test-info-success{background-color:#d4edda;color:#155724}
+.test-info-neutral{background-color:#e8f4f8;color:#0c5460}
+.nav-button{display:inline-block;padding:10px 20px;margin:5px;border-radius:5px;color:#fff;text-decoration:none;transition:opacity 0.3s ease}
+.nav-button-home{background:#e67e22}
+.nav-button-connexion{background:#2c3e50}
+.nav-button-profil{background:#27ae60}
+.nav-button-logout{background:#e74c3c}
+.nav-button:hover{opacity:0.8}
+
+/* Nav link anchors used in header */
+.menu-link{color:rgba(255,255,255,0.95);text-decoration:none;padding:8px 14px;border-radius:8px;font-weight:600}
+.menu-link:hover{background:rgba(255,255,255,0.04)}
+.menu-link.active{background:rgba(255,255,255,0.08)}
+
+/* Profile */
+.profile-page{font-family:Segoe UI, Roboto, Arial, sans-serif;background:var(--bg);padding:24px;color:#222}
+.profile-page .container{max-width:980px;margin:0 auto;background:#fff;border-radius:10px;padding:24px;box-shadow:0 6px 20px rgba(30,30,60,.06)}
+.profile-page .profile-header{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+.profile-page .avatar{width:84px;height:84px;border-radius:12px;background:linear-gradient(135deg,#ff9a9e,#fad0c4);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:28px}
+.profile-page .info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:18px}
+.profile-page .field{display:flex;align-items:center;gap:10px;padding:10px;border-radius:8px;background:#fbfbfe}
+.profile-page .field label{width:110px;font-size:13px;color:#666}
+.profile-page .value input{width:100%;border:0;background:transparent;color:#111;font-size:15px;padding:6px}
+.profile-page .value .display-value{color:#333;display:inline}
+.profile-page .value .edit-value{width:100%;padding:8px;border:1px solid #ddd;border-radius:4px;font-size:14px;display:none}
+.profile-page .personal-info{margin-top:30px}
+.profile-page .personal-info h3{font-size:20px;margin-bottom:20px;color:#333;font-weight:600}
+.profile-page .pencil{width:30px;height:30px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
+.profile-page .pencil:hover{background:#f0f3ff}
+.change-note{color:#c00!important;background:rgba(255,0,0,.03);padding:6px 8px;border-left:3px solid #c00;margin:6px 0;font-weight:600}
+
+/* MENU (commande-client.php) - scoped to avoid conflicts */
+.menu-section h2{font-size:28px;margin-bottom:18px;color:#0f172a}
+.menu-section .sushi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;align-items:start}
+.menu-section .sushi-card{background:var(--card);border-radius:14px;box-shadow:0 6px 18px rgba(16,24,40,.06);overflow:hidden;display:flex;flex-direction:column;transition:transform .18s ease,box-shadow .18s ease}
+.menu-section .sushi-card:hover{transform:translateY(-6px);box-shadow:0 10px 30px rgba(16,24,40,.12)}
+.menu-section .img-wrap{height:160px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#fff 0%,#f3f4f6 100%)}
+.menu-section .img-wrap img{width:100%;height:160px;object-fit:cover;display:block}
+.menu-section .card-body{padding:14px 16px 18px}
+.menu-section .card-body h3{font-size:18px;margin-bottom:6px}
+.menu-section .desc{font-size:14px;color:var(--muted);margin-bottom:12px}
+.menu-section .card-foot{display:flex;align-items:center;justify-content:space-between}
+.menu-section .price{font-weight:700;color:var(--accent)}
+.menu-section .add-button{background:var(--accent);color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer}
+.menu-section .add-button:hover{background:var(--accent-dark)}
+
+/* Wrapper pour commande avec sidebar */
+.commande-wrapper{display:flex;gap:20px;padding:20px;max-width:1400px;margin:0 auto}
+.profil-sidebar{width:320px;flex-shrink:0}
+.menu-section.with-sidebar{flex:1;min-width:0}
+.profil-card{background:#fff;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,.08);padding:20px;position:sticky;top:20px}
+.profil-header-card{display:flex;gap:12px;margin-bottom:20px;padding-bottom:15px;border-bottom:1px solid #eee}
+.avatar-small{width:60px;height:60px;border-radius:8px;background:linear-gradient(135deg,#ff9a9e,#fad0c4);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:24px;flex-shrink:0}
+.profil-header-card h3{margin:0;font-size:16px;color:#333}
+.num-client{margin:4px 0 0 0;font-size:12px;color:#999;font-weight:normal}
+.profil-info{margin-bottom:15px}
+.info-item{display:flex;flex-direction:column;margin-bottom:12px;font-size:13px}
+.info-item label{color:#666;font-weight:600;margin-bottom:4px}
+.display-value{color:#333}
+.edit-value{width:100%;padding:6px;border:1px solid #ddd;border-radius:4px;font-size:12px}
+.profil-actions{display:flex;gap:6px;flex-wrap:wrap;margin:15px 0}
+.btn-modifier{flex:1;background:#e67e22;color:#fff;padding:10px;border:none;border-radius:4px;cursor:pointer;font-size:13px;font-weight:bold;transition:background 0.3s ease}
+.btn-modifier:hover{background:#d66f13}
+.btn-sauvegarder{flex:1;background:#27ae60;color:#fff;padding:10px;border:none;border-radius:4px;cursor:pointer;font-size:13px;font-weight:bold;transition:background 0.3s ease}
+.btn-sauvegarder:hover{background:#229954}
+.btn-annuler{flex:1;background:#95a5a6;color:#fff;padding:10px;border:none;border-radius:4px;cursor:pointer;font-size:13px;font-weight:bold;transition:background 0.3s ease}
+.btn-annuler:hover{background:#7f8c8d}
+.profil-message{padding:12px;margin:0 0 15px 0;border-radius:5px;font-size:14px;text-align:center}
+.profil-message.success{background-color:#d4edda;color:#155724;border:1px solid #c3e6cb;display:block}
+.profil-message.error{background-color:#f8d7da;color:#721c24;border:1px solid #f5c6cb;display:block}
+
+/* Alternative sushi section used elsewhere (.sushi-section) */
+.sushi-section{padding:40px 20px;background-color:#f8f9fa;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.sushi-section .sushi-du-mois-title{font-size:28px;color:#333;margin-bottom:20px}
+.sushi-section .sushi-cards-container{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;max-width:1200px}
+.sushi-section .sushi-card{width:30%;max-width:300px;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.1);text-align:center;transition:transform .3s ease;margin-bottom:20px}
+.sushi-section .sushi-card:hover{transform:scale(1.05)}
+.sushi-section .sushi-card img{width:100%;height:200px;object-fit:cover}
+.sushi-section .sushi-content{padding:15px;background:#fff}
+
+/* Recette */
+.recette-incontournable-section{padding:40px 20px;background:#fff;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;border-top:2px solid #fff}
+.recette-card{width:60%;max-width:800px;margin:0 auto;background:#fafafa;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,.1);overflow:hidden;text-align:center}
+
+/* Order states */
+.order.attente{border-left:5px solid #f6c23e}
+.order.livraison{border-left:5px solid #1cc88a}
+.order button{min-width:180px}
+
+/* Avis (reviews) */
+.rating-header{text-align:center;margin-bottom:40px}
+.average-rating{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:20px}
+.rating-stars{font-size:32px;color:#ffc107;letter-spacing:4px}
+.rating-value{font-size:28px;font-weight:700;color:var(--accent)}
+.rating-text{font-size:14px;color:var(--muted);margin:0}
+.avis-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;align-items:start}
+.avis-card{background:var(--card);border-radius:14px;box-shadow:0 6px 18px rgba(16,24,40,.06);padding:20px;transition:transform .18s ease,box-shadow .18s ease}
+.avis-card:hover{transform:translateY(-6px);box-shadow:0 10px 30px rgba(16,24,40,.12)}
+.avis-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.avis-header h3{font-size:16px;margin:0;color:#111827}
+.avis-stars{font-size:14px;color:#ffc107;letter-spacing:2px}
+.avis-text{font-size:14px;color:#555;line-height:1.6;margin-bottom:12px}
+.avis-date{font-size:12px;color:var(--muted);margin:0}
+.avis-cta{text-align:center;padding:40px 20px;margin-top:40px;background:linear-gradient(135deg,rgba(78,115,223,.08) 0%,rgba(28,200,138,.08) 100%);border-radius:14px}
+.avis-cta h3{font-size:22px;margin-bottom:8px;color:#0f172a}
+.avis-cta p{font-size:14px;color:var(--muted);margin-bottom:20px}
+.cta-button{background:var(--accent);color:#fff;border:none;padding:12px 28px;border-radius:8px;font-size:16px;font-weight:600;cursor:pointer;transition:background .3s}
+.cta-button:hover{background:var(--accent-dark)}
+
+.site-footer{padding:18px 0;text-align:center;color:var(--muted);background:transparent}
+
+@media (max-width:700px){.profile-page .info-grid{grid-template-columns:1fr}}
+@media (max-width:600px){.welcome-banner{padding:12px 4%}.menu-section .img-wrap{height:140px}.rating-stars{font-size:24px}.rating-value{font-size:22px}.avis-grid{grid-template-columns:1fr}.sushi-section .sushi-card{width:100%}}
+.users-container{margin:20px 0}
+.user-item{background:#f9f9f9;border:1px solid #ddd;padding:15px;margin:10px 0;border-radius:5px}
+.user-info{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px}
+.user-details{flex:1;min-width:250px}
+.user-details p{margin:5px 0;font-size:14px}
+.user-details strong{color:#333}
+.role-section{display:flex;align-items:center;gap:10px}
+.role-badge{display:inline-block;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:bold;text-transform:uppercase}
+.role-client{background-color:#e3f2fd;color:#1976d2}
+.role-restaurateur{background-color:#fff3e0;color:#f57c00}
+.role-admin{background-color:#f3e5f5;color:#7b1fa2}
+.role-livreur{background-color:#e8f5e9;color:#388e3c}
+.role-selector{display:flex;gap:8px;align-items:center}
+.role-selector select{padding:6px 10px;border:1px solid #ddd;border-radius:3px;font-size:14px}
+.role-selector button{padding:6px 15px;background-color:#4CAF50;color:white;border:none;border-radius:3px;cursor:pointer;font-size:14px;font-weight:bold}
+.role-selector button:hover{background-color:#45a049}
+.role-selector button:disabled{background-color:#ccc;cursor:not-allowed}
+.success-message{background-color:#d4edda;color:#155724;padding:12px;border-radius:3px;margin:10px 0;display:none}
+.error-message{background-color:#f8d7da;color:#721c24;padding:12px;border-radius:3px;margin:10px 0;display:none}
+.loading{display:none;color:#666;font-style:italic}
+.delete-btn{padding:6px 12px;background-color:#dc3545;color:white;border:none;border-radius:3px;cursor:pointer;font-size:14px;font-weight:bold}
+.delete-btn:hover{background-color:#c82333}
+.delete-btn:disabled{background-color:#ccc;cursor:not-allowed}
+.role-group{margin:30px 0}
+.role-group-title{font-size:18px;font-weight:bold;color:#333;padding:10px;border-bottom:2px solid #ddd;margin-bottom:15px}
+.action-buttons{display:flex;gap:10px;align-items:center}
+.travaux-container{text-align:center;padding:50px 20px}
+.travaux-container h2{color:#333;margin-bottom:20px}
+.travaux-container p{color:#666;font-size:16px;margin:10px 0}
+.construction-icon{font-size:48px;margin:20px 0}
+
